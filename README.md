@@ -1,7 +1,7 @@
 # LG Home Launcher
 
-[![Validation](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/mbsintegrations/LG-Home-Launcher?include_prereleases)](https://github.com/mbsintegrations/LG-Home-Launcher/releases)
+[![Validation](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/mbsintegrations/LG-Home-Launcher?include_prereleases&cacheSeconds=300)](https://github.com/mbsintegrations/LG-Home-Launcher/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/mbsintegrations/LG-Home-Launcher?style=flat&logo=github)](https://github.com/mbsintegrations/LG-Home-Launcher)
 

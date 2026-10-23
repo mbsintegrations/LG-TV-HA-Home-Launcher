@@ -1,6 +1,6 @@
 # LG Home Launcher v0.1.0 — Community Preview
 
-[![Validation](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml)
+[![Validation](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml)
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=flat&logo=paypal&logoColor=white)](https://paypal.me/mwahl1973)
 
 Create your own LG webOS home screen with streaming apps, HDMI inputs and Home Assistant cards. Configure it in the local MBS Integrations wizard, then install a private package on your TV. No always-on PC or relay is needed for normal launcher use.
