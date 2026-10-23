@@ -38,13 +38,32 @@ Replace `YOUR_TV` with the device name you created. Developer Mode uses port 992
 
 ## Find app IDs
 
-View the TV's installed apps in Dev Manager, or use:
+### From Home Assistant
+
+If your TV is already connected through Home Assistant's LG webOS integration:
+
+1. Open the app you want to add on the TV and leave it open.
+2. In Home Assistant, go to **Developer Tools → States**.
+3. Find and select the TV's `media_player` entity.
+4. In its attributes, copy the value of **`app_id`**. For example, YouTube commonly reports `youtube.leanback.v4`.
+5. In the launcher configurator, open **Apps & inputs**, add or edit a tile, and paste that value into **App ID or HDMI input**. Set its display name and choose the plain **text** style if no matching style is available.
+6. Rebuild and reinstall your configured launcher package to apply the change.
+
+Copy the attribute value only, without `app_id:` or surrounding quotes. If the attribute is missing or still shows the previous app, wait for the TV integration to update and check again, or use one of the methods below.
+
+### From webOS Dev Manager or the CLI
+
+View the TV's installed-app information in webOS Dev Manager, or run this from the launcher project folder:
 
 ```sh
 npx ares-install --device YOUR_TV --list
 ```
 
-Use the returned ID in the wizard. If a built-in app is not listed, inspect the LG integration's `app_id` while that app is open, or the inventory tools available in your Dev Manager version. Do not assume display titles are IDs. Common reference IDs are YouTube `youtube.leanback.v4`, Netflix `netflix`, Plex `cdp-30`, and Prime `amazon`.
+Replace `YOUR_TV` with your paired device name and use the returned app ID in the wizard. Some built-in apps may be absent from this list; use the Home Assistant method above or the inventory tools available in your Dev Manager version.
+
+The app must already be installed on the TV. Its display title is not necessarily its ID, and IDs or availability can differ by region and model. Common reference IDs are YouTube `youtube.leanback.v4`, Netflix `netflix`, Plex `cdp-30`, and Prime `amazon`.
+
+Adding a tile enables launching the app. For automatic return when exiting it with the optional helper, also add its verified ID to the helper's `watchedApps` list, rebuild/reinstall the helper as documented, and test that app's exit behavior. See the [Home-button helper guide](HOME-BUTTON-HELPER.md).
 
 HDMI tiles use `com.webos.app.hdmi1` through `com.webos.app.hdmi4`, with a label you choose. The app cannot prove which device is plugged into an input. Apple TV here means the external HDMI device, not Apple's native streaming app.
 
