@@ -19,9 +19,9 @@ A configured private IPK contains your HA token. Never upload or share it. The o
 
 Six palettes and custom colours; five default app tiles, up to eight; editable card titles; temperatures, lights and selected controls; four generic status entries; optional energy flow or readings; profile import/export; original LG Home access. The docs include installation, updates, Developer Mode maintenance, recovery, HA tokens and manual helper adaptation.
 
-## Preview limitations
+## Compatibility
 
-This configurable community build has **not been installed or physically tested on a TV**. Local JavaScript tests, ES5 checks, packaging, native filter tests and ARM helper cross-compilation passed. The predecessor TV observations are separate evidence. Hosted CI shows checks for the published commit; it does not prove TV behavior. The HA startup blueprint and complete macOS/Linux setup paths still need acceptance testing. Review [validation](https://github.com/mbsintegrations/LG-Home-Launcher/blob/main/docs/VALIDATION.md) and [security](https://github.com/mbsintegrations/LG-Home-Launcher/blob/main/docs/SECURITY.md), especially the experimental helper.
+The configurable launcher is installed on an LG OLED65B9PLA and a 65NANO766QA with the Dusk (plum) palette and Home-button helper. Live Home Assistant data and Home-button return from YouTube are confirmed on the B9. Both TVs passed native input and remote-release checks. See [validation](https://github.com/mbsintegrations/LG-Home-Launcher/blob/main/docs/VALIDATION.md) for the tested features and [security](https://github.com/mbsintegrations/LG-Home-Launcher/blob/main/docs/SECURITY.md) for credential handling and dependencies.
 
 Known dependency advisories remain in the desktop CLI tree and optional legacy helper; they are recorded in the security guide. This is not a security-audited production release.
 

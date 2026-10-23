@@ -66,6 +66,6 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Compatibility and evidence
 
-The original launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). Testing of the configurable community edition on the Living Room TV is being prepared. See [compatibility and validation](docs/VALIDATION.md) for the current coverage.
+The configurable launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). The B9 has confirmed live Home Assistant data and Home-button return from YouTube. See [compatibility and validation](docs/VALIDATION.md) for the tested features.
 
 Own code is GPL-3.0-only. The adapted helper retains its MIT notices. See [NOTICE](NOTICE) and [licensing](docs/LICENSING.md). Independent project; not affiliated with LG or Home Assistant.
