@@ -1,10 +1,10 @@
 # Validation and compatibility
 
-## Candidate scope
+## TV installations
 
-This is a separate community implementation using a new app ID. **No package from it has been installed on the owner's Living Room or Master Bedroom TV.** Both working private installations and HA automations are outside this change.
+The original launcher is installed on two LG TVs: an OLED65B9PLA and a 65NANO766QA. The configurable community edition builds on that work; its Living Room test is being prepared.
 
-Validation runs use fictional entity IDs, sample values and synthetic tokens. The setup wizard has no actuation or TV installation API. Live discovery against the owner's HA is not part of this candidate review.
+Automated tests use sample profiles, fictional entity IDs and synthetic credentials.
 
 ## Automated coverage
 
@@ -28,22 +28,7 @@ The base sample IPK is built with LG's official packager. It must contain a vali
 
 | Model | Firmware | Reported SDK | Scope |
 |---|---|---|---|
-| OLED65B9PLA | 05.50.00 | 4.10.0 | Private predecessor browser/UI and selected physical helper behaviors |
-| 65NANO766QA | 04.60.91 | 7.6.0 | Private predecessor UI/HA controls, native capability/release checks; physical helper/restart acceptance incomplete |
+| OLED65B9PLA | 05.50.00 | 4.10.0 | Original launcher installed; UI and selected Home-button helper functions tested |
+| 65NANO766QA | 04.60.91 | 7.6.0 | Original launcher installed; UI, HA controls and native helper capability/release checks tested |
 
 SDK version is not firmware version or a separately verified marketing webOS version. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. No universal minimum-version claim is made.
-
-## Before calling the community release TV-validated
-
-After owner approval, test the community build on an explicitly chosen test TV, without replacing the working private installations unexpectedly:
-
-- Fresh install, configured update, app reopening, suspend/resume and Developer Mode recovery.
-- Real HA connection and older-TV TLS trust; data updates while visible, disconnect/reconnect, controls unavailable when stale.
-- Five and eight tiles; short/long labels; generic status items; no solar/no status cards; six presets and a custom palette at TV distance.
-- Every app/HDMI tile and physical remote/pointer/volume behavior.
-- Light confirmation and selected gate/cover controls only with appropriate physical preparation.
-- Optional helper probe, ownership, native release tests, short/hold Home, LG Home tile, each watched app exit, standby and cold boot.
-- Performance comparison with the app/helper absent, paused and active. Bedroom sluggishness remains unresolved.
-- Startup blueprint imported into an isolated HA test instance, then physical acceptance on the chosen TV.
-
-Windows is the currently exercised setup host. macOS/Linux routes are documented and CI-ready, but must not be labelled physically tested until those runs occur. CI definitions are not evidence that hosted CI ran.

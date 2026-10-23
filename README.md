@@ -8,7 +8,7 @@
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=flat&logo=paypal&logoColor=white)](https://paypal.me/mwahl1973)
 [![MBS Integrations](https://img.shields.io/badge/MBS_Integrations-mbsintegrations.ie-73dbe2)](https://mbsintegrations.ie)
 
-**Community preview. This configurable build has not yet been tested on a TV.** See the [validation scope](docs/VALIDATION.md) before installation.
+**Community preview.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
@@ -18,7 +18,7 @@ The launcher talks directly to your Home Assistant. The setup computer can be sh
 
 ![LG Home Launcher browser preview with fictional readings, Dusk palette, streaming apps and home cards](docs/images/launcher-preview.png)
 
-*Browser design preview with sample data; not a photograph of a tested TV installation.*
+*Browser design preview with sample data.*
 
 ## Install in order
 
@@ -62,10 +62,10 @@ For version 0.1, configuration changes are made in the wizard and applied by reb
 
 **Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview uses fictional sample readings even after HA discovery.
 
-The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelper`. They are distinct from the original private installation. Installation, Home-button tests, and startup automation must still be explicitly performed by the owner. No TV was changed while developing this candidate.
+The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelper`.
 
 ## Compatibility and evidence
 
-The predecessor was developed for an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). Those results are useful engineering references, **not proof that this new build works on either TV**. See [validation and remaining tests](docs/VALIDATION.md), especially the helper's 32-bit input ABI and unresolved bedroom performance observation.
+The original launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). Testing of the configurable community edition on the Living Room TV is being prepared. See [compatibility and validation](docs/VALIDATION.md) for the current coverage.
 
 Own code is GPL-3.0-only. The adapted helper retains its MIT notices. See [NOTICE](NOTICE) and [licensing](docs/LICENSING.md). Independent project; not affiliated with LG or Home Assistant.
