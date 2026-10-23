@@ -1,0 +1,11 @@
+{
+  "developerUid": null,
+  "nativeUid": null,
+  "sharedGid": null,
+  "target": "arm-linux-musleabi",
+  "sourceName": "LGE M-RCU - Builtin [0]",
+  "destinationName": "LGE M-RCU - Builtin [1]",
+  "homeKey": 773,
+  "tvEntity": "media_player.living_room_tv",
+  "watchedApps": ["youtube.leanback.v4", "netflix", "cdp-30", "amazon"]
+}

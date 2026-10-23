@@ -1,0 +1,1 @@
+{"id":"com.mbs.communityhome.helper","description":"Optional community Home helper controls","services":[{"name":"com.mbs.communityhome.helper","commands":[{"name":"status","public":false},{"name":"pause","public":false},{"name":"resume","public":false},{"name":"ensure","public":false}]}],"requiredACG":["application.launcher"]}

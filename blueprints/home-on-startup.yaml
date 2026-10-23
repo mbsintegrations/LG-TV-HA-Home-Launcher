@@ -1,0 +1,60 @@
+blueprint:
+  name: LG Home Launcher on TV startup
+  description: >-
+    Select the configured launcher source once after an observed off-to-on
+    transition. Does not power on the TV or retry. Install the launcher first.
+  domain: automation
+  input:
+    tv:
+      name: LG television
+      selector:
+        entity:
+          filter:
+            - domain: media_player
+              integration: webostv
+    launcher_source:
+      name: Launcher source name
+      description: Exact source_list name on this TV.
+      default: Home Launcher Preview
+      selector:
+        text: {}
+    settle_seconds:
+      name: On-state settling time
+      default: 3
+      selector:
+        number:
+          min: 1
+          max: 30
+          unit_of_measurement: seconds
+    excluded_app:
+      name: Do not interrupt this app ID
+      description: For example a camera overlay. Leave empty if unused.
+      default: com.mbs.cameraoverlay
+      selector:
+        text: {}
+variables:
+  tv_entity: !input tv
+  source_name: !input launcher_source
+  excluded_id: !input excluded_app
+triggers:
+  - trigger: state
+    entity_id: !input tv
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: !input settle_seconds
+conditions:
+  - condition: template
+    value_template: >-
+      {{ is_state(tv_entity, 'on')
+         and state_attr(tv_entity, 'source') != source_name
+         and source_name in (state_attr(tv_entity, 'source_list') or [])
+         and (not excluded_id or state_attr(tv_entity, 'app_id') != excluded_id) }}
+actions:
+  - action: media_player.select_source
+    target:
+      entity_id: !input tv
+    data:
+      source: !input launcher_source
+mode: single
+max_exceeded: silent

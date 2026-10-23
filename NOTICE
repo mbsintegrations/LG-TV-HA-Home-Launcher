@@ -1,0 +1,15 @@
+Home Launcher for LG webOS
+Copyright (C) 2026 MBS Integrations contributors
+Own launcher/wizard/build code: GPL-3.0-only. See LICENSE.
+
+Optional Home helper derives from clean-your-tv-lg-webos:
+https://github.com/Razdva122/clean-your-tv-lg-webos
+Reference commit: 9558611134270f3744658f0f6619ad0e67c5e37b
+MIT notices: helper/UPSTREAM-LICENSE. Gathin and OmkarK97, 2026.
+The upstream typeface mentioned there is not bundled or used here.
+
+Dependencies are installed separately through npm:
+@webos-tools/cli (LG's official tooling), acorn (MIT), optional helper ws (MIT).
+Keep their installed package license notices. No Node runtime, Zig compiler,
+Python runtime or streaming-service logo asset is distributed in source archives.
+Text styles identify the apps they launch; names belong to their respective owners.

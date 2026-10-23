@@ -1,0 +1,17 @@
+{
+  "name": "lg-home-launcher-community",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Configurable LG webOS home launcher with a local setup wizard",
+  "license": "GPL-3.0-only",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "start": "node wizard/server.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node scripts/check.cjs",
+    "build": "node scripts/build.cjs",
+    "helper:build": "node helper/build.cjs",
+    "release": "node scripts/release.cjs"
+  },
+  "devDependencies": {"@webos-tools/cli": "3.2.6", "acorn": "8.15.0"}
+}

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "title": "Living room",
+  "location": "At home",
+  "locale": "en-GB",
+  "timeZone": "Europe/Dublin",
+  "timeFormat": "24",
+  "theme": "forest",
+  "apps": [
+    {
+      "label": "YouTube",
+      "id": "youtube.leanback.v4",
+      "style": "youtube"
+    },
+    {
+      "label": "Netflix",
+      "id": "netflix",
+      "style": "netflix"
+    },
+    {
+      "label": "Plex",
+      "id": "cdp-30",
+      "style": "plex"
+    },
+    {
+      "label": "Prime Video",
+      "id": "amazon",
+      "style": "prime"
+    },
+    {
+      "label": "LG Home",
+      "id": "com.webos.app.home",
+      "style": "lg"
+    }
+  ],
+  "weather": "weather.home",
+  "temperatures": [
+    {
+      "label": "Outside",
+      "entity": "sensor.outdoor_temperature"
+    },
+    {
+      "label": "Living room",
+      "entity": "sensor.living_room_temperature"
+    },
+    {
+      "label": "Office",
+      "entity": "sensor.office_temperature"
+    }
+  ],
+  "controls": [
+    {
+      "label": "Living room",
+      "type": "switch",
+      "entity": "light.living_room"
+    },
+    {
+      "label": "Bedroom",
+      "type": "switch",
+      "entity": "light.bedroom"
+    },
+    {
+      "label": "Hallway",
+      "type": "switch",
+      "entity": "light.hallway"
+    },
+    {
+      "label": "Garden",
+      "type": "switch",
+      "entity": "light.garden"
+    },
+    {
+      "label": "Gate",
+      "type": "cover",
+      "entity": "cover.gate"
+    }
+  ],
+  "energy": {
+    "enabled": true,
+    "solar": {
+      "entity": "sensor.solar_power",
+      "unit": "auto",
+      "invert": false
+    },
+    "battery": {
+      "entity": "sensor.battery_power",
+      "unit": "auto",
+      "invert": false
+    },
+    "grid": {
+      "entity": "sensor.grid_power",
+      "unit": "auto",
+      "invert": false
+    },
+    "home": {
+      "entity": "sensor.home_power",
+      "unit": "auto",
+      "invert": false
+    },
+    "charger1": {
+      "entity": "sensor.charger_power",
+      "unit": "auto",
+      "invert": false
+    },
+    "charger2": {
+      "entity": "",
+      "unit": "auto",
+      "invert": false
+    },
+    "soc": "sensor.battery_charge"
+  },
+  "laundry": [
+    {
+      "label": "Washer",
+      "status": "sensor.washer_status",
+      "remaining": "sensor.washer_finish",
+      "remainingFormat": "finish_time"
+    },
+    {
+      "label": "Dryer",
+      "status": "sensor.dryer_status",
+      "remaining": "sensor.dryer_minutes",
+      "remainingFormat": "minutes"
+    }
+  ],
+  "helper": {
+    "enabled": false
+  },
+  "customColors": {
+    "background": "#142522",
+    "surface": "#203730",
+    "accent": "#e5cb91",
+    "text": "#edf2e9",
+    "muted": "#b1c2b4"
+  },
+  "cards": {
+    "temperaturesTitle": "Room temperatures",
+    "statusTitle": "Appliances & status",
+    "energyTitle": "Energy flow",
+    "energyStyle": "flow"
+  }
+}

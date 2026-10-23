@@ -1,0 +1,8 @@
+node_modules/
+private/
+.build/
+dist/
+release/
+evidence/
+*.log
+!docs/images/

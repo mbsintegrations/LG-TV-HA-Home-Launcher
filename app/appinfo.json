@@ -1,0 +1,15 @@
+{
+  "id":"com.mbs.communityhome",
+  "version":"0.1.0",
+  "vendor":"MBS Integrations",
+  "type":"web",
+  "main":"index.html",
+  "title":"Home Launcher Preview",
+  "icon":"icon.png",
+  "appDescription":"A configurable home dashboard and app launcher.",
+  "resolution":"1920x1080",
+  "handlesRelaunch":false,
+  "noSplashOnLaunch":true,
+  "disableBackHistoryAPI":true,
+  "requiredACG":[]
+}
