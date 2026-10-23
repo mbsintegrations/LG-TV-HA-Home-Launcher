@@ -1,0 +1,78 @@
+# Home Assistant package for ONE TV. Read ../DEVELOPER-MODE.md first.
+# Define both URL secrets in HA's private secrets.yaml; never put a token here.
+rest_command:
+  lg_home_devmode_renew:
+    url: !secret lg_home_devmode_renew_url
+    method: get
+    timeout: 20
+    verify_ssl: true
+  lg_home_devmode_check:
+    url: !secret lg_home_devmode_check_url
+    method: get
+    timeout: 20
+    verify_ssl: true
+
+automation:
+  - id: lg_home_developer_mode_renewal
+    alias: LG Home - Developer Mode renewal
+    description: Renew one TV's LG session daily and check the server-side time remaining.
+    triggers:
+      - trigger: time
+        at: "12:00:00"
+      - trigger: homeassistant
+        event: start
+    # Prevent overlapping manual/startup/scheduled requests for the same TV.
+    mode: single
+    actions:
+      - delay: "00:01:00"
+      - variables:
+          renewed: {}
+          checked: {}
+      # Continue after transport errors so the notification still runs.
+      - action: rest_command.lg_home_devmode_renew
+        response_variable: renewed
+        continue_on_error: true
+      - delay: "00:00:05"
+      - action: rest_command.lg_home_devmode_check
+        response_variable: checked
+        continue_on_error: true
+      - variables:
+          renew_body: >-
+            {%- set body = renewed.get('content', {}) -%}
+            {{ body if body is mapping else (body | from_json({}) if body is string else {}) }}
+          check_body: >-
+            {%- set body = checked.get('content', {}) -%}
+            {{ body if body is mapping else (body | from_json({}) if body is string else {}) }}
+          remaining: >-
+            {{ check_body.get('errorMsg', '') | string | trim if check_body is mapping else '' }}
+          remaining_hours: >-
+            {%- if remaining | regex_match('^[0-9]+:[0-5][0-9]:[0-5][0-9]$') -%}
+              {%- set parts = remaining.split(':') -%}
+              {{ (parts[0] | int) + (parts[1] | int) / 60 + (parts[2] | int) / 3600 }}
+            {%- else -%}
+              {{ -1 }}
+            {%- endif -%}
+          verified: >-
+            {{ renewed.get('status', 0) == 200 and checked.get('status', 0) == 200
+               and renew_body is mapping and check_body is mapping
+               and renew_body.get('result') == 'success'
+               and check_body.get('result') == 'success'
+               and (remaining_hours | float(-1)) >= 168 }}
+      - if:
+          - condition: template
+            value_template: "{{ verified }}"
+        then:
+          - action: persistent_notification.dismiss
+            data:
+              notification_id: lg_home_developer_mode
+        else:
+          - action: persistent_notification.create
+            data:
+              notification_id: lg_home_developer_mode
+              title: LG Home - Developer Mode needs attention
+              message: >-
+                The daily renewal could not verify at least seven days remaining.
+                Check the automation trace and Developer Mode guide. Open Developer
+                Mode on the TV and use EXTEND while the session is still valid.
+                Check connectivity and refresh the private renewal URLs if needed.
+                Never share those URLs or session tokens in support screenshots.

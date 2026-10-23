@@ -30,6 +30,7 @@ The launcher talks directly to your Home Assistant. The setup computer can be sh
 2. Choose a layout, connect HA and build your own private IPK. The public sample IPK has no HA token.
 3. [Enable TV Developer Mode](docs/DEVELOPER-MODE.md), then [pair and install with webOS Dev Manager](docs/WEBOS-DEV-MANAGER.md).
 4. Check the base app on your TV before adding [startup automation](docs/HOME-ASSISTANT.md#start-home-when-the-tv-turns-on) or the [optional manual Home-button helper](docs/HOME-BUTTON-HELPER.md).
+5. [Keep Developer Mode active](docs/DEVELOPER-MODE.md#automatic-renewal-with-home-assistant): set up the supplied HA renewal package, reuse existing Camera Overlay renewal, or extend the session manually before expiry.
 
 The computer is only needed for setup and updates. The installed TV app connects directly to your existing HA instance. The helper is an advanced, model-dependent option; the base app can be used without it.
 

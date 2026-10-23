@@ -102,6 +102,10 @@ The package and staging files are also saved under `private/builds/<build-id>/`.
 
 Follow [TV Developer Mode](DEVELOPER-MODE.md), then the [webOS Dev Manager walkthrough](WEBOS-DEV-MANAGER.md), or use the [official CLI alternative](INSTALL.md). This wizard never installs, launches or replaces TV apps and never enables a startup automation. Once installed and working, stop setup with Ctrl+C. The TV connects directly to HA.
 
-## 7. Optional features
+## 7. Keep Developer Mode active
+
+Developer Mode has an expiry timer. Follow [session maintenance and automatic HA renewal](DEVELOPER-MODE.md#automatic-renewal-with-home-assistant) before leaving the installation unattended. The guide includes the private renewal URLs, a downloadable HA package, failure notifications and verification steps. If Camera Overlay already renews this TV, reuse that instead. Manual EXTEND in the TV's Developer Mode app remains an option.
+
+## 8. Optional features
 
 Add the [HA startup blueprint](HOME-ASSISTANT.md#start-home-when-the-tv-turns-on). If you want Home-button interception, read the complete [manual helper guide](HOME-BUTTON-HELPER.md) first. Do not install the helper until the base app is working and you can perform the physical remote tests.

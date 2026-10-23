@@ -3,7 +3,7 @@
 This is a community preview. Start with the base launcher. The helper is a separate advanced manual procedure.
 
 1. [Start here: Windows, Mac and Linux](START-HERE.md)
-2. [TV Developer Mode and session maintenance](DEVELOPER-MODE.md)
+2. [TV Developer Mode, manual extension and automatic HA renewal](DEVELOPER-MODE.md)
 3. [webOS Dev Manager: download, pair, install and remove](WEBOS-DEV-MANAGER.md)
 4. [Installation reference and official CLI](INSTALL.md)
 5. [Configure every card and control](CONFIGURATION.md)

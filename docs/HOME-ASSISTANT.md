@@ -22,6 +22,10 @@ Enter the base URL, such as `https://home.example.com` or a trusted local `http:
 
 The app subscribes to `state_changed`, fetches the initial state snapshot and retains only configured entities. Event traffic may include other entities; they are discarded rather than displayed/stored. This implementation favours the documented API. A heavily active HA instance may benefit from a future tested filtered subscription implementation.
 
+## Keep Developer Mode active
+
+Use the [automatic renewal guide](DEVELOPER-MODE.md#automatic-renewal-with-home-assistant) to let this HA instance maintain the TV's Developer Mode session. It includes private secrets, a downloadable HA package, a daily renewal/check and a persistent failure notification. Renewal is separate from startup automation and the Home-button helper. If the Camera Overlay relay already renews this TV, keep that existing method.
+
 ## Start Home when the TV turns on
 
 This optional automation is separate from the Home-button helper. It does not wake the TV.

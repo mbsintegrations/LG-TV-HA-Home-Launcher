@@ -62,6 +62,8 @@ If the file chooser cannot see the IPK, extract it from any ZIP first and check 
 
 ## 5. Update, inspect or remove
 
+Before leaving the setup, follow [Developer Mode maintenance](DEVELOPER-MODE.md#automatic-renewal-with-home-assistant). Dev Manager's **Info → Renew automatically → Manual Setup** provides the private URL for the supplied HA renewal example; simply installing the launcher does not enable renewal.
+
 To change your layout, import the saved profile into the configurator, rebuild, and install the new private IPK using the same TV and app ID. Keep the previous working package until you have verified the replacement. An update to this app does not require removing unrelated TV apps.
 
 Use the installed-app information to obtain app IDs for launcher tiles. An app's friendly title is not always its ID. For a reliable alternative, use the [official CLI inventory](INSTALL.md#find-app-ids).
