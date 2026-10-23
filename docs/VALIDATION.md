@@ -29,6 +29,6 @@ The sample IPK is built with LG's official packager and contains a validated pro
 | Model | Firmware | Reported SDK | Scope |
 |---|---|---|---|
 | OLED65B9PLA | 05.50.00 | 4.10.0 | Community launcher installed; plum layout, live HA connection and physical Home-button return from YouTube confirmed |
-| 65NANO766QA | 04.60.91 | 7.6.0 | Community launcher installed; native input probe, remote-release checks and active HA-connected helper verified |
+| 65NANO766QA | 04.60.91 | 7.6.0 | Community launcher installed; live HA, physical Home-button return from YouTube, bedroom controls and appliance card confirmed |
 
 SDK version is not firmware version or a separately verified marketing webOS version. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. No universal minimum-version claim is made.

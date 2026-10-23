@@ -28,7 +28,7 @@ This optional automation is separate from the Home-button helper. It does not wa
 
 1. Add/reuse the official [LG webOS TV integration](https://www.home-assistant.io/integrations/webostv/), accepting the TV pairing prompt.
 2. With the installed launcher visible, inspect the TV's media_player `source_list`. Ensure **Home Launcher Preview** is present; enable it in the integration's source options if needed.
-3. In HA, open Settings, Automations & scenes, Blueprints, then Import Blueprint. Use the [blueprint file URL](https://github.com/mbsintegrations/LG-Home-Launcher/blob/main/blueprints/home-on-startup.yaml). Alternatively copy the supplied YAML into HA's `config/blueprints/automation/lg_home_launcher/` directory. This blueprint has not yet been runtime-validated in an isolated HA instance; review it before importing.
+3. In HA, open Settings, Automations & scenes, Blueprints, then Import Blueprint. Use the [blueprint file URL](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/blob/main/blueprints/home-on-startup.yaml). Alternatively copy the supplied YAML into HA's `config/blueprints/automation/lg_home_launcher/` directory. This blueprint has not yet been runtime-validated in an isolated HA instance; review it before importing.
 4. Reload automations/blueprints using your normal HA procedure, then create an automation from **LG Home Launcher on TV startup**.
 5. Select the exact TV, launcher source label and settling delay. Keep a relevant overlay app exclusion if you use one.
 6. Test standby then power-on with the physical remote. Verify the automation trace and the actual screen.

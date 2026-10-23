@@ -167,7 +167,7 @@ The trial automatically ends after at most 120 seconds. During it:
 5. Resume a fresh bounded trial, then select the LG Home tile and confirm the same escape path.
 6. Let a trial expire and confirm normal LG remote behavior returns.
 
-The launcher UI's Resume button also requests a **two-minute trial**, not permanent enablement. When LG Home has paused interception, app exits should remain with LG; resume deliberately before testing automatic return.
+The launcher's **Resume Home button** enables the installed helper without a trial timeout. Use the command above for a bounded first test. Holding Home or choosing the LG Home tile pauses interception; select Resume Home button when you want automatic return again.
 
 If you cannot perform these tests now, leave the helper paused. A service status saying active does not prove physical acceptance.
 

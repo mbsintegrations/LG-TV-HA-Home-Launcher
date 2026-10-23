@@ -1,6 +1,6 @@
 # Release checklist
 
-Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). The first release is an explicitly labelled preview. Local packaging never uploads anything; publication is a separate reviewed step.
+Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Version 0.1.1 is the first regular public release; 0.1.0 remains the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
 
 ## Build a review candidate
 
@@ -14,7 +14,7 @@ The source ZIP uses an explicit public allowlist and excludes node_modules, priv
 
 ## Before public availability
 
-- Owner approves the preview and wording.
+- Owner authorizes publication of the release and wording.
 - Physical TV/base/helper testing is completed or precisely labelled as pending/experimental.
 - Review dependency advisories, attribution and legacy-helper support scope.
 - Verify Windows/macOS/Linux instructions with real setup attempts; do not claim CI has run from a workflow file alone.

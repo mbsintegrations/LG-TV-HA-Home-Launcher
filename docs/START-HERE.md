@@ -12,29 +12,29 @@ Do not install a second HA instance. This app uses your existing one. The launch
 
 ## Download and verify
 
-Open this project's [Releases](https://github.com/mbsintegrations/LG-Home-Launcher/releases). For the first preview download **LG-Home-Launcher-0.1.0-preview-source.zip** and **SHA256SUMS.txt** under Assets. The optional **com.mbs.communityhome_0.1.0_SAMPLE_all.ipk** contains no credentials and cannot supply live HA readings. Build your own package with the wizard for normal use.
+Open this project's [Releases](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/releases). Download **LG-TV-HA-Home-Launcher-0.1.1-source.zip** and **SHA256SUMS.txt** under Assets. The optional **com.mbs.communityhome_0.1.1_SAMPLE_all.ipk** contains no credentials and cannot supply live HA readings. Build your own package with the wizard for normal use.
 
 Use the named source archive so its checksum matches; GitHub's automatically generated source ZIP has different bytes. In your download folder run the command for your computer and compare the result with the matching line in SHA256SUMS.txt:
 
 Windows PowerShell:
 
 ```powershell
-Get-FileHash .\LG-Home-Launcher-0.1.0-preview-source.zip -Algorithm SHA256
+Get-FileHash .\LG-TV-HA-Home-Launcher-0.1.1-source.zip -Algorithm SHA256
 ```
 
 macOS:
 
 ```sh
-shasum -a 256 LG-Home-Launcher-0.1.0-preview-source.zip
+shasum -a 256 LG-TV-HA-Home-Launcher-0.1.1-source.zip
 ```
 
 Linux:
 
 ```sh
-sha256sum LG-Home-Launcher-0.1.0-preview-source.zip
+sha256sum LG-TV-HA-Home-Launcher-0.1.1-source.zip
 ```
 
-If the hash differs, stop and download again. Extract the ZIP with your file manager; do not run setup from inside the archive. Find the extracted **LG-Home-Launcher** folder containing package.json and config.example.json.
+If the hash differs, stop and download again. Extract the ZIP with your file manager; do not run setup from inside the archive. Find the extracted **LG-TV-HA-Home-Launcher** folder containing package.json and config.example.json.
 
 ## 1. Prepare your computer
 

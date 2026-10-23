@@ -18,7 +18,7 @@ Follow [LG's current Developer Mode instructions](https://webostv.developer.lge.
 
 Use the community [webOS Dev Manager desktop tool](https://github.com/webosbrew/dev-manager-desktop/releases). Add your TV using the IP/passphrase, then select the downloaded IPK in its app installation screen. Check the model and IP before installing; do not select another household TV by accident.
 
-The base app appears as **Home Launcher Preview**, ID `com.mbs.communityhome`. Launch it. A configured package should show **Home connected** and readings from your selected entities. A sample package instead says **Setup required**.
+The base app appears as **Home**, ID `com.mbs.communityhome`. Launch it. A configured package should show **Home connected** and readings from your selected entities. A sample package instead says **Setup required**.
 
 A successful installation response only proves the package was accepted. Confirm the screen, remote navigation, app launches and desired input physically.
 

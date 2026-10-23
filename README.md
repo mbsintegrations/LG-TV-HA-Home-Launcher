@@ -1,14 +1,14 @@
-# LG Home Launcher
+# LG TV – HA Home Launcher
 
-[![Validation](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/mbsintegrations/LG-Home-Launcher/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/mbsintegrations/LG-Home-Launcher?include_prereleases&cacheSeconds=300)](https://github.com/mbsintegrations/LG-Home-Launcher/releases)
+[![Validation](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/mbsintegrations/LG-TV-HA-Home-Launcher?include_prereleases&cacheSeconds=300)](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/mbsintegrations/LG-Home-Launcher?style=flat&logo=github)](https://github.com/mbsintegrations/LG-Home-Launcher)
+[![GitHub stars](https://img.shields.io/github/stars/mbsintegrations/LG-TV-HA-Home-Launcher?style=flat&logo=github)](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher)
 
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=flat&logo=paypal&logoColor=white)](https://paypal.me/mwahl1973)
 [![MBS Integrations](https://img.shields.io/badge/MBS_Integrations-mbsintegrations.ie-73dbe2)](https://mbsintegrations.ie)
 
-**Community preview.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release v0.1.1.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
@@ -16,13 +16,17 @@ The launcher talks directly to your Home Assistant. The setup computer can be sh
 
 **[Start here](docs/START-HERE.md)** · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
 
+![Four Home Launcher palette designs with sample data](docs/images/launcher-designs.png)
+
+*Plum, Forest, Ocean and Sand designs with sample data.*
+
 ![LG Home Launcher browser preview with fictional readings, Dusk palette, streaming apps and home cards](docs/images/launcher-preview.png)
 
 *Browser design preview with sample data.*
 
 ## Install in order
 
-1. [Download the release source](https://github.com/mbsintegrations/LG-Home-Launcher/releases), verify its checksum and [start the local configurator](docs/START-HERE.md).
+1. [Download the release source](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/releases), verify its checksum and [start the local configurator](docs/START-HERE.md).
 2. Choose a layout, connect HA and build your own private IPK. The public sample IPK has no HA token.
 3. [Enable TV Developer Mode](docs/DEVELOPER-MODE.md), then [pair and install with webOS Dev Manager](docs/WEBOS-DEV-MANAGER.md).
 4. Check the base app on your TV before adding [startup automation](docs/HOME-ASSISTANT.md#start-home-when-the-tv-turns-on) or the [optional manual Home-button helper](docs/HOME-BUTTON-HELPER.md).
@@ -66,6 +70,6 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Compatibility and evidence
 
-The configurable launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). The B9 has confirmed live Home Assistant data and Home-button return from YouTube. See [compatibility and validation](docs/VALIDATION.md) for the tested features.
+The configurable launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). Both TVs have confirmed live Home Assistant data and Home-button return from YouTube. See [compatibility and validation](docs/VALIDATION.md) for the tested features.
 
 Own code is GPL-3.0-only. The adapted helper retains its MIT notices. See [NOTICE](NOTICE) and [licensing](docs/LICENSING.md). Independent project; not affiliated with LG or Home Assistant.
