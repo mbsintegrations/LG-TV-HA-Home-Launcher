@@ -41,7 +41,7 @@ The computer is only needed for setup and updates. The installed TV app connects
 
 ![MBS Integrations local launcher configurator with weather-location guidance](docs/images/configurator-preview.png)
 
-*The MBS configurator has its own branding. TV palettes are selected independently.*
+*The MBS configurator has its own branding. The TV app has no MBS logo or branded colour scheme.*
 
 ## Quick local preview
 
