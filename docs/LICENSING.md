@@ -6,6 +6,6 @@ The optional Home helper adapts MIT-licensed upstream work from [clean-your-tv-l
 
 The official webOS CLI, acorn and optional ws dependency are installed separately with their package licences. A packaged helper includes its installed dependency licence notices. Zig, Node and Python are not included in source or IPK downloads.
 
-App tiles use text/CSS treatments, not downloaded streaming-service artwork. Brand names identify the apps being launched; no endorsement is implied.
+App tiles offer text, brand wordmarks and compact icons. Artwork sources include Simple Icons and gilbarbara/logos (CC0), Homarr dashboard-icons (Apache-2.0), Jellyfin UX (CC-BY-SA-4.0), and official Disney/YouTube assets. See the [asset sources, modifications and bundled licences](../app/logos/ATTRIBUTION.txt). Third-party brand artwork is not covered by our GPL licence; names and trademarks belong to their owners. No endorsement is implied.
 
 If distributing modified binaries, provide the corresponding source and preserve required notices. See [NOTICE](../NOTICE). Review the complete release contents before publication; this page is not a legal opinion.

@@ -1,0 +1,41 @@
+App logos identify the services being launched. No endorsement is implied.
+Brand names and marks belong to their respective owners; they are not MBS artwork.
+
+YouTube, YouTube Kids, Netflix, Plex, Prime Video, HBO (Max / HBO Max tile), Paramount+ and Jellyfin:
+Simple Icons v14.15.0, commit 5664507081ffb65b5a2a0ed2bf2ee2b3b327cb4e
+https://github.com/simple-icons/simple-icons/tree/5664507081ffb65b5a2a0ed2bf2ee2b3b327cb4e/icons
+Hulu: Simple Icons v10.0.0, commit 2001d94987807cc26307e5972f6566a1d4a60d12
+https://github.com/simple-icons/simple-icons/blob/2001d94987807cc26307e5972f6566a1d4a60d12/icons/hulu.svg
+Simple Icons is distributed under CC0-1.0 (SIMPLE-ICONS-LICENSE.txt).
+SVG fill set to white and viewBox fitted to the unchanged artwork for display.
+The max.svg file uses upstream hbo.svg. Trademark restrictions still apply.
+
+Disney+: Disney's official 2024 logo press asset, served as a 320-pixel JPEG.
+https://press.disneyplus.com/about/disney-plus-logo-2024
+https://lumiere-a.akamaihd.net/v1/images/disney_logo_march_2024_050fef2e.png?region=0%2C0%2C1920%2C1080&width=320&format=png
+Disney artwork is not covered by the project's GPL licence or the Simple Icons CC0 notice.
+
+Live TV, TV Guide and HDMI input symbols: MBS Integrations, GPL-3.0-only.
+
+Additional wordmarks and Apple TV artwork:
+Apple TV: Simple Icons appletv.svg at the v14.15.0 commit above (CC0). White fill; same brand mark in compact and wordmark modes.
+Netflix and YouTube wordmarks: gilbarbara/logos, commit dafdf2df1334b2327497bfff40111aff0713c992 (CC0; GILBARBARA-LICENSE.txt).
+https://github.com/gilbarbara/logos/tree/dafdf2df1334b2327497bfff40111aff0713c992/logos
+YouTube dark lettering changed to white. Netflix red retained.
+Disney+ and Max wordmarks: homarr-labs/dashboard-icons contributors, commit d3b9234dd56f3af5862f06741f0dce101193b3df (Apache-2.0; HOMARR-LICENSE.txt).
+https://github.com/homarr-labs/dashboard-icons/tree/d3b9234dd56f3af5862f06741f0dce101193b3df/svg
+Disney background removed and viewBox cropped; Disney and Max fills normalized to white.
+Jellyfin horizontal logo: Jellyfin project contributors, jellyfin/jellyfin-ux commit 69a2b7b1237732a134dd501ff55b9404cf2d1601, CC-BY-SA-4.0 (JELLYFIN-LICENSE.txt). Source unchanged.
+https://github.com/jellyfin/jellyfin-ux/blob/69a2b7b1237732a134dd501ff55b9404cf2d1601/logos/SVG/jellyfin-horizontal--color-on-dark.svg
+YouTube Kids wordmark: Google/YouTube, official youtube.com/kids page artwork.
+https://www.gstatic.com/marketing-cms/assets/images/07/49/8d6151d543b39fe6115c3d5e57da/logo.svg
+https://developers.google.com/youtube/terms/branding-guidelines
+Official Google artwork is not covered by the project GPL licence.
+Plex, Prime Video and Hulu wordmarks reuse the Simple Icons brand artwork described above. System symbols reuse MBS artwork.
+Light palettes apply a dark display filter for legibility without changing stored asset files.
+
+Paramount+ full wordmark: Paramount, footer SVG from https://www.paramountplus.com/ie/ (retrieved 2026-10-24). currentColor replaced with white; geometry unchanged. Official brand artwork, not covered by GPL or CC0. The compact mountain icon remains the Simple Icons asset above.
+
+Light wordmarks: YouTube, YouTube Kids and Jellyfin lettering changed to dark grey; brand colour shapes and play symbols retained. The dark YouTube Kids SVG retains the original source fills.
+
+IPTV Smarters: vendor app artwork from the Samsung app listing https://www.samsung.com/us/appstore/app/G20264015560/ (WHMCS Smarters). Original file: https://d1oxlq5h9kq8q5.cloudfront.net/tvstore/contents/3202009021808/icon_95x78_20210921110356722.png. Used unmodified to identify the installed service; trademark remains with its owner. This preset currently uses the vendor app artwork in both logo modes.

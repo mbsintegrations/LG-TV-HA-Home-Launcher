@@ -1,0 +1,26 @@
+/* Optional cards and short/long rows retain the same remote navigation. */
+body.layout-sidebar.no-status .temperatures{width:auto;right:72px}
+body.layout-sidebar.no-temperatures .laundry{left:414px}
+body.layout-sidebar.no-energy .controls-section{right:72px;width:auto}
+body.layout-sidebar.no-energy .control{width:calc(33.333% - 16px)}
+body.layout-sidebar.no-controls .energy{left:414px;height:360px}
+body.layout-sidebar.no-controls .energy-diagram{height:230px}
+body.layout-sidebar.no-controls .energy-bus,body.layout-sidebar.no-controls .energy-bus span{height:38px}
+body.layout-sidebar.many-status .laundry-item{width:50%;padding:8px 0;min-height:65px}
+body.layout-sidebar.many-status #laundry-status{flex-wrap:wrap;margin-top:12px}
+body.layout-sidebar.many-status .laundry-state{font-size:18px}
+body.layout-sidebar.many-status .laundry-name{font-size:15px}
+body.layout-weather.no-weather .hero{background:@SURFACE@}
+body.layout-weather.no-weather .welcome{top:160px;left:30px;right:30px;text-align:center}
+body.layout-weather.no-weather #clock{font-size:94px;background:none;color:@TEXT@}
+body.layout-panorama.no-weather .hero{background:@SURFACE@}
+body.layout-panorama.no-weather .welcome{color:@TEXT@}
+body.layout-dock.no-controls .home-cards{height:322px;margin-top:0}
+body.layout-weather.no-controls .home-cards{height:312px;margin-top:0}
+body.layout-panorama.no-controls .home-cards{height:270px;margin-top:0}
+body.layout-panorama.no-controls .energy-diagram{height:184px}
+body.layout-panorama.no-controls .energy-bus,body.layout-panorama.no-controls .energy-bus span{height:30px}
+body.layout-panorama.no-controls .energy-bus:before{top:15px}
+body.layout-weather.no-controls .energy-diagram,body.layout-dock.no-controls .energy-diagram{height:220px}
+body.layout-weather.no-controls .energy-bus,body.layout-weather.no-controls .energy-bus span,body.layout-dock.no-controls .energy-bus,body.layout-dock.no-controls .energy-bus span{height:36px}
+body.layout-sidebar .app.logo-only .app-logo-frame{margin:0;width:150px;max-width:88%}

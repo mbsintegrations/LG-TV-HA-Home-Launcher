@@ -1,0 +1,24 @@
+/* Design studies. All dimensions use the existing 1920 x 1080 TV canvas. */
+body #screen{padding:42px 72px;background:@BG@}
+body .landscape{display:none}
+body header{height:48px}
+body .identity>span:first-child{font-weight:700;letter-spacing:6px}
+body .home-card,body .app,body .control{box-shadow:none}
+body .section-label h1,body .section-label h2{font-size:24px;font-weight:600}
+body .section-label>span{letter-spacing:2px}
+body .home-card{border-width:1px;border-radius:24px;padding:26px}
+body .app{border-width:1px;border-radius:22px}
+body .control{border-radius:20px}
+body .card-top{font-size:21px;font-weight:600}
+body .control.on{border-width:2px}
+body footer{position:absolute;left:72px;right:72px;bottom:30px;margin:0}
+body .credits{right:72px;bottom:8px;font-size:11px;opacity:.65}
+body .card-bottom{display:none}
+body .room-stat{padding:17px 0}
+body .laundry-item{padding:24px 0}
+body .energy-diagram{margin-top:26px}
+body .app-logo-label{font-size:17px;font-weight:400}
+body .control-symbol:before{border-color:@SURFACE@}
+body .room-stat,body .laundry-item{border-bottom-color:@BG@}
+body .hero:before{color:@MUTED@}
+body .weather:before{color:@ACCENT@}

@@ -8,11 +8,19 @@ The wizard stores the current editing profile in server memory. **Export before 
 
 The only on-TV version-1 configuration is the packaged profile. To change it, edit/import in setup, rebuild and reinstall. The public source can be reused unchanged for each household.
 
+## Layout and palette
+
+In **Your space**, choose a **Layout theme** independently of **Color Palette**. Classic preserves the original layout; Dock puts apps along the bottom; Weather gives the weather a larger panel; Sidebar uses a vertical app rail and grouped controls; Panorama uses a wide weather scene. Every layout supports up to eight app tiles and six controls. Existing profiles without a layout continue to use Classic.
+
+The optional **Day / night entity** under Home cards accepts a Sun integration entity. This lets cloudy and rainy weather also use a night appearance. Without it, clear-night and any day/night attribute supplied by the weather integration are used. Weather artwork is generated locally as lightweight SVG; no image service or external downloads are required.
+
+See [themes and colours](THEMES.md), the [complete screenshot gallery](SCREENSHOTS.md) and the [configurator walkthrough](CONFIGURATOR-TOUR.md) for examples and step-by-step setup.
+
 ## Apps and inputs
 
 Up to eight tiles including LG Home. Use Move up to reorder; repeatedly moving a later tile up can place it anywhere. Remove an unused tile. LG Home must remain last and cannot be deleted from the wizard. The schema enforces this for imported profiles too.
 
-App IDs must be unique. Change the ID when adding a second custom tile. A style changes its text treatment; it does not choose which app launches. See [app IDs](INSTALL.md#find-app-ids).
+Choose a common app, Live TV, TV Guide or HDMI input from the dropdown, or enter a custom ID. App IDs must be unique. Choose Text Only, Logo, Logo and Text, App Logo, or App Logo and Text for each tile; appearances do not change the launch target. See [app tiles and logos](APP-TILES.md) for presets and compatibility, and [app IDs](INSTALL.md#find-app-ids) to find the exact ID on your TV.
 
 ## Temperatures and weather
 

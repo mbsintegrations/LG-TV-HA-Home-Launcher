@@ -11,5 +11,7 @@ The upstream typeface mentioned there is not bundled or used here.
 Dependencies are installed separately through npm:
 @webos-tools/cli (LG's official tooling), acorn (MIT), optional helper ws (MIT).
 Keep their installed package license notices. No Node runtime, Zig compiler,
-Python runtime or streaming-service logo asset is distributed in source archives.
-Text styles identify the apps they launch; names belong to their respective owners.
+Python runtime is distributed in source archives.
+Small streaming-service logos are bundled for app identification. See
+app/logos/ATTRIBUTION.txt and app/logos/SIMPLE-ICONS-LICENSE.txt for sources and
+third-party notices. Brand names and marks belong to their respective owners.

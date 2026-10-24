@@ -1,6 +1,6 @@
 # Documentation
 
-This is a community preview. Start with the base launcher. The helper is a separate advanced manual procedure.
+Start with the base launcher. The helper is a separate advanced manual procedure.
 
 1. [Start here: Windows, Mac and Linux](START-HERE.md)
 2. [TV Developer Mode, manual extension and automatic HA renewal](DEVELOPER-MODE.md)
@@ -16,6 +16,11 @@ This is a community preview. Start with the base launcher. The helper is a separ
 12. [Architecture and development](DEVELOPMENT.md)
 13. [Licensing](LICENSING.md)
 14. [Release checklist](RELEASING.md)
+15. [App presets, logos, Live TV and TV Guide](APP-TILES.md)
+
+16. [Layout themes, palettes and weather appearance](THEMES.md)
+17. [All layout/palette screenshots](SCREENSHOTS.md)
+18. [Configurator walkthrough with screenshots](CONFIGURATOR-TOUR.md)
 
 For release changes see [Changelog](../CHANGELOG.md). Contributors should read [Contributing](../CONTRIBUTING.md); maintainers should use [Publishing on GitHub](PUBLISHING.md).
 

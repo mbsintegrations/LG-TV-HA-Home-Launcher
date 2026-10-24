@@ -1,0 +1,32 @@
+body .watch{position:absolute;left:54px;top:144px;width:300px;bottom:85px;padding-right:28px;border-right:1px solid rgba(150,160,180,.25)}
+body .watch .section-label{display:none}
+body .apps{display:block;margin:0}
+body .app{width:100%;height:88px;margin:0 0 12px;flex-direction:row;border-radius:14px}
+body .app.logo-tile{flex-direction:row}
+body .app.wordmark-mode .app-logo-frame,body .app.app-icon-mode .app-logo-frame{width:105px;height:44px;max-width:42%;margin-right:14px}
+body .app-logo-label{width:115px;font-size:18px;text-align:left;margin:0}
+body .app .brand.lg{font-size:25px}
+body .app .input-label{bottom:8px;font-size:10px}
+body .hero{position:absolute;left:414px;right:72px;top:130px;height:160px}
+body #clock{font-size:112px}
+body .weather-main>span{font-size:62px}
+body .controls-section{position:absolute;left:414px;width:625px;top:333px;margin:0}
+body .controls{flex-wrap:wrap;margin:-8px}
+body .control{flex:none;width:calc(50% - 16px);height:94px;margin:8px;padding:14px 18px}
+body .control-name{margin-bottom:10px}
+body .home-cards{position:static;display:block;margin:0;height:auto}
+body .energy{position:absolute;left:1070px;right:72px;top:333px;height:360px}
+body .energy-diagram{height:230px;margin-top:35px}
+body .energy-row{height:96px}
+body .energy-bus{top:96px;height:38px}
+body .energy-bus span{height:38px}
+body .temperatures{position:absolute;left:414px;width:625px;top:732px;height:262px;margin:0}
+body .room-summary{display:flex;justify-content:space-between;margin-top:35px}
+body .room-stat{display:flex;flex-direction:column;align-items:flex-start;border:0;padding:0 8px 0 0}
+body .room-stat strong{font-size:44px;margin-top:17px}
+body .room-stat span{font-size:19px}
+body .laundry{position:absolute;left:1070px;right:72px;top:732px;height:262px;margin:0}
+body #laundry-status{display:flex;margin-top:25px}
+body .laundry-item{width:50%;border:0;padding:16px 8px 10px 0}
+body .laundry-state{font-size:24px}
+body .laundry-icon{margin-right:15px}

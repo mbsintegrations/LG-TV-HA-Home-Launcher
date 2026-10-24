@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.2.0 — Four new themes, weather artwork and app tiles — 24 October 2026
+
+### Added
+
+- Dock, Weather, Sidebar and Panorama layouts, with Classic retained for existing profiles.
+- Independent Color Palette and Layout theme selectors. All layouts support six preset palettes, custom colours, eight app/input tiles and six controls.
+- Local condition-based weather graphics and an optional HA Sun entity for cloudy/rainy night appearance.
+- Five per-tile appearances: Text Only, Logo, Logo and Text, App Logo, and App Logo and Text, with bundled local artwork and text fallback.
+- Common app presets, including Apple TV (app), IPTV Smarters and Custom app name/ID entry; editable IDs and HDMI inputs.
+- Live TV and TV Guide tiles. Guide supports an app ID or the selected TV’s Guide remote button through HA.
+- A four-theme overview, every preset layout/colour combination, custom examples and a five-step configurator screenshot tour.
+- Expanded theme, weather, app-ID, Guide, upgrade and Developer Mode renewal documentation.
+
+### Improved and fixed
+
+- Layout theme occupies a full-width configurator row beneath Clock and Color Palette.
+- Home-helper status and Resume button share the footer layout instead of overlapping the remote hints.
+- Logo modes distinguish wordmarks from compact app icons; light surfaces use contrasting artwork where provided, and compact icons have no extra inner outline.
+- Hidden/empty cards adapt within each layout. Existing profiles retain Classic and text tiles until changed.
+
+### Compatibility and upgrade
+
+- Profile schema stays at version 1; existing app IDs, entities and actions are preserved on import.
+- Both reference TVs are updated to 0.2.0: Panorama/Slate on OLED65B9PLA and Weather/Dusk on 65NANO766QA. Installed files match their builds and both helpers report active.
+- B9 testing confirmed Live TV, Guide through HA and Home return from YouTube; the Panorama appearance was accepted on TV.
+- The native helper stays at 0.1.0. Import your profile, choose settings and rebuild privately; helper-enabled installations follow the manual helper build/update instructions.
+- Background uploads, slideshows and free-form card placement are not included.
+
 ## 0.1.1 — First regular public release — 23 October 2026
 
 - Configurable launcher installed on both reference TVs; live HA and physical Home-button return from YouTube confirmed.

@@ -38,12 +38,12 @@ The native helper controls input handling. Preserve capability checks, exclusive
 
 ## Reporting
 
-### Dependency audit snapshot: 23 October 2026
+### Dependency audit snapshot: 24 October 2026
 
-`npm audit` reported four findings in the official desktop CLI dependency tree: proxy-addr (critical), brace-expansion and js-yaml (high), and qs (moderate). A compatible update and non-force audit fix did not resolve them in the pinned CLI tree. The official CLI is a computer-side build/maintenance dependency, not code included in the base TV app. The local configurator uses Node's HTTP server rather than the CLI's Express server. This is a scope distinction, not a claim that the findings are fixed or harmless. Do not expose developer tooling as a public service or feed it untrusted packages.
+`npm audit` reports six affected packages in the pinned official desktop CLI tree: one critical (proxy-addr), four high (body-parser, its parent @webos-tools/cli, brace-expansion and js-yaml), and one moderate (qs). Parent-package counts are not additional independent advisories. This release preserves the tested lockfile; no forced dependency change was applied. The official CLI is a computer-side build/maintenance dependency, not code included in the base TV app. The local configurator uses Node's HTTP server rather than the CLI's Express server. This is a scope distinction, not a claim that the findings are fixed or harmless. Do not expose developer tooling as a public service or feed it untrusted packages.
 
 The optional helper's pinned ws 1.1.5 has a high-severity [memory-exhaustion advisory](https://github.com/advisories/GHSA-96hv-2xvq-fx4p). Payload limits and disabled compression do not establish immunity to fragmentation attacks. The suggested modern major upgrade is not a verified replacement for the B9's Node 0.12 runtime. The helper remains experimental and is distributed as source/manual tools; assess this unresolved dependency before enabling it.
 
-Audit results change over time. Re-run both `npm audit` and `npm audit --prefix helper/vendor` after installing their dependencies. Neither a passing unit-test workflow nor this preview release means a clean security audit.
+Audit results change over time. Re-run both `npm audit` and `npm audit --prefix helper/vendor` after installing their dependencies. Neither a passing unit-test workflow nor a public release means a clean security audit.
 
 Include model, firmware, app version, setup OS, sanitized error and reproduction steps. Remove tokens, pairing keys, passphrases, entity/location metadata and stream URLs from logs/screenshots. Use the repository issue templates for sanitized bug reports. For sensitive findings follow [Security reporting](../SECURITY.md).

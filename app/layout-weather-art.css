@@ -1,0 +1,6 @@
+body .weather:before,body .weather:after{display:none}
+body #weather-art{position:absolute;width:170px;height:130px;left:-170px;top:-24px;pointer-events:none}
+body #weather-art svg{width:100%;height:100%;display:block}
+body .weather{position:relative}
+body .weather[data-sky=night] #weather-art{background:radial-gradient(ellipse,rgba(84,110,189,.16),transparent 70%)}
+body .weather[data-sky=day] #weather-art{background:radial-gradient(ellipse,rgba(255,206,103,.12),transparent 70%)}

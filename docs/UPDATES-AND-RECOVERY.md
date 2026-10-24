@@ -15,7 +15,17 @@ The wizard does not retain edits after its process restarts unless you exported 
 5. Build a new private package and install on one TV first, at a convenient time.
 6. Verify actual remote/app/HA behavior before updating other TVs.
 
-Version 0.1 embeds the profile and token into each locally configured package. Rebuilding reapplies settings; it does not rely on `localStorage` surviving updates. The same app ID replaces that app on the selected TV. Do not use a package intended for another household/room.
+Versions 0.1 and 0.2 embed the profile and token into each locally configured package. Rebuilding reapplies settings; it does not rely on `localStorage` surviving updates. The same app ID replaces that app on the selected TV. Do not use a package intended for another household/room.
+
+## Moving from 0.1.1 to 0.2.0
+
+The profile schema remains version 1. Import your exported profile: missing layout defaults to Classic, missing app appearance defaults to Text Only, and the optional Sun entity defaults empty. Your app IDs, control targets and selected entities are retained.
+
+Choose one of the new layouts and a Color Palette in Your space. Select app logos or extra presets in Apps & inputs if wanted, then export the revised profile. Rebuild a private IPK with your HA connection and install it over the same `com.mbs.communityhome` app. Do not install the public sample over your configured app expecting it to retain the token.
+
+If you already use the manual helper, keep your per-TV options and follow its configured build procedure; the base wizard intentionally does not package a helper-enabled profile. The native helper remains 0.1.0 and does not need a new binary just for themes or logos. Pause and verify input release before replacing the service-bearing package, then explicitly resume and check Home. Do not uninstall/recreate the helper simply to change appearance.
+
+Adding an app tile does not add it to the helper’s watched-app exit list. Short Home interception is separate. To return automatically when leaving an additional streaming app, update the reviewed `watchedApps` configuration using the [helper guide](HOME-BUTTON-HELPER.md); keep Home, HDMI, Live TV and Guide out of that list.
 
 ## Update a helper installation
 

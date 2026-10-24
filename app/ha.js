@@ -28,6 +28,8 @@
   this.start=function(){if(running)return;running=true;connect();};
   this.stop=function(){running=false;clearTimeout(retry);clear();if(socket){socket.onclose=null;socket.close();socket=null;}emit();};
   this.connected=function(){return authenticated&&subscribed&&Date.now()-lastSeen<45000;};
+  var guidePending=0;
+  this.guide=function(index,cb){var a=profile.apps[index],now=Date.now();if(!a||a.guideMode!=='home-assistant'||!/^media_player\.[a-z0-9_]+$/.test(a.tvEntity||'')){cb({error:'Configure the LG TV entity for Guide'});return;}if(!this.connected()){cb({error:'Home connection unavailable'});return;}var state=(states[a.tvEntity]||{}).state;if(!state||['unknown','unavailable','off','standby'].indexOf(state)!==-1){cb({error:'LG TV unavailable in Home Assistant'});return;}if(guidePending>now){cb({error:'Guide request already sent'});return;}guidePending=now+8000;request({type:'call_service',domain:'webostv',service:'button',service_data:{entity_id:a.tvEntity,button:'GUIDE'}},function(r){cb(r.success?{accepted:true}:{error:'Guide request not confirmed. Check the LG integration and token permissions.'});});};
   this.control=function(index,desired,cb){
    var c=profile.controls[index],now=Date.now();if(!c||!this.connected()){cb({error:'Home connection unavailable'});return;}
    if(pending[index]>now){cb({error:'Request already sent · please wait'});return;}

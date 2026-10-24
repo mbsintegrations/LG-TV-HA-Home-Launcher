@@ -8,21 +8,21 @@
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=flat&logo=paypal&logoColor=white)](https://paypal.me/mwahl1973)
 [![MBS Integrations](https://img.shields.io/badge/MBS_Integrations-mbsintegrations.ie-73dbe2)](https://mbsintegrations.ie)
 
-**Public release v0.1.1.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release v0.2.0.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
 The launcher talks directly to your Home Assistant. The setup computer can be shut down afterwards. No cloud account with this project, Mac service, Docker relay, or custom HA integration is required.
 
-**[Start here](docs/START-HERE.md)** · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
+**[Start here](docs/START-HERE.md)** · [Screenshots](docs/SCREENSHOTS.md) · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
 
 ![Four Home Launcher palette designs with sample data](docs/images/launcher-designs.png)
 
 *Plum, Forest, Ocean and Sand designs with sample data.*
 
-![LG Home Launcher browser preview with fictional readings, Dusk palette, streaming apps and home cards](docs/images/launcher-preview.png)
+![Dock, Weather, Sidebar and Panorama Home Launcher themes](docs/images/launcher-themes.jpg)
 
-*Browser design preview with sample data.*
+*Four new layout themes: Dock, Weather, Sidebar and Panorama. Actual app previews with sample data.*
 
 ## Install in order
 
@@ -36,17 +36,34 @@ The computer is only needed for setup and updates. The installed TV app connects
 
 ## What you get
 
+- Four new layout themes — Dock, Weather, Sidebar and Panorama — plus Classic, with six independent colour palettes and custom colours.
+- Condition-based weather artwork with optional HA Sun day/night selection.
 - A local browser wizard for Windows, macOS and Linux, with a working sample preview.
 - Read-only HA entity discovery and selection; no YAML editing for the launcher.
 - Up to 8 app/input tiles, 6 controls, 12 temperatures (first 3 on the main card), 4 generic appliance/status rows and an optional energy card.
+- [Common app presets, optional logos, Live TV and TV Guide tiles](docs/APP-TILES.md). Mix text and logos; keep your existing exported layout.
 - Export/import of credential-free layout profiles. One profile per TV.
 - A private configured IPK built on your own computer. No source edits required.
 - An optional HA startup automation blueprint.
 - Optional Home-button helper source, build scripts and extensive manual adaptation/recovery instructions. It is never automatically installed or enabled by the wizard.
 
-![MBS Integrations local launcher configurator with weather-location guidance](docs/images/configurator-preview.png)
+![MBS Integrations configurator with independent theme and colour selection](docs/images/screenshots/configurator-your-space.jpg)
 
 *The MBS configurator has its own branding. The TV app has no MBS logo or branded colour scheme.*
+
+## Screenshots
+
+Explore **[all layout and colour combinations](docs/SCREENSHOTS.md)**: 24 combinations for the four new themes, six for Classic, and one custom-colour example per layout. App tiles stay the same throughout the gallery.
+
+| Dock · Forest | Weather · Dusk |
+| --- | --- |
+| [![Dock in Forest](docs/images/screenshots/dock-forest.jpg)](docs/SCREENSHOTS.md#dock) | [![Weather in Dusk](docs/images/screenshots/weather-dusk.jpg)](docs/SCREENSHOTS.md#weather) |
+
+| Sidebar · Sand | Panorama · Slate |
+| --- | --- |
+| [![Sidebar in Sand](docs/images/screenshots/sidebar-sand.jpg)](docs/SCREENSHOTS.md#sidebar) | [![Panorama in Slate](docs/images/screenshots/panorama-slate.jpg)](docs/SCREENSHOTS.md#panorama) |
+
+For setup screens, see the **[five-step configurator walkthrough](docs/CONFIGURATOR-TOUR.md)**. [Themes and colours](docs/THEMES.md) explains how to choose and apply a design.
 
 ## Quick local preview
 
@@ -63,7 +80,7 @@ On Windows PowerShell use `npm.cmd` in place of `npm`. Open **http://127.0.0.1:8
 
 This is a sideloaded webOS app, not an LG Content Store release. Developer Mode is required. The base app does not replace LG's Home button; use the separately documented helper if your model supports it. The helper is a native program plus JavaScript controller/service, not a universal shell script.
 
-For version 0.1, configuration changes are made in the wizard and applied by rebuilding/reinstalling the package. There is no on-TV settings editor or QR pairing flow. Import your saved profile to update it. This deliberately avoids relying on `localStorage` surviving packaged-app updates.
+Configuration changes are made in the wizard and applied by rebuilding/reinstalling the package. There is no on-TV settings editor or QR pairing flow. Import your saved profile to update it. This deliberately avoids relying on `localStorage` surviving packaged-app updates.
 
 **Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview uses fictional sample readings even after HA discovery.
 

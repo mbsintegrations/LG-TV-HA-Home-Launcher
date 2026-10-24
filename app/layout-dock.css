@@ -1,0 +1,16 @@
+body .hero{position:absolute;left:72px;right:72px;top:120px;height:174px}
+body #clock{font-size:148px;font-weight:300;letter-spacing:-7px}
+body .weather{padding:20px 30px;border-left:2px solid currentColor}
+body .weather-main>span{font-size:76px}
+body .weather-copy{border:0}
+body .home-cards{position:absolute;top:330px;left:72px;right:72px;height:322px;margin:0}
+body .controls-section{position:absolute;top:687px;left:72px;right:72px;margin:0}
+body .control{height:105px}
+body .watch{position:absolute;top:862px;left:72px;right:72px}
+body .watch .section-label{display:none}
+body .app{height:130px;border-radius:28px}
+body .app-logo-frame{height:64px}
+body .app:focus{transform:translateY(-5px)}
+body .temperatures{flex:1.05}
+body .laundry{flex:.9}
+body .energy{flex:1.8}

@@ -1,0 +1,15 @@
+body .hero{padding:0;background:transparent}
+body .welcome{z-index:3;top:30px;right:32px;color:#244262}
+body .weather{position:absolute;inset:0;left:0;right:0;top:0;height:100%;border-radius:32px;padding:32px 40px;text-align:left;overflow:hidden;background:linear-gradient(145deg,#c5e3f5,#eef5ee);color:#1f3e59}
+body .weather[data-sky=cloudy]{background:linear-gradient(145deg,#7d9aad,#d1dfe6);color:#203b50}
+body .weather[data-sky=rain]{background:linear-gradient(145deg,#304d6d,#7799b4);color:#f3f8ff}
+body .weather[data-sky=night],body .weather[data-sky=storm]{background:linear-gradient(145deg,#101d39,#33446a);color:#f1f5ff}
+body .weather[data-sky=unknown]{background:linear-gradient(145deg,#344050,#607083);color:#f1f5ff}
+body .weather .weather-place{color:inherit;opacity:.8;font-size:15px;position:relative;z-index:1}
+body .weather #weather-art{left:90px;top:65px;width:340px;height:235px;background:none}
+body .weather-main{position:absolute;left:40px;bottom:36px;margin:0}
+body .weather-main>span{font-size:104px;letter-spacing:-5px}
+body .weather-copy{margin:14px 0 0;padding:0}
+body #weather-condition{font-size:30px;color:inherit}
+body #weather-detail{font-size:16px;color:inherit;opacity:.8}
+body #clock{background:rgba(245,250,255,.84);color:#233e5b;border-radius:12px;padding:7px 10px;font-size:32px;letter-spacing:-1px}

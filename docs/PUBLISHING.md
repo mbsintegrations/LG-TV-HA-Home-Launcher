@@ -4,7 +4,7 @@ The project repository is [mbsintegrations/LG-TV-HA-Home-Launcher](https://githu
 
 ## Prepare a version
 
-1. Update package.json/package-lock.json, app/appinfo.json and relevant helper manifests consistently. Update the changelog, download filenames, release notes and validation scope. The first regular public release uses tag `v0.1.1`, with numeric webOS app package version `0.1.1`. The unchanged native helper remains `0.1.0`.
+1. Update package.json/package-lock.json, app/appinfo.json and relevant helper manifests consistently. Update the changelog, download filenames, release notes and validation scope. The current update uses tag `v0.2.0`, with numeric webOS app package version `0.2.0`. The unchanged native helper remains `0.1.0`.
 2. Run `npm ci --ignore-scripts`, `npm test` and `npm run check`. Inspect dependency advisories separately; do not force dependency upgrades.
 3. With Python 3 available, run `npm run release`. If needed set `PYTHON` to its executable. This command only produces local files; it does not publish.
 4. Inspect the actual source archive and sample IPK, including their manifests. Confirm the sample connection is empty and the source contains no private builds, credentials, pairing material, real household profiles or development-import scripts. Inspect screenshots manually too.
@@ -22,14 +22,15 @@ Push the reviewed commit to GitHub and wait for the validation workflow on that 
 
 Create the release as a draft first, targeting the reviewed commit, with **pre-release** disabled for a regular release and the notes from docs/RELEASE-NOTES.md. Upload only:
 
-- `LG-TV-HA-Home-Launcher-0.1.1-source.zip`
-- `com.mbs.communityhome_0.1.1_SAMPLE_all.ipk`
+- `LG-TV-HA-Home-Launcher-0.2.0-source.zip`
+- `com.mbs.communityhome_0.2.0_SAMPLE_all.ipk`
 - `LG-TV-HA-Home-Launcher-designs.png`
+- `LG-TV-HA-Home-Launcher-themes.jpg`
 - `SHA256SUMS.txt`
 
 The release directory may contain local review records; they are not release assets. Files under private/builds and private/helper-builds are never selected, even if their filenames resemble a public asset.
 
-Before making the draft visible, check the release title/tag, target commit, pre-release status, notes and four asset names. On publication, read back the repository and release metadata, then download the published assets to a separate local verification folder and compare their SHA-256 hashes with the reviewed local files. Open the rendered README and release page to check images, buttons and navigation.
+Before making the draft visible, check the release title/tag, target commit, pre-release status, notes and five asset names. On publication, read back the repository and release metadata, then download the published assets to a separate local verification folder and compare their SHA-256 hashes with the reviewed local files. Open the rendered README and release page to check images, buttons and navigation.
 
 Use normal versioned corrections for later problems; do not silently replace a published asset with different bytes. Preserve a release record with commit, tag, asset hashes, CI result and remaining validation limits.
 

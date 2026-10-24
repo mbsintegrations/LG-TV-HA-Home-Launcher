@@ -1,6 +1,6 @@
 # Release checklist
 
-Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Version 0.1.1 is the first regular public release; 0.1.0 remains the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
+Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Version 0.2.0 adds layouts and app tiles; 0.1.1 remains the first regular release and 0.1.0 the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
 
 ## Build a review candidate
 

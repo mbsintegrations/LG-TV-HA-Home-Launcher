@@ -1,0 +1,32 @@
+body .hero{position:absolute;left:72px;right:72px;top:116px;height:240px;display:block;border-radius:30px;overflow:hidden}
+body .welcome{position:absolute;left:38px;top:48px;z-index:3;color:#203e59}
+body #clock{font-size:124px;letter-spacing:-5px;margin:0;font-weight:300}
+body .weather{position:absolute;left:0;right:0;top:0;height:100%;text-align:right;padding:30px 40px;background:linear-gradient(105deg,#eff5ec,#b7daef);color:#203e59}
+body .weather[data-sky=cloudy]{background:linear-gradient(105deg,#d5e1e7,#7a98b0)}
+body .weather[data-sky=rain]{background:linear-gradient(105deg,#274766,#7392ab);color:#f1f7ff}
+body .weather[data-sky=night],body .weather[data-sky=storm]{background:linear-gradient(105deg,#15213c,#384b78);color:#f1f7ff}
+body .weather[data-sky=unknown]{background:linear-gradient(105deg,#344050,#607083);color:#f1f7ff}
+body .weather .weather-place{position:absolute;left:42px;top:25px;color:inherit;font-size:13px;letter-spacing:3px;opacity:.7}
+body .weather-main{position:absolute;right:365px;top:45px;margin:0;display:block;text-align:right}
+body .weather-main>span{font-size:92px;line-height:1;letter-spacing:-4px}
+body .weather-copy{border:0;margin:10px 0 0;padding:0;text-align:right}
+body #weather-condition{font-size:25px;color:inherit}
+body #weather-detail{font-size:15px;color:inherit;opacity:.8;margin-top:8px}
+body .weather #weather-art{left:auto;right:24px;top:-1px;width:320px;height:240px;background:none}
+body .watch{position:absolute;left:72px;right:72px;top:388px}
+body .watch .section-label{display:none}
+body .app{height:122px;border-radius:20px}
+body .controls-section{position:absolute;left:72px;right:72px;top:546px;margin:0}
+body .control{height:96px;padding:16px 20px}
+body .home-cards{position:absolute;left:72px;right:72px;top:724px;height:270px;margin:0}
+body .home-card{padding:20px 24px}
+body .room-stat{padding:11px 0}
+body .laundry-item{padding:16px 0}
+body .energy-diagram{height:184px;margin-top:16px}
+body .energy-row{height:77px}
+body .energy-node{padding:8px 10px}
+body .node-power{font-size:23px;margin-top:3px}
+body .node-state{font-size:12px;margin-top:3px}
+body .energy-bus{top:77px;height:30px}
+body .energy-bus span{height:30px}
+body .energy-bus:before{top:15px}

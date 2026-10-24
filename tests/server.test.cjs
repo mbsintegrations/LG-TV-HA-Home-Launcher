@@ -10,6 +10,10 @@ test('Local wizard authenticates requests, only discovers, and never exposes its
   for(const url of ['/api/state','/preview/connection.json','/preview/profile.json','/preview/app.js']){const t=await(await fetch(base+url,{headers})).text();assert.ok(!t.includes(secret));}
   assert.deepEqual(await(await fetch(base+'/preview/connection.json')).json(),{});
   assert.equal((await fetch(base+'/private/connection.json')).status,404);
+  const svg=await fetch(base+'/preview/logos/netflix.svg');assert.equal(svg.status,200);assert.match(svg.headers.get('content-type'),/image\/svg\+xml/);assert.match(await svg.text(),/<svg/);
+  const jpg=await fetch(base+'/preview/logos/disney.jpg');assert.equal(jpg.status,200);assert.match(jpg.headers.get('content-type'),/image\/jpeg/);
+  const wordmark=await fetch(base+'/preview/logos/wordmarks/netflix.svg');assert.equal(wordmark.status,200);assert.match(wordmark.headers.get('content-type'),/image\/svg\+xml/);assert.notEqual(await wordmark.text(),require('node:fs').readFileSync(require('node:path').join(__dirname,'../app/logos/netflix.svg'),'utf8'));
+  assert.equal((await fetch(base+'/preview/logos/not-a-logo.svg')).status,404);
   assert.equal((await fetch(base+'/api/profile',{method:'POST',headers,body:JSON.stringify({...example,token:secret})})).status,400);
   const changed=structuredClone(example);changed.title='Test bedroom';assert.equal((await fetch(base+'/api/profile',{method:'POST',headers,body:JSON.stringify(changed)})).status,200);assert.equal((await(await fetch(base+'/preview/profile.json')).json()).title,'Test bedroom');
   const build=await fetch(base+'/api/build',{method:'POST',headers,body:JSON.stringify({profile:example})});assert.equal(build.status,400);assert.match((await build.json()).error,/missing example entities/);

@@ -18,6 +18,7 @@ async function build(profile,connection,{demo=false}={}){
  const ha=demo?null:validateConnection(connection),id=crypto.randomBytes(8).toString('hex'),folder=path.join(root,'private','builds',id),stage=path.join(folder,'app');
  fs.mkdirSync(stage,{recursive:true,mode:0o700});
  for(const n of fs.readdirSync(path.join(root,'app')))if(/\.(js|css|html|json|png)$/.test(n))fs.copyFileSync(path.join(root,'app',n),path.join(stage,n));
+ fs.cpSync(path.join(root,'app/logos'),path.join(stage,'logos'),{recursive:true});
  const html=fs.readFileSync(path.join(stage,'index.html'),'utf8').replace('__HA_ORIGIN__',ha?ha.origin:'');fs.writeFileSync(path.join(stage,'index.html'),html);fs.writeFileSync(path.join(stage,'theme.css'),require('./theme.cjs').theme(profile));
  fs.writeFileSync(path.join(stage,'profile.json'),JSON.stringify(profile,null,2),{mode:0o600});fs.writeFileSync(path.join(stage,'connection.json'),JSON.stringify(ha?{url:ha.url,token:ha.token}:{}),{mode:0o600});
  await pack(['--no-minify',stage,'-o',folder]);const filename=fs.readdirSync(folder).find(n=>n.endsWith('.ipk'));if(!filename)throw Error('Packager returned no IPK');const artifact=path.join(folder,filename);fs.chmodSync(artifact,0o600);

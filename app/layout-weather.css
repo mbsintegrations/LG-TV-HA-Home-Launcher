@@ -1,0 +1,23 @@
+body .hero{position:absolute;left:72px;top:132px;width:545px;height:500px;display:block;padding:32px 40px;border-radius:32px;background:rgba(150,160,180,.07);overflow:hidden}
+body .welcome{position:absolute;top:25px;right:36px}
+body #clock{font-size:44px;letter-spacing:-2px;margin:0}
+body .weather{position:absolute;left:40px;right:25px;top:34px;text-align:left}
+body .weather-place{font-size:15px;width:200px}
+body .weather-main{display:block;margin-top:152px}
+body .weather-main>span{font-size:150px;line-height:1;letter-spacing:-8px}
+body .weather-copy{padding:0;margin:20px 0 0;border:0}
+body #weather-condition{font-size:33px}
+body #weather-detail{font-size:17px}
+body .weather:before{content:'';position:absolute;top:64px;left:10px;width:96px;height:96px;border:3px solid currentColor;border-radius:50%;box-shadow:0 0 0 13px rgba(150,160,180,.08),0 0 0 27px rgba(150,160,180,.04)}
+body .weather:after{content:'';position:absolute;top:124px;left:56px;width:124px;height:47px;border-radius:50px;background:currentColor;opacity:.22}
+body .watch{position:absolute;left:655px;right:72px;top:140px}
+body .apps{flex-wrap:wrap;margin:-8px}
+body .app{flex:none;width:calc(25% - 16px);height:126px;margin:8px}
+body .controls-section{position:absolute;left:655px;right:72px;top:493px;margin:0}
+body .control{height:106px;padding:18px 14px}
+body .control-name{font-size:18px}
+body .control-status{font-size:15px}
+body .home-cards{position:absolute;top:684px;left:72px;right:72px;height:312px;margin:0}
+body .room-stat{padding:14px 0}
+body .laundry-item{padding:22px 0}
+body .energy-diagram{margin-top:20px}

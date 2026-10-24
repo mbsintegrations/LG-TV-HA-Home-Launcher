@@ -6,12 +6,22 @@ The configurable community launcher was installed on an OLED65B9PLA and a 65NANO
 
 Automated tests use sample profiles, fictional entity IDs and synthetic credentials.
 
+### 0.2.0 functional test — 24 October 2026
+
+The Living Room OLED65B9PLA was updated with eight tiles in the Dusk palette. The owner confirmed live HA, Live TV, TV Guide through HA and Home-button return from YouTube. Installed JavaScript/profile hashes matched the private build and the existing helper reported active. Both reference TVs were then updated to the completed 0.2.0 layout build: Panorama/Slate on OLED65B9PLA and Weather/Dusk on 65NANO766QA. The owner accepted the Panorama appearance on TV before the Slate change. Installed source/profile hashes matched each build and both Home helpers reported active after the updates.
+
+The B9 recognises the legacy YouTube Kids app ID, but standalone Kids playback was not tested. Direct Guide IDs were unavailable on this B9; its Guide overlay uses the HA remote-button route. Other streaming presets are documented editable IDs and were not all physically tested.
+
 ## Automated coverage
 
 Run `npm test` and `npm run check`. Coverage includes:
 
 - Profile validation, unsupported versions/fields, recovery tile retention, duplicates and limits.
+- Old-profile text defaults, common app presets, local logo assets and fallback paths, and Guide-mode entity validation.
+- Guide sends only the configured TV's GUIDE command, blocks disconnected/unavailable targets and repeated requests, and does not replay on reconnect.
+- Independent layout/palette selection, Classic defaults for old profiles, six-control limits and optional read-only Sun subscriptions.
 - Six built-in palettes, validated custom colours and old-webOS-compatible generated CSS.
+- 35 actual browser screenshots: all five layouts in six preset palettes, plus a custom example per layout. Footer active/paused states were also checked in a browser fixture.
 - Temperature/status/power mappings, unavailable values and units/sign conversion.
 - State-dependent explicit actions; disconnect handling; no command replay; no false physical-success claim.
 - Helper pause/release, stale native sessions, process liveness and watched-app policy.
@@ -28,7 +38,7 @@ The sample IPK is built with LG's official packager and contains a validated pro
 
 | Model | Firmware | Reported SDK | Scope |
 |---|---|---|---|
-| OLED65B9PLA | 05.50.00 | 4.10.0 | Community launcher installed; plum layout, live HA connection and physical Home-button return from YouTube confirmed |
-| 65NANO766QA | 04.60.91 | 7.6.0 | Community launcher installed; live HA, physical Home-button return from YouTube, bedroom controls and appliance card confirmed |
+| OLED65B9PLA | 05.50.00 | 4.10.0 | 0.2.0 installed, Panorama/Slate; live HA, Live TV, HA Guide and physical Home return from YouTube confirmed during testing |
+| 65NANO766QA | 04.60.91 | 7.6.0 | 0.2.0 installed, Weather/Dusk; live HA, Home return from YouTube, bedroom controls and appliance card confirmed on the preceding configured build |
 
 SDK version is not firmware version or a separately verified marketing webOS version. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. No universal minimum-version claim is made.
