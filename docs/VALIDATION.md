@@ -40,7 +40,6 @@ The sample IPK is built with LG's official packager and contains a validated pro
 |---|---|---|---|
 | OLED65B9PLA | 05.50.00 | 4.10.0 | 0.2.0 installed, Panorama/Slate; live HA, Live TV, HA Guide and physical Home return from YouTube confirmed during testing |
 | 65NANO766QA | 04.60.91 | 7.6.0 | 0.2.0 installed, Weather/Dusk; live HA, Home return from YouTube, bedroom controls and appliance card confirmed on the preceding configured build |
-
 | 43UN73906LE | Not reported | Not reported | User-verified: all features working, including the Home-button helper (reported 24 October 2026) |
 
 The webOS version for 43UN73906LE has not been reported.
