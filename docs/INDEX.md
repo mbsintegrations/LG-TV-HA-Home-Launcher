@@ -21,6 +21,7 @@ Start with the base launcher. The helper is a separate advanced manual procedure
 16. [Layout themes, palettes and weather appearance](THEMES.md)
 17. [All layout/palette screenshots](SCREENSHOTS.md)
 18. [Configurator walkthrough with screenshots](CONFIGURATOR-TOUR.md)
+19. [LG privacy concerns, ad-free launcher and media/IoT network isolation](PRIVACY-AND-NETWORK.md)
 
 For release changes see [Changelog](../CHANGELOG.md). Contributors should read [Contributing](../CONTRIBUTING.md); maintainers should use [Publishing on GitHub](PUBLISHING.md).
 

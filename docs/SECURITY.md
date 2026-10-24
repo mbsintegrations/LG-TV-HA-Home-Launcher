@@ -1,5 +1,7 @@
 # Security and private files
 
+For the recent LG privacy discussion, the launcher's ad-free interface, comparisons with other streaming platforms and practical VLAN/firewall guidance, see [Privacy and your media/IoT network](PRIVACY-AND-NETWORK.md).
+
 ## Trust boundaries
 
 The wizard runs on loopback only, requires a random setup-session header for its API and checks the Host and Origin headers. It has no household control or TV install endpoint. HA discovery uses an authenticated read of `/api/states`; redirects are refused. Entity names, not arbitrary HA attributes, are returned to the editor. The browser design preview receives an empty connection object and sample readings, never the token.
