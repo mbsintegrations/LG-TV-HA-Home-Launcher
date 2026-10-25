@@ -14,14 +14,18 @@ The helper consists of native ARM executables, an ES5 JavaScript controller and 
 
 The underlying LG UI still exists. The helper does not replace system files, flash firmware, change the TV's Node runtime, or root the TV. Closing the launcher does **not** stop the helper. To stop it use Pause or the long Home press.
 
-## 2. Reference evidence versus this candidate
+## 2. Verified models and compatibility
 
-| Reference | Predecessor evidence | Community candidate |
-|---|---|---|
-| OLED65B9PLA, firmware 05.50.00, SDK 4.10.0 | Owner confirmed short Home, long Home, LG Home tile, YouTube Back return while active | New IDs/configurable build not installed or tested |
-| 65NANO766QA, firmware 04.60.91, SDK 7.6.0 | Native identity/capabilities and heartbeat/pipe-close release checks passed; service activation observed | Physical remote, app-exit and restart acceptance still pending |
-| Other TVs/firmware | No project evidence | Unsupported until individually checked |
+The base launcher is expected to work on webOS 4.x onward; webOS 3.x could work but is untested. **This does not establish helper compatibility:** input devices, permissions, firmware and ABI must be checked for each TV. See [platform expectations and validation](VALIDATION.md#expected-platform-compatibility).
 
+| Reference | Recorded helper evidence |
+|---|---|
+| OLED65B9PLA, firmware 05.50.00, SDK 4.10.0 | Owner confirmed short Home, long Home, LG Home tile and YouTube Back return in testing; the configurable community installation also has confirmed Home return from YouTube. |
+| 65NANO766QA, firmware 04.60.91, SDK 7.6.0 | Native identity/capabilities and heartbeat/pipe-close release checks passed. The owner confirmed Home return from YouTube with the configurable community installation. |
+| 43UN73906LE, installed firmware/SDK not reported | User reported all features working, including the Home-button helper, on 24 October 2026. |
+| Other TVs/firmware | Helper compatibility has not been verified; inspect and test individually. |
+
+Both reference helpers reported active after the animated energy-view update. These results do not establish every app-exit path or cold-boot behavior; see the [validation record](VALIDATION.md).
 The bedroom owner reported system sluggishness that persisted after closing the launcher. Its cause is unresolved. Do not describe that observation as proof the helper is harmless, or claim hardware inferiority without measurements. Never copy the private deployment's numeric user IDs to another TV.
 
 ## 3. Required tools and recovery preparation
