@@ -40,14 +40,26 @@ Native filter tests cover Home press/repeat/hold, other keys, pointer/wheel and 
 
 The sample IPK is built with LG's official packager and contains a validated profile, generated theme, an empty connection object and the community app ID. Package checks cover credential handling, helper file ownership and permissions. Installed app files on both reference TVs matched their configured build files.
 
+## Expected platform compatibility
+
+| webOS platform | Original TV release years | Current launcher expectation |
+|---|---|---|
+| **4.x and newer** | **2018 onward** | **Expected to work**, based on our Chromium 53 / ES5 target and the verified models below. This is not verification of every model or later platform release. |
+| **3.x** | 2016–2017 | **Could work, but has not been tested.** Its older Chromium 38 engine may require compatibility changes. |
+| **1.x–2.x** | 2014–2015 | Not currently supported or tested. A legacy adaptation would likely be needed for their older WebKit engines. |
+
+LG introduced webOS 4.x with its 2018 TV generation. LG lists Chromium 53 for webOS 4.x, Chromium 38 for 3.x, and WebKit for 1.x–2.x in its [official web-engine specifications](https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine). Year ranges describe platform introductions, not a model-independent guarantee.
+
+These expectations concern the **base launcher**. Developer Mode installation, app IDs, HA certificate compatibility and the optional native Home-button helper must be checked for the actual TV. A newer webOS version alone does not prove helper compatibility. Background rotation and Glass styling have browser coverage; physical TV performance acceptance for those options is still outstanding.
+
 ## Reference TVs
 
-| Model | Firmware | Reported SDK | Scope |
-|---|---|---|---|
-| OLED65B9PLA | 05.50.00 | 4.10.0 | 0.2.0 installed, Panorama/Slate; live HA, Live TV, HA Guide and physical Home return from YouTube confirmed during testing |
-| 65NANO766QA | 04.60.91 | 7.6.0 | 0.2.0 installed, Weather/Dusk; live HA, Home return from YouTube, bedroom controls and appliance card confirmed on the preceding configured build |
-| 43UN73906LE | Not reported | Not reported | User-verified: all features working, including the Home-button helper (reported 24 October 2026) |
+| Model | Platform generation | Firmware | Reported SDK | Scope |
+|---|---|---|---|---|
+| **OLED65B9PLA** — 2019, Living Room | webOS 4.x | 05.50.00 | **4.10.0** | Tested on our TV: 0.2.0 Panorama/Slate; live HA, app launching, Live TV, HA Guide and physical Home return from YouTube. Animated house energy update installed and appearance accepted. |
+| **65NANO766QA** — 2022, Master Bedroom | webOS 22 | 04.60.91 | **7.6.0** | Tested on our TV: 0.2.0 Weather/Dusk; live HA, Home return from YouTube, bedroom controls and appliance card. Animated house energy update installed and file hashes verified. |
+| **43UN73906LE** — 2020 | webOS 5.0 according to LG | Not reported | Not reported | User-verified: all features working, including the Home-button helper (reported 24 October 2026). This report predates the 0.3.0 background/customizer release. |
 
-The webOS version for 43UN73906LE has not been reported.
+LG's model specifications identify [65NANO766QA as webOS 22](https://www.lg.com/es/tv-y-barras-de-sonido/nanocell/65nano766qa/) and [43UN73906LE as webOS 5.0](https://www.lg.com/de/tvs-und-soundbars/lcd-tvs/43un73906le/). These model specifications do not establish the exact software installed on an individual TV. The installed version of the reported 43UN73906LE has not been supplied.
 
-SDK version is not firmware version or a separately verified marketing webOS version. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. No universal minimum-version claim is made.
+SDK version, firmware version and the marketed webOS generation are recorded separately. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. **webOS 4.x onward is an expected compatibility baseline, not a universally tested minimum.**

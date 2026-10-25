@@ -93,6 +93,14 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Compatibility and evidence
 
-The configurable launcher is installed on an LG OLED65B9PLA (SDK 4.10.0) and 65NANO766QA (SDK 7.6.0). Both TVs have confirmed live Home Assistant data and Home-button return from YouTube. The LG **43UN73906LE** is also user-verified for **all features, including the Home-button helper**; firmware, SDK and webOS versions have not been reported. See [compatibility and validation](docs/VALIDATION.md) for the tested features.
+**The current launcher is expected to work on webOS 4.x and newer (2018 TVs onward). webOS 3.x could work, but has not been tested and may need compatibility changes.** This is an expectation for the base launcher, not a guarantee for every TV or the optional Home-button helper.
+
+| Verified model | Platform / recorded version | Verification |
+|---|---|---|
+| **OLED65B9PLA** — Living Room, 2019 | webOS 4.x; reported SDK **4.10.0** | Tested on our TV: live HA, app launching, Live TV, HA Guide and Home-button return from YouTube |
+| **65NANO766QA** — Master Bedroom, 2022 | webOS 22 generation; reported SDK **7.6.0** | Tested on our TV: live HA, room controls, appliance card and Home-button return from YouTube |
+| **43UN73906LE** — 2020 | LG specifies webOS **5.0**; installed firmware/SDK not reported | User-reported: all features working, including the Home-button helper |
+
+LG introduced the **webOS 4.x generation in 2018**. The compatibility estimate is based on its Chromium 53 app engine, which our TV code targets. webOS 1.x–2.x use older WebKit engines and are not currently supported or tested. See [LG's web-engine table](https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine) and [compatibility and validation](docs/VALIDATION.md) for model sources and feature-specific results. The helper remains model/firmware-dependent; the latest background rotation and Glass options have not yet had physical TV performance acceptance.
 
 Own code is GPL-3.0-only. The adapted helper retains its MIT notices. See [NOTICE](NOTICE) and [licensing](docs/LICENSING.md). Independent project; not affiliated with LG or Home Assistant.
