@@ -8,6 +8,20 @@ There are **24 combinations across the four new themes and six presets**, plus s
 
 Choose these in **Your space → Layout theme** and **Color Palette**. See [themes and colours](THEMES.md) for a guide.
 
+## Background and styling showcase
+
+![Four layouts with different backgrounds and card finishes](images/launcher-update-0.3.jpg)
+
+| Panorama · Slate · Normal background | Weather · Ocean · Mountain lake / Glass |
+| --- | --- |
+| [![Panorama energy view](images/screenshots/showcase-panorama-energy.jpg)](images/screenshots/showcase-panorama-energy.jpg) | [![Weather with mountain background](images/screenshots/showcase-weather-photo.jpg)](images/screenshots/showcase-weather-photo.jpg) |
+
+| Dock · Plum · House / Translucent | Sidebar · Forest · Woodland / Outlined |
+| --- | --- |
+| [![Dock with house background](images/screenshots/showcase-dock-photo.jpg)](images/screenshots/showcase-dock-photo.jpg) | [![Sidebar with woodland background](images/screenshots/showcase-sidebar-photo.jpg)](images/screenshots/showcase-sidebar-photo.jpg) |
+
+[Photo credits](LICENSING.md#showcase-background-photography). Use your own background uploads in the configurator.
+
 ## Dock
 
 Apps along the bottom, with home cards above.

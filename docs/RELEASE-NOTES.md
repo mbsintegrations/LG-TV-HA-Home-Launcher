@@ -2,7 +2,7 @@
 
 Make the launcher yours with personal backgrounds, an optional theme customizer and an animated house energy view. No root required, no ads in the launcher, and no always-on setup computer.
 
-![Home Launcher 0.3: backgrounds, customizer and energy flow](https://raw.githubusercontent.com/mbsintegrations/LG-TV-HA-Home-Launcher/v0.3.0/docs/images/launcher-update-0.3.jpg)
+![Home Launcher 0.3: backgrounds, customizer and energy flow](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/releases/download/v0.3.0/LG-TV-HA-Home-Launcher-update-0.3-grid.jpg)
 
 ## Backgrounds
 
@@ -56,9 +56,9 @@ The house energy view is installed on both reference TVs, with exact installed-f
 
 - **LG-TV-HA-Home-Launcher-0.3.0-source.zip** — configurator, TV source, documentation, screenshots and manual helper tools. Start here.
 - **com.mbs.communityhome_0.3.0_SAMPLE_all.ipk** — credential-free sample; shows Setup required on a TV. Build privately for live HA.
-- **LG-TV-HA-Home-Launcher-update-0.3.jpg** — new community update image.
+- **LG-TV-HA-Home-Launcher-update-0.3-grid.jpg** — refreshed 2×2 community image with four layouts and scenic backgrounds.
 - **LG-TV-HA-Home-Launcher-designs.png** and **LG-TV-HA-Home-Launcher-themes.jpg** — palette and layout overviews.
-- **SHA256SUMS.txt** — checksums for all five files above.
+- **SHA256SUMS.txt** — checksums for the release files, including both community image versions.
 
 Configured TV packages contain your HA token and must stay private. The optional helper remains a manual, model-dependent installation; no universal helper IPK is provided.
 
