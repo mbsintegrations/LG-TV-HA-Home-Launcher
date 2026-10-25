@@ -16,7 +16,18 @@ The source ZIP is generated from `publicFiles()` in scripts/check.cjs. That list
 
 For a first publication, use a new clean Git working directory populated **only** with that reviewed public file list. For later updates, compare the list against the existing repository, preserve history, and review removals explicitly. Never run a broad `git add .` from a household project workspace. `.gitignore` does not untrack a previously committed secret.
 
-Push the reviewed commit to GitHub and wait for the validation workflow on that exact commit. A workflow definition is not evidence of a completed run. GitHub Actions tests on Windows, macOS and Linux are build/unit coverage, not a physical TV or desktop-GUI acceptance test.
+## Branch and pull-request workflow
+
+Use this workflow for all updates, including documentation and artwork. Do not push directly to `main`.
+
+1. Fetch the current remote state and create a focused `codex/` branch from `origin/main` in the public checkout.
+2. Commit only the reviewed public changes and push the branch.
+3. Open a pull request against `main`, describing the change and relevant validation. When working in Codex, attach the pull request to the chat.
+4. Wait for the validation workflow on the current pull-request head and resolve failures before merging. Review any additional commits before proceeding.
+5. Once publication is authorized and checks pass, merge the pull request and delete its temporary remote branch. Synchronize the local checkout with `main` and verify the merged changes remotely.
+6. For a versioned release, use the verified merged commit as the release target and follow the release procedure below.
+
+A workflow definition is not evidence of a completed run. GitHub Actions tests on Windows, macOS and Linux are build/unit coverage, not a physical TV or desktop-GUI acceptance test.
 
 ## Publish a release
 
