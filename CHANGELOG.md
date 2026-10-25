@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0 — Backgrounds, theme customizer and house energy flow — 25 October 2026
+
+- Upload up to five optimized local backgrounds; optional rotation, image opacity and darkening. Full HD output, 450 KB maximum per image.
+- Optional customizer with Solid, Translucent, Outlined and Glass finishes, corners, accents and per-card colours.
+- Drag-and-drop app/control ordering and custom screen-row arrangement; LG Home remains last.
+- Animated house energy view with generic editable labels, optional battery/chargers, unavailable-state handling and direction-aware flow.
+- Fixed Glass card positioning in Sidebar and improved configurator preview-session recovery and error feedback.
+- New main/community image, feature screenshots, refreshed configurator screenshots and expanded setup/update documentation.
+- Profile schema remains version 1; old profiles retain their mappings. Native helper remains 0.1.0. The house renderer has been installed on both reference TVs and visually accepted on the Living Room TV; backgrounds/Glass have browser coverage pending physical performance testing.
+
 ## 0.2.0 — Four new themes, weather artwork and app tiles — 24 October 2026
 
 ### Added

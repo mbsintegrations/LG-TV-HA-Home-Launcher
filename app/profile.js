@@ -35,16 +35,17 @@
   function array(v,path,max){if(!Array.isArray(v)||v.length>max)throw Error(path+' must contain at most '+max+' items');}
   function label(v,path){str(v,path,28,false);}
   function validate(p){
-    keys(p,['schemaVersion','title','location','locale','timeZone','timeFormat','layout','weatherSun','theme','customColors','cards','apps','weather','temperatures','controls','energy','laundry','helper'],'Profile');
+    keys(p,['schemaVersion','title','location','locale','timeZone','timeFormat','layout','weatherSun','theme','customColors','cards','design','apps','weather','temperatures','controls','energy','laundry','helper'],'Profile');
     if(p.schemaVersion!==1)throw Error('Unsupported profile version. Expected 1.');
     label(p.title,'Room name');str(p.location,'Location',40,true);str(p.locale,'Locale',30);str(p.timeZone,'Time zone',80);
     try{new Intl.DateTimeFormat(p.locale,{timeZone:p.timeZone}).format(new Date());}catch(e){throw Error('Locale or time zone is not supported');}
-    choice(p.timeFormat,['12','24'],'Clock format');if(p.layout===undefined)p.layout='classic';choice(p.layout,['classic','dock','weather','sidebar','panorama'],'Layout');if(p.weatherSun===undefined)p.weatherSun='';entity(p.weatherSun,'Day/night entity',['sun'],true);
+    choice(p.timeFormat,['12','24'],'Clock format');if(p.layout===undefined)p.layout='classic';choice(p.layout,['classic','dock','weather','sidebar','panorama','custom'],'Layout');if(p.weatherSun===undefined)p.weatherSun='';entity(p.weatherSun,'Day/night entity',['sun'],true);
     choice(p.theme,['forest','slate','ocean','dusk','sand','monochrome','custom'],'Theme');
     if(!p.customColors)p.customColors={background:'#142522',surface:'#203730',accent:'#e5cb91',text:'#edf2e9',muted:'#b1c2b4'};
     keys(p.customColors,['background','surface','accent','text','muted'],'Custom colours');['background','surface','accent','text','muted'].forEach(function(k){if(typeof p.customColors[k]!=='string'||!/^#[0-9a-fA-F]{6}$/.test(p.customColors[k]))throw Error('Custom '+k+' must be a six-digit hex colour');});
     if(!p.cards)p.cards={temperaturesTitle:'Room temperatures',statusTitle:'Appliances & status',energyTitle:'Energy flow',energyStyle:'flow'};
-    keys(p.cards,['temperaturesTitle','statusTitle','energyTitle','energyStyle'],'Card titles');['temperaturesTitle','statusTitle','energyTitle'].forEach(function(k){label(p.cards[k],'Card title');});choice(p.cards.energyStyle,['flow','list'],'Energy layout');
+    keys(p.cards,['temperaturesTitle','statusTitle','energyTitle','energyStyle'],'Card titles');['temperaturesTitle','statusTitle','energyTitle'].forEach(function(k){label(p.cards[k],'Card title');});choice(p.cards.energyStyle,['flow','house','list'],'Energy layout');
+    var D=typeof module!=='undefined'&&module.exports?require('./design'):root.HomeDesign;if(!p.design)p.design=D.defaults();D.validate(p.design);
     array(p.apps,'Apps',8);if(!p.apps.length)throw Error('Add at least LG Home');var seen={};
     p.apps.forEach(function(a,i){keys(a,['label','id','style','appearance','logo','guideMode','tvEntity'],'App '+i);label(a.label,'App label');str(a.id,'App ID',100);if(!/^[a-z0-9][a-z0-9._-]+$/.test(a.id)||seen[a.id])throw Error('App IDs must be valid and unique');seen[a.id]=true;choice(a.style,['youtube','netflix','plex','prime','input','lg','text'],'App style');if(a.appearance===undefined)a.appearance='text';choice(a.appearance,appearances.map(function(x){return x[0];}),'Tile appearance');if(a.logo!==undefined)choice(a.logo,[''].concat(logoKeys),'App logo');if(a.guideMode!==undefined){choice(a.guideMode,['app','home-assistant'],'Guide method');if(a.id==='com.webos.app.home')throw Error('LG Home must use native launch');}if(a.guideMode==='home-assistant')entity(a.tvEntity,'LG TV for Guide',['media_player']);else if(a.tvEntity!==undefined)throw Error('TV entity is only used by the HA Guide button');});
     if(p.apps[p.apps.length-1].id!=='com.webos.app.home')throw Error('Keep LG Home as the last app for recovery');

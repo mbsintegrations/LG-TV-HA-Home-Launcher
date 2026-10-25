@@ -1,6 +1,6 @@
 # Privacy, an ad-free home screen and your media/IoT network
 
-Updated 24 October 2026 · applies to the v0.2.0 launcher.
+Updated 24 October 2026 · applies to the v0.2.0 and v0.3.0 launcher.
 
 **Our launcher displays no advertising, sponsored recommendations or the promotional tiles you would normally see on LG Home.** It gives you your own apps, inputs and Home Assistant dashboard instead. Opening the original LG Home screen or a streaming app takes you into that application's interface, where its own advertising may still appear.
 

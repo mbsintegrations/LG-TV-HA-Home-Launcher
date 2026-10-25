@@ -63,6 +63,6 @@ Logos ship inside the app and preview; the TV makes no logo downloads or externa
 
 IPTV Smarters currently uses the vendor app artwork in both logo modes; it does not have a separate wordmark asset. The preset only opens an installed player and supplies no channels or subscription.
 
-The four new [layout themes](THEMES.md) are included in 0.2.0. Background uploads and slideshows remain future work.
+The [layout themes](THEMES.md) work with the optional [backgrounds and theme customizer](CUSTOMIZER.md) added in 0.3.0.
 
 See [licensing and asset attribution](LICENSING.md) for the logo sources. To request another preset, provide the app name, exact installed ID, TV model/webOS version and country as described in [installation](INSTALL.md#find-app-ids).

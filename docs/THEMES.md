@@ -14,6 +14,7 @@ Open **Your space**, select **Color Palette** beside Clock, then choose **Layout
 | Weather | Large weather panel at the left; apps and controls to the right; cards below | You want the weather to be prominent |
 | Sidebar | Vertical app rail; controls and energy alongside; temperatures/status below | You prefer separate areas for apps and home information |
 | Panorama | Wide weather scene; apps, controls and home cards in rows | You like a broad overview of the room and weather |
+| Custom | Four screen rows in your chosen order; reorder apps, controls and status cards | You want your own arrangement |
 | Classic | Original clock/weather, apps, controls and cards arrangement | You want to keep an existing layout |
 
 All layouts support up to **eight app/input tiles, including LG Home**, and **six home controls**. Controls remain the same HA targets when you change theme. Cards disappear when disabled or empty; the remaining areas adapt. The first three temperatures stay on the main card. The status card supports up to four entries.
@@ -53,4 +54,4 @@ For reliable night appearance during cloudy or rainy weather, select your Sun in
 5. Export the updated profile. Connect HA, build privately and install using [webOS Dev Manager](WEBOS-DEV-MANAGER.md).
 6. For an installation using the optional helper, follow the [helper update procedure](UPDATES-AND-RECOVERY.md#update-a-helper-installation) so its service and per-TV ownership remain correct.
 
-See the [complete screenshot gallery](SCREENSHOTS.md) for every preset combination and custom examples. Uploaded backgrounds, rotating photos and free-form card positioning are not part of 0.2.0.
+See the [complete screenshot gallery](SCREENSHOTS.md) for every preset combination and custom examples. Version 0.3.0 adds [uploaded backgrounds, rotation, card styling and custom row arrangement](CUSTOMIZER.md). Rows snap into fixed positions; cards cannot overlap or be freely resized.

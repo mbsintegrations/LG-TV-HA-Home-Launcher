@@ -26,5 +26,5 @@ body .energy-bus:before,body .energy-bus span{background:${c.muted}}
 body .dialog-action{background:${c.surface};color:${c.text};border-color:${c.accent}}
 body .dialog-heading button{color:${c.text};border-color:${c.muted}}
 body .sun{background:radial-gradient(ellipse,${alpha(c.accent,.13)},transparent 70%)}
-`+require('./layout.cjs').layout(p,c);}
+`+require('./layout.cjs').layout(p,c)+require('./design.cjs').design(p,c);}
 module.exports={theme,palettes};

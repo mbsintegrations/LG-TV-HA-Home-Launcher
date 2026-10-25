@@ -1,0 +1,11 @@
+.house-flow{width:100%;height:calc(100% - 38px);min-height:130px;margin-top:2px}
+.house-flow svg{display:block;width:100%;height:100%;overflow:visible;color:inherit}
+.house-flow .meter-surface{fill:currentColor;fill-opacity:.06;stroke:currentColor;stroke-opacity:.16;stroke-width:1}
+.house-flow text{fill:currentColor;font-family:Arial,sans-serif}
+.house-flow .house-label{font-size:22px;opacity:.85}.house-flow .house-power{font-size:32px;font-weight:600}.house-flow .house-state{font-size:18px;opacity:.75}
+.house-wire{fill:none;stroke-width:2;opacity:.25}.house-current{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:3 21;opacity:0;animation:house-energy-flow 2s linear infinite;animation-play-state:paused}
+.house-current.running{opacity:.95;animation-play-state:running}.house-current.outward{animation-direction:reverse}
+body.energy-hidden .house-current,.house-flow[data-live=false] .house-current{animation-play-state:paused;opacity:0}
+@keyframes house-energy-flow{from{stroke-dashoffset:0}to{stroke-dashoffset:-48}}
+@media(prefers-reduced-motion:reduce){.house-current{animation:none!important}}
+.energy.house-energy .energy-diagram{display:none}.energy:not(.house-energy) .house-flow{display:none}

@@ -68,7 +68,7 @@ The display normalises to kW. Direction conventions after optional inversion:
 
 Invert the battery/grid sensor if its integration uses the opposite sign. State-of-charge expects a percentage sensor. A node with an empty entity is hidden; turn off the energy card entirely if unused. The bus lines are a visual grouping; they are not a metered circuit topology or a computed electrical balance. There are no animated arrowheads.
 
-This release shows up to two generic charger power readings. It does not infer charger plug/vehicle status or use vendor-specific enum mappings. Bidirectional vehicle export is not specially labelled in version 1; use a separate read-only sensor or adapt the renderer before relying on that behavior.
+This release shows up to two generic charger power readings. It does not infer charger plug/vehicle status or use vendor-specific enum mappings. The house view shows negative charger power as supplying and reverses its flow. It does not infer plug/vehicle connection status.
 
 ## Washer and dryer
 
@@ -82,7 +82,7 @@ Known inactive states hide remaining time. Other integrations may use different 
 
 ## Layout and limits
 
-The main display uses the existing TV layout with flexbox and ES5 scripts for older LG engines. Forest, Slate, Ocean, Dusk, Sand and Monochrome are available, plus Custom with editable background, surface, accent, text and muted colours. The configurator uses MBS Integrations branding independently of the TV palette. Temperature, status and energy card titles are editable. Energy can use a flow diagram or simple readings, with unused nodes omitted. Cards disappear when disabled or empty, and remaining cards expand. This is not a free-form dashboard builder; limits keep navigation and text readable.
+The main display uses the existing TV layout with flexbox and ES5 scripts for older LG engines. Forest, Slate, Ocean, Dusk, Sand and Monochrome are available, plus Custom with editable background, surface, accent, text and muted colours. The configurator uses MBS Integrations branding independently of the TV palette. Temperature, status and energy card titles are editable. Energy can use the classic diagram, animated house view or simple readings, with unused nodes omitted. See [backgrounds, card styling and arrangement](CUSTOMIZER.md) for optional customization. Cards disappear when disabled or empty, and remaining cards expand. This is not a free-form dashboard builder; limits keep navigation and text readable.
 
 ## Manual helper flag
 

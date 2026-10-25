@@ -15,7 +15,15 @@ The wizard does not retain edits after its process restarts unless you exported 
 5. Build a new private package and install on one TV first, at a convenient time.
 6. Verify actual remote/app/HA behavior before updating other TVs.
 
-Versions 0.1 and 0.2 embed the profile and token into each locally configured package. Rebuilding reapplies settings; it does not rely on `localStorage` surviving updates. The same app ID replaces that app on the selected TV. Do not use a package intended for another household/room.
+Versions 0.1, 0.2 and 0.3 embed the profile and token into each locally configured package. Rebuilding reapplies settings; it does not rely on `localStorage` surviving updates. The same app ID replaces that app on the selected TV. Do not use a package intended for another household/room.
+
+## Moving from 0.2.0 to 0.3.0
+
+Import your saved profile into the new configurator. Schema version 1 is unchanged. Profiles without customizer settings receive no background images, solid cards and the existing layout/palette and entity mappings. The energy view stays as saved until you choose **Home cards → Energy & power → Power layout → Energy flow · animated house**.
+
+Add backgrounds in Your space, or open the optional Theme customizer for card finishes and arrangement. Export the profile again before closing setup; uploaded images are included in it, so treat personal photos as private even though exports contain no HA token. Reconnect HA and build/install your own private IPK. Keep the previous version's profile and IPK for rollback: older releases do not understand the new customizer fields.
+
+The native helper remains 0.1.0. Follow the helper-enabled build procedure and preserve its options, service identity and credentials; do not replace an existing helper-enabled installation with the plain sample IPK. Pause and verify input release before updating its service-bearing package, then resume and check Home.
 
 ## Moving from 0.1.1 to 0.2.0
 

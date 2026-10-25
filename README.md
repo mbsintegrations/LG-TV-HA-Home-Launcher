@@ -10,7 +10,7 @@
 
 > **Ad-free home screen:** our launcher displays no ads or the promotions you would normally see on LG Home. It does not change LG's underlying privacy or data-collection settings. Read **[LG privacy concerns, what this launcher does, and securing your media/IoT network](docs/PRIVACY-AND-NETWORK.md)**.
 
-**Public release v0.2.0.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release v0.3.0.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
@@ -18,9 +18,9 @@ The launcher talks directly to your Home Assistant. The setup computer can be sh
 
 **[Start here](docs/START-HERE.md)** · [Screenshots](docs/SCREENSHOTS.md) · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
 
-![Four Home Launcher palette designs with sample data](docs/images/launcher-designs.png)
+![Backgrounds, theme customizer and animated energy flow in Home Launcher v0.3.0](docs/images/launcher-update-0.3.jpg)
 
-*Plum, Forest, Ocean and Sand designs with sample data.*
+*Make it yours: backgrounds, card styling, custom arrangement and animated energy flow. Actual app previews with sample data.*
 
 ![Dock, Weather, Sidebar and Panorama Home Launcher themes](docs/images/launcher-themes.jpg)
 
@@ -39,6 +39,9 @@ The computer is only needed for setup and updates. The installed TV app connects
 ## What you get
 
 - Four new layout themes — Dock, Weather, Sidebar and Panorama — plus Classic, with six independent colour palettes and custom colours.
+- [Personal backgrounds and an optional theme customizer](docs/CUSTOMIZER.md): up to five optimized images, rotation, opacity/darkening, four card finishes including Glass, corners and per-card colours.
+- Drag-and-drop app/control ordering and a Custom arrangement for the four screen rows.
+- Animated house energy flow alongside the classic diagram and simple readings; optional battery and charger branches.
 - Condition-based weather artwork with optional HA Sun day/night selection.
 - A local browser wizard for Windows, macOS and Linux, with a working sample preview.
 - Read-only HA entity discovery and selection; no YAML editing for the launcher.
@@ -55,7 +58,7 @@ The computer is only needed for setup and updates. The installed TV app connects
 
 ## Screenshots
 
-Explore **[all layout and colour combinations](docs/SCREENSHOTS.md)**: 24 combinations for the four new themes, six for Classic, and one custom-colour example per layout. App tiles stay the same throughout the gallery.
+See **[backgrounds, card styles and animated energy flow](docs/SCREENSHOTS.md#new-in-030)**, or explore **[all layout and colour combinations](docs/SCREENSHOTS.md)**: 24 combinations for the four new themes, six for Classic, and one custom-colour example per layout. App tiles stay the same throughout the gallery.
 
 | Dock · Forest | Weather · Dusk |
 | --- | --- |

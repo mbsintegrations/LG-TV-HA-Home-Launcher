@@ -1,0 +1,13 @@
+#photo-background,#photo-shade{position:absolute;top:0;left:0;width:1920px;height:1080px;pointer-events:none;z-index:0}
+#photo-background{background-position:center;background-size:cover;background-repeat:no-repeat}
+#photo-shade{background:#000;opacity:0}
+body.has-background .landscape{display:none}
+body.has-background header,body.has-background footer{background:rgba(10,17,24,.78);color:#f5f7fc;border-radius:10px;padding:8px 14px}
+body.has-background header .room,body.has-background header .header-right,body.has-background header .connection,body.has-background footer *,body.has-background .credits{color:#f5f7fc}
+body.has-background .section-label{background:rgba(10,17,24,.78);border-radius:8px;padding:0 12px;color:#f5f7fc}
+body.has-background .section-label>span{color:#dce5ed}
+body.has-background.layout-classic .hero,body.has-background.layout-dock .hero,body.has-background.layout-sidebar .hero,body.has-background.layout-custom .hero{background:rgba(10,17,24,.78);color:#f5f7fc;border-radius:20px;padding:16px 24px}
+body.has-background.layout-classic .hero *,body.has-background.layout-dock .hero *,body.has-background.layout-sidebar .hero *,body.has-background.layout-custom .hero *{color:#f5f7fc}
+body.has-background .credits{background:rgba(10,17,24,.78);padding:3px 8px;border-radius:6px}
+
+body #screen .frost-pane{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:inherit;background-size:1920px 1080px;background-repeat:no-repeat;pointer-events:none;z-index:-2}

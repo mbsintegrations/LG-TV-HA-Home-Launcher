@@ -1,0 +1,15 @@
+body.layout-custom #screen{padding:42px 72px}
+body.layout-custom .hero,body.layout-custom .watch,body.layout-custom .controls-section,body.layout-custom .home-cards{position:absolute;left:72px;right:72px;margin:0;width:auto}
+body.layout-custom .hero{display:flex;align-items:center;justify-content:space-between}
+body.layout-custom #clock{font-size:100px}
+body.layout-custom .app{height:116px}
+body.layout-custom .control{height:100px}
+body.layout-custom .home-card{padding:22px}
+body.layout-custom .energy-diagram{height:218px;margin-top:14px}
+body.layout-custom .energy-row{height:90px}
+body.layout-custom .energy-bus,body.layout-custom .energy-bus span{top:90px;height:38px}
+body.layout-custom .energy-bus span{top:0}
+body.layout-custom .energy-bus:before{top:19px}
+body.layout-custom .room-stat{padding:16px 0}
+body.layout-custom footer{position:absolute;left:72px;right:72px;bottom:30px;margin:0}
+body.layout-custom .credits{bottom:8px;right:72px}

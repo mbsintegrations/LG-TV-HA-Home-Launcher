@@ -22,6 +22,8 @@ No encryption-at-rest claim is made. A person who can read the installed app/pac
 
 HTTPS/WSS is preferred; normal certificate validation remains enabled. Plain HTTP/WS requires an explicit setup opt-in and should only be used on a trusted isolated local network. Do not bypass TLS errors. Check DNS, certificate chain, clock and old-TV trust stores instead.
 
+Uploaded backgrounds are resized and re-encoded locally as bounded JPEG images. They are embedded in exported profiles and TV packages; personal photos remain private material even though the profile has no HA token. Imports are limited to five JPEGs with checked dimensions and sizes. Remote background URLs, SVG and animation are not accepted.
+
 Custom palettes are validated as hex colours and compiled to local CSS. No custom JavaScript, remote CSS, HTML card templates or external image URLs are accepted. Labels are rendered as text. The public app uses no analytics or tracking endpoints. The credit link in the wizard is opened only when clicked.
 
 ## Controls

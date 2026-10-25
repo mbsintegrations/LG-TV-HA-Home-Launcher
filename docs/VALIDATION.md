@@ -12,6 +12,12 @@ The Living Room OLED65B9PLA was updated with eight tiles in the Dusk palette. Th
 
 The B9 recognises the legacy YouTube Kids app ID, but standalone Kids playback was not tested. Direct Guide IDs were unavailable on this B9; its Guide overlay uses the HA remote-button route. Other streaming presets are documented editable IDs and were not all physically tested.
 
+### 0.3.0 backgrounds, customizer and energy flow — 25 October 2026
+
+The animated house renderer was installed on both reference TVs on 24 October, preserving their existing Panorama/Slate and Weather/Dusk configurations. Installed file hashes matched each private package and both Home-button helpers reported active. The owner confirmed the Living Room house view looked good. This was an energy-only update; background rotation and Glass performance have browser coverage but have not had physical TV performance acceptance.
+
+The optional customizer is covered by automated checks for image dimensions/size/format, profile migration, bounded rotation, visibility handling, blur correctness, row ordering and session recovery. Energy tests cover optional/missing sensors, units, sign inversion, idle/unavailable readings and disconnect behavior. Release screenshots use fictional sample data and generated backgrounds.
+
 ## Automated coverage
 
 Run `npm test` and `npm run check`. Coverage includes:

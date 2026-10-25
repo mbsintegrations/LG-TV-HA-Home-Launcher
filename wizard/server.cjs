@@ -3,10 +3,10 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),
 const {build,endpoint,packager}=require('../scripts/build.cjs'),P=require('../app/profile'),root=path.resolve(__dirname,'..');
 const example=JSON.parse(fs.readFileSync(path.join(root,'config.example.json'),'utf8'));
 function createServer(options={}){
- const csrf=crypto.randomBytes(32).toString('hex');let profile=structuredClone(example),connection=null,entities=[],building=false;const downloads=new Map();
+ const csrf=crypto.randomBytes(32).toString('hex');let profile=P.validate(structuredClone(example)),connection=null,entities=[],building=false;const downloads=new Map();
  const fetcher=options.fetch||fetch;
  function send(res,status,data,type='application/json'){res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'SAMEORIGIN','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"});res.end(type==='application/json'?JSON.stringify(data):data);}
- async function json(req){if(req.headers['content-type']!=='application/json')throw Error('Expected JSON');let size=0,chunks=[];for await(const b of req){size+=b.length;if(size>262144)throw Error('Request too large');chunks.push(b);}return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
+ async function json(req){if(req.headers['content-type']!=='application/json')throw Error('Expected JSON');let size=0,chunks=[];for await(const b of req){size+=b.length;if(size>4*1024*1024)throw Error('Request too large');chunks.push(b);}return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
  const server=http.createServer(async(req,res)=>{
   const address=server.address(),origin='http://127.0.0.1:'+address.port;if(req.headers.host!=='127.0.0.1:'+address.port){send(res,403,{error:'Use '+origin});return;}
   const u=new URL(req.url,origin);try{
@@ -25,7 +25,7 @@ function createServer(options={}){
      entities=data.filter(s=>s&&typeof s.entity_id==='string'&&/^[a-z_]+\.[a-z0-9_]+$/.test(s.entity_id)).map(s=>({id:s.entity_id,label:String((s.attributes||{}).friendly_name||s.entity_id).slice(0,120),unit:String((s.attributes||{}).unit_of_measurement||'').slice(0,20),deviceClass:String((s.attributes||{}).device_class||'').slice(0,40)}));
      connection={url:ep.url,token:body.token,allowHttp:body.allowHttp===true};send(res,200,{entities,connected:true});return;
     }
-    if(u.pathname==='/api/profile'){profile=structuredClone(P.validate(body));const missing=entities.length?P.entities(profile).filter(id=>!entities.some(e=>e.id===id)):[];send(res,200,{ok:true,missing});return;}
+    if(u.pathname==='/api/profile'){P.validate(body);require('../scripts/backgrounds.cjs').validateImages(body);profile=structuredClone(body);const missing=entities.length?P.entities(profile).filter(id=>!entities.some(e=>e.id===id)):[];send(res,200,{ok:true,missing});return;}
     if(u.pathname==='/api/build'){
      if(building){send(res,409,{error:'A build is already running'});return;}P.validate(body.profile);const demo=body.demo===true;if(!demo&&!connection)throw Error('Connect to Home Assistant first, or build a sample package');
      if(!demo){const missing=P.entities(body.profile).filter(id=>!entities.some(e=>e.id===id));if(missing.length)throw Error('Replace missing example entities before building: '+missing.join(', '));}
@@ -37,8 +37,8 @@ function createServer(options={}){
    if(u.pathname==='/preview/profile.json'){send(res,200,profile);return;}
    if(u.pathname==='/preview/connection.json'){send(res,200,{});return;}
    if(u.pathname==='/preview/theme.css'){send(res,200,require('../scripts/theme.cjs').theme(P.validate(profile)),'text/css');return;}
-   const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/wizard.css':'wizard/wizard.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
-   for(const name of ['app.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
+   const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
+   for(const name of ['app.js','energy.js','energy.css','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
    let relative=files[u.pathname];
    if(P.logoKeys.some(k=>['app-logo','logo'].some(mode=>[false,true].some(light=>'/preview/'+P.logoFile(k,mode,light)===u.pathname))))relative='app/'+u.pathname.slice('/preview/'.length);
    if(u.pathname==='/docs/')relative='docs/INDEX.md';

@@ -35,3 +35,15 @@ Check the full-screen preview and export your profile. A private build requires 
 [![5. Review & build in the local configurator](images/screenshots/configurator-review-build.jpg)](images/screenshots/configurator-review-build.jpg)
 
 Export before closing or restarting the wizard; its editing session is held in memory. To update a TV later, import the profile, rebuild and reinstall. See [updates and recovery](UPDATES-AND-RECOVERY.md).
+
+## Optional theme customizer (0.3.0)
+
+Your space now includes background upload immediately below Layout theme. The optional Theme customizer offers Backgrounds, Card styling and Arrangement; the normal Continue button still advances directly to Home Assistant.
+
+![Background upload, optimized samples and rotation](images/screenshots/customizer-backgrounds.jpg)
+
+![Solid, Translucent, Outlined and Glass card finishes](images/screenshots/customizer-cards.jpg)
+
+![Drag rows and tiles, or use Earlier and Later](images/screenshots/customizer-arrangement.jpg)
+
+Choose the new animated house view in **Home cards → Energy & power → Power layout**. Empty power mappings hide their devices. [Full customizer and energy guide](CUSTOMIZER.md)

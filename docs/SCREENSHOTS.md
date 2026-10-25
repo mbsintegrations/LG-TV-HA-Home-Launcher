@@ -115,3 +115,21 @@ These are examples, not an additional fixed preset. The same custom colours are 
 ## Configurator
 
 See the [five-step configurator walkthrough](CONFIGURATOR-TOUR.md) for current screenshots of Your space, Home Assistant, Apps & inputs, Home cards and Review & build. Those screenshots are shared with the setup guide rather than duplicated for every theme.
+
+## New in 0.3.0
+
+Actual browser previews with fictional readings and locally generated sample backgrounds. Existing layout/palette combinations above remain available.
+
+| Glass cards and a background | Custom arrangement and colour accents |
+| --- | --- |
+| ![Glass cards over Aurora](images/screenshots/background-glass.jpg) | ![Custom rows and coloured cards](images/screenshots/custom-arrangement.jpg) |
+
+| Animated house energy flow | Classic energy diagram |
+| --- | --- |
+| ![Animated house view](images/screenshots/energy-house.jpg) | ![Classic flow view](images/screenshots/energy-classic.jpg) |
+
+See the [customizer guide](CUSTOMIZER.md) for upload limits, card finishes and screen arrangement, and the [configurator walkthrough](CONFIGURATOR-TOUR.md) for setup screens.
+
+| Weather with Glass | Sidebar with Glass |
+| --- | --- |
+| ![Weather with Glass](images/screenshots/weather-glass.jpg) | ![Sidebar with Glass](images/screenshots/sidebar-glass.jpg) |
