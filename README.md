@@ -10,7 +10,7 @@
 
 > **Ad-free home screen:** our launcher displays no ads or the promotions you would normally see on LG Home. It does not change LG's underlying privacy or data-collection settings. Read **[LG privacy concerns, what this launcher does, and securing your media/IoT network](docs/PRIVACY-AND-NETWORK.md)**.
 
-**Public release v0.3.0.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release v0.4.0.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
@@ -18,7 +18,7 @@ The launcher talks directly to your Home Assistant. The setup computer can be sh
 
 **[Start here](docs/START-HERE.md)** · [Screenshots](docs/SCREENSHOTS.md) · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
 
-![Backgrounds, theme customizer and animated energy flow in Home Launcher v0.3.0](docs/images/launcher-update-0.3.jpg)
+![Backgrounds, theme customizer and animated energy flow in Home Launcher v0.4.0](docs/images/launcher-update-0.3.jpg)
 
 *Make it yours: backgrounds, card styling, custom arrangement and animated energy flow. Actual app previews with sample data.*
 
@@ -42,6 +42,7 @@ The computer is only needed for setup and updates. The installed TV app connects
 - [Personal backgrounds and an optional theme customizer](docs/CUSTOMIZER.md): up to five optimized images, rotation, opacity/darkening, four card finishes including Glass, corners and per-card colours.
 - Drag-and-drop app/control ordering and a Custom arrangement for the four screen rows.
 - Animated house energy flow alongside the classic diagram and simple readings; optional battery and charger branches.
+- [Embedded Cloudflare Speed Test and optional router/internet TCP latency](docs/NETWORK.md), measured on the TV with no separate server.
 - Condition-based weather artwork with optional HA Sun day/night selection.
 - A local browser wizard for Windows, macOS and Linux, with a working sample preview.
 - Read-only HA entity discovery and selection; no YAML editing for the launcher.
@@ -68,7 +69,7 @@ See **[backgrounds, card styles and animated energy flow](docs/SCREENSHOTS.md#ne
 | --- | --- |
 | [![Sidebar in Sand](docs/images/screenshots/sidebar-sand.jpg)](docs/SCREENSHOTS.md#sidebar) | [![Panorama in Slate](docs/images/screenshots/panorama-slate.jpg)](docs/SCREENSHOTS.md#panorama) |
 
-For setup screens, see the **[five-step configurator walkthrough](docs/CONFIGURATOR-TOUR.md)**. [Themes and colours](docs/THEMES.md) explains how to choose and apply a design.
+For setup screens, see the **[six-step configurator walkthrough](docs/CONFIGURATOR-TOUR.md)**. [Themes and colours](docs/THEMES.md) explains how to choose and apply a design.
 
 ## Quick local preview
 

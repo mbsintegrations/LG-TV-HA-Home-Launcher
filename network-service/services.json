@@ -1,0 +1,1 @@
+{"id":"com.mbs.communityhome.network","description":"Optional read-only router and internet ping","services":[{"name":"com.mbs.communityhome.network","commands":[{"name":"probe","public":false}]}],"requiredACG":["networkconnection.query"]}

@@ -147,3 +147,13 @@ See the [customizer guide](CUSTOMIZER.md) for upload limits, card finishes and s
 | Weather with Glass | Sidebar with Glass |
 | --- | --- |
 | ![Weather with Glass](images/screenshots/weather-glass.jpg) | ![Sidebar with Glass](images/screenshots/sidebar-glass.jpg) |
+
+## New in 0.4.0
+
+The optional embedded Speed Test and network setup use sample readings in these screenshots. Real measurements run on the TV. [Network guide](NETWORK.md).
+
+![Speed Test tile and TCP latency footer](images/screenshots/network-home.jpg)
+
+![Speed Test](images/screenshots/speed-test.jpg)
+
+![Network configurator](images/screenshots/configurator-network.jpg)

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 — 26 October 2026
+
+- Added an embedded, manually started Cloudflare speed test with cancellation and saved results.
+- Added optional router/internet TCP latency and explicit ICMP mode where permitted.
+- Added a Network setup step, opt-in defaults, bounded polling and old-TV browser compatibility.
+- Updated network privacy, troubleshooting, configuration and upgrade documentation.
+
 ## 0.3.0 — Backgrounds, theme customizer and house energy flow — 25 October 2026
 
 - Upload up to five optimized local backgrounds; optional rotation, image opacity and darkening. Full HD output, 450 KB maximum per image.

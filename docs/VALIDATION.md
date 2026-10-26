@@ -18,6 +18,14 @@ The animated house renderer was installed on both reference TVs on 24 October, p
 
 The optional customizer is covered by automated checks for image dimensions/size/format, profile migration, bounded rotation, visibility handling, blur correctness, row ordering and session recovery. Energy tests cover optional/missing sensors, units, sign inversion, idle/unavailable readings and disconnect behavior. Release screenshots use fictional sample data and generated backgrounds.
 
+### 0.4.0 network measurements — 26 October 2026
+
+On OLED65B9PLA, the embedded Cloudflare test completed and Cancel aborted its request, retained the prior completed result and returned to Home. Router/internet TCP readings worked from the installed TV service. The owner confirmed operation. The Home-button helper remained active and the footer fit Panorama without overlap. ICMP calls were rejected by the TV; the documented TCP option does not elevate permissions.
+
+The 65NANO766QA was also updated with its Weather/Dusk profile preserved. Its installed service returned router/internet TCP readings and the embedded test completed. The helper was restored after installation.
+
+Regression coverage includes the bundled Cloudflare engine with Chromium 53 resource-timing fields, actual cancellation signals, TCP socket cleanup, endpoint validation, single-flight polling, disabled/hidden states and private service packaging.
+
 ## Automated coverage
 
 Run `npm test` and `npm run check`. Coverage includes:

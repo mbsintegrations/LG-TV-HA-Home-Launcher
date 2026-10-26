@@ -19,3 +19,7 @@ The four-layout community image uses these photographs under the [Unsplash Licen
 - Woodland: [Luke Stackpoole](https://unsplash.com/photos/ke50GMONqqo).
 
 These appear in promotional screenshots only; they are not bundled as launcher backgrounds. The screenshots show the actual launcher with fictional sample readings. Photography retains its original licence and is not covered by the project's GPL licence.
+
+## Optional embedded speed test
+
+The optional embedded speed test bundles Cloudflare's speed-test engine and browser compatibility code under their original licences. See [network third-party notices](NETWORK-LICENSES.txt). The same notices are included in built TV packages. Cloudflare is the test provider; the launcher is an independent project.

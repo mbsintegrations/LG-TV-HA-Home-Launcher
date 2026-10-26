@@ -1,6 +1,6 @@
 # Release checklist
 
-Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Version 0.3.0 adds backgrounds, the optional customizer and house energy flow; 0.1.1 remains the first regular release and 0.1.0 the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
+Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Version 0.4.0 adds Speed Test and optional network latency; 0.1.1 remains the first regular release and 0.1.0 the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
 
 ## Build a review candidate
 
