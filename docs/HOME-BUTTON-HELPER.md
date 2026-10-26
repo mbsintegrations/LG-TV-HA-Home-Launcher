@@ -16,13 +16,15 @@ The underlying LG UI still exists. The helper does not replace system files, fla
 
 ## 2. Verified models and compatibility
 
-The base launcher is expected to work on webOS 4.x onward; webOS 3.x could work but is untested. **This does not establish helper compatibility:** input devices, permissions, firmware and ABI must be checked for each TV. See [platform expectations and validation](VALIDATION.md#expected-platform-compatibility).
+The base launcher is expected to work on webOS 4.x onward. The base launcher and helper are also community-confirmed on OLED55B7V-Z with reported webOS/SDK 3.9.0. **Compatibility remains specific to the model and firmware:** input devices, permissions and ABI must be checked for each TV. See [platform expectations and validation](VALIDATION.md#expected-platform-compatibility).
 
 | Reference | Recorded helper evidence |
 |---|---|
 | OLED65B9PLA, firmware 05.50.00, SDK 4.10.0 | Owner confirmed short Home, long Home, LG Home tile and YouTube Back return in testing; the configurable community installation also has confirmed Home return from YouTube. |
 | 65NANO766QA, firmware 04.60.91, SDK 7.6.0 | Native identity/capabilities and heartbeat/pipe-close release checks passed. The owner confirmed Home return from YouTube with the configurable community installation. |
 | 43UN73906LE, installed firmware/SDK not reported | User reported all features working, including the Home-button helper, on 24 October 2026. |
+| OLED65CX6LA, firmware 04.64.00, reported webOS/SDK 5.6.2, SoC o20 | Community-confirmed base app, live HA data and Home-button helper on 26 October 2026. |
+| OLED55B7V-Z, firmware 06.10.65, reported webOS/SDK 3.9.0, SoC m16p | Community-confirmed base app, live HA data and Home-button helper on 26 October 2026. |
 | Other TVs/firmware | Helper compatibility has not been verified; inspect and test individually. |
 
 Both reference helpers reported active after the animated energy-view update. These results do not establish every app-exit path or cold-boot behavior; see the [validation record](VALIDATION.md).

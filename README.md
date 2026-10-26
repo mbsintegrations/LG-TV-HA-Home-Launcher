@@ -94,13 +94,15 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Compatibility and evidence
 
-**The current launcher is expected to work on webOS 4.x and newer (2018 TVs onward). webOS 3.x could work, but has not been tested and may need compatibility changes.** This is an expectation for the base launcher, not a guarantee for every TV or the optional Home-button helper.
+**The current launcher is expected to work on webOS 4.x and newer (2018 TVs onward). The base launcher, live Home Assistant data and Home-button helper are also community-confirmed on OLED55B7V-Z with reported webOS/SDK 3.9.0.** Other webOS 3.x models remain unverified and may need compatibility changes. Compatibility is model- and firmware-specific.
 
 | Verified model | Platform / recorded version | Verification |
 |---|---|---|
 | **OLED65B9PLA** — Living Room, 2019 | webOS 4.x; reported SDK **4.10.0** | Tested on our TV: live HA, app launching, Live TV, HA Guide and Home-button return from YouTube |
 | **65NANO766QA** — Master Bedroom, 2022 | webOS 22 generation; reported SDK **7.6.0** | Tested on our TV: live HA, room controls, appliance card and Home-button return from YouTube |
 | **43UN73906LE** — 2020 | LG specifies webOS **5.0**; installed firmware/SDK not reported | User-reported: all features working, including the Home-button helper |
+| **OLED65CX6LA** | Reported webOS/SDK **5.6.2**; firmware **04.64.00**; SoC **o20** | Community-confirmed: base app, live Home Assistant data and Home-button helper |
+| **OLED55B7V-Z** | Reported webOS/SDK **3.9.0**; firmware **06.10.65**; SoC **m16p** | Community-confirmed: base app, live Home Assistant data and Home-button helper |
 
 LG introduced the **webOS 4.x generation in 2018**. The compatibility estimate is based on its Chromium 53 app engine, which our TV code targets. webOS 1.x–2.x use older WebKit engines and are not currently supported or tested. See [LG's web-engine table](https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine) and [compatibility and validation](docs/VALIDATION.md) for model sources and feature-specific results. The helper remains model/firmware-dependent; the latest background rotation and Glass options have not yet had physical TV performance acceptance.
 
