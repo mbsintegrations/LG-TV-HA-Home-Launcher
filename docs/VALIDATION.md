@@ -53,7 +53,7 @@ The sample IPK is built with LG's official packager and contains a validated pro
 | webOS platform | Original TV release years | Current launcher expectation |
 |---|---|---|
 | **4.x and newer** | **2018 onward** | **Expected to work**, based on our Chromium 53 / ES5 target and the verified models below. This is not verification of every model or later platform release. |
-| **3.x** | 2016–2017 | **Could work, but has not been tested.** Its older Chromium 38 engine may require compatibility changes. |
+| **3.x** | 2016–2017 | **Community-confirmed on OLED55B7V-Z, reported webOS/SDK 3.9.0:** base app, live HA data and Home-button helper. Other models remain unverified; the older Chromium 38 engine may require compatibility changes. |
 | **1.x–2.x** | 2014–2015 | Not currently supported or tested. A legacy adaptation would likely be needed for their older WebKit engines. |
 
 LG introduced webOS 4.x with its 2018 TV generation. LG lists Chromium 53 for webOS 4.x, Chromium 38 for 3.x, and WebKit for 1.x–2.x in its [official web-engine specifications](https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine). Year ranges describe platform introductions, not a model-independent guarantee.
@@ -71,3 +71,14 @@ These expectations concern the **base launcher**. Developer Mode installation, a
 LG's model specifications identify [65NANO766QA as webOS 22](https://www.lg.com/es/tv-y-barras-de-sonido/nanocell/65nano766qa/) and [43UN73906LE as webOS 5.0](https://www.lg.com/de/tvs-und-soundbars/lcd-tvs/43un73906le/). These model specifications do not establish the exact software installed on an individual TV. The installed version of the reported 43UN73906LE has not been supplied.
 
 SDK version, firmware version and the marketed webOS generation are recorded separately. Chromium 53/ES5 and Node 0.12 compatibility are source constraints retained from the B9. **webOS 4.x onward is an expected compatibility baseline, not a universally tested minimum.**
+
+## Additional community-confirmed TVs
+
+Reported on 26 October 2026. Both TVs are confirmed working with the **base launcher, live Home Assistant data and Home-button helper**.
+
+| Model | Firmware | Reported webOS / SDK version | SoC |
+|---|---|---|---|
+| **OLED65CX6LA** | **04.64.00** | **5.6.2** | **o20** |
+| **OLED55B7V-Z** | **06.10.65** | **3.9.0** | **m16p** |
+
+These reports confirm the features listed above on these model/firmware combinations. They do not report a launcher package version or separate results for Speed Test, TCP latency, background rotation or Glass styling.
