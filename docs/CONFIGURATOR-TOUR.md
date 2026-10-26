@@ -2,7 +2,7 @@
 
 The setup wizard runs locally on your computer. These screenshots use the supplied sample profile and empty connection fields; the TV preview always shows fictional readings. Open an image to see the complete step.
 
-Start with [installation](START-HERE.md), then follow these five steps.
+Start with [installation](START-HERE.md), then follow these six steps.
 
 ## 1. Your space
 
@@ -22,13 +22,19 @@ Choose a common streaming app, Live TV, TV Guide, an HDMI input or **Custom app*
 
 [![3. Apps & inputs in the local configurator](images/screenshots/configurator-apps-inputs.jpg)](images/screenshots/configurator-apps-inputs.jpg)
 
-## 4. Home cards
+## 4. Network
+
+Optionally add Speed Test to the app row and enable router and/or internet latency in the footer. Choose TCP connection latency (recommended), the internet endpoint and the interval. The configurator shows sample readings; real measurements run on the TV. [Network setup, privacy and troubleshooting](NETWORK.md).
+
+![4. Network in the local configurator](images/screenshots/configurator-network.jpg)
+
+## 5. Home cards
 
 Select the weather and optional Sun entities. Put the three temperatures you want on the TV first. Add up to six controls, configure or disable energy, and choose up to four read-only device/appliance status entries. Rename card and node titles to fit your home. You do not need solar, a washer or a dryer. See [full configuration](CONFIGURATION.md).
 
 [![4. Home cards in the local configurator](images/screenshots/configurator-home-cards.jpg)](images/screenshots/configurator-home-cards.jpg)
 
-## 5. Review & build
+## 6. Review & build
 
 Check the full-screen preview and export your profile. A private build requires successful HA discovery and checks your selected entities. Build a sample to explore packaging without a token; on the TV a sample asks for setup. Installation and the optional Home helper are separate manual steps. See [webOS Dev Manager](WEBOS-DEV-MANAGER.md) and [helper installation](HOME-BUTTON-HELPER.md).
 

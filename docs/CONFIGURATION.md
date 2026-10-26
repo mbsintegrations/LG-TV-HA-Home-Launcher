@@ -22,6 +22,10 @@ Up to eight tiles including LG Home. Use Move up to reorder; repeatedly moving a
 
 Choose a common app, Live TV, TV Guide or HDMI input from the dropdown, or enter a custom ID. App IDs must be unique. Choose Text Only, Logo, Logo and Text, App Logo, or App Logo and Text for each tile; appearances do not change the launch target. See [app tiles and logos](APP-TILES.md) for presets and compatibility, and [app IDs](INSTALL.md#find-app-ids) to find the exact ID on your TV.
 
+## Network
+
+Speed Test and latency are optional and disabled in new profiles. In **Network**, add the tile (one of eight slots) and enable router and/or internet readings independently. TCP is recommended; ICMP requires TV permission. Select 1.1.1.1 or 8.8.8.8 and a 15, 30 or 60 second interval. Router detection is automatic unless overridden. [Full network guide](NETWORK.md).
+
 ## Temperatures and weather
 
 The first three temperature sensors appear on the main card. Up to twelve appear in All rooms. Remove all temperatures to hide that card. Labels may be up to 28 characters; short names work best at TV distance. Sensor units are displayed as reported by HA, without silently converting Celsius/Fahrenheit.

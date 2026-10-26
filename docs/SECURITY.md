@@ -24,7 +24,7 @@ HTTPS/WSS is preferred; normal certificate validation remains enabled. Plain HTT
 
 Uploaded backgrounds are resized and re-encoded locally as bounded JPEG images. They are embedded in exported profiles and TV packages; personal photos remain private material even though the profile has no HA token. Imports are limited to five JPEGs with checked dimensions and sizes. Remote background URLs, SVG and animation are not accepted.
 
-Custom palettes are validated as hex colours and compiled to local CSS. No custom JavaScript, remote CSS, HTML card templates or external image URLs are accepted. Labels are rendered as text. The public app uses no analytics or tracking endpoints. The credit link in the wizard is opened only when clicked.
+Custom palettes are validated as hex colours and compiled to local CSS. No custom JavaScript, remote CSS, HTML card templates or external image URLs are accepted. Labels are rendered as text. The launcher does not add advertising or MBS analytics. The optional, manually started Cloudflare speed test sends test measurements to Cloudflare; see [Network tools](NETWORK.md). The credit link in the wizard is opened only when clicked.
 
 ## Controls
 

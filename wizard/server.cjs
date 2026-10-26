@@ -37,16 +37,16 @@ function createServer(options={}){
    if(u.pathname==='/preview/profile.json'){send(res,200,profile);return;}
    if(u.pathname==='/preview/connection.json'){send(res,200,{});return;}
    if(u.pathname==='/preview/theme.css'){send(res,200,require('../scripts/theme.cjs').theme(P.validate(profile)),'text/css');return;}
-   const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
-   for(const name of ['app.js','energy.js','energy.css','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
+   const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/network-setup.js':'wizard/network-setup.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
+   for(const name of ['app.js','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
    let relative=files[u.pathname];
    if(P.logoKeys.some(k=>['app-logo','logo'].some(mode=>[false,true].some(light=>'/preview/'+P.logoFile(k,mode,light)===u.pathname))))relative='app/'+u.pathname.slice('/preview/'.length);
    if(u.pathname==='/docs/')relative='docs/INDEX.md';
-   if(/^\/docs\/[A-Z0-9-]+\.md$/.test(u.pathname))relative=u.pathname.slice(1);
+   if(/^\/docs\/[A-Z0-9-]+\.(md|txt)$/.test(u.pathname))relative=u.pathname.slice(1);
    if(!relative||!fs.existsSync(path.join(root,relative))){send(res,404,'Not found','text/plain');return;}
-   let content=fs.readFileSync(path.join(root,relative)),ext=path.extname(relative),type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8'}[ext];
+   let content=fs.readFileSync(path.join(root,relative)),ext=path.extname(relative),type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8'}[ext];
    if(relative==='wizard/index.html')content=content.toString().replace('__SETUP_SESSION__',csrf);
-   if(relative==='app/index.html')content=content.toString().replace('__HA_ORIGIN__','');
+   if(relative==='app/index.html')content=content.toString().replace('__HA_ORIGIN__','').replace('__NETWORK_ORIGIN__','');
    send(res,200,content,type);
   }catch(e){send(res,400,{error:e instanceof SyntaxError?'Invalid JSON':e.message});}
  });return server;

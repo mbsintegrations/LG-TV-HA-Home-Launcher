@@ -1,6 +1,6 @@
 # Privacy, an ad-free home screen and your media/IoT network
 
-Updated 24 October 2026 · applies to the v0.2.0 and v0.3.0 launcher.
+Updated 26 October 2026 · applies to launcher v0.4.0.
 
 **Our launcher displays no advertising, sponsored recommendations or the promotional tiles you would normally see on LG Home.** It gives you your own apps, inputs and Home Assistant dashboard instead. Opening the original LG Home screen or a streaming app takes you into that application's interface, where its own advertising may still appear.
 
@@ -22,6 +22,7 @@ The shipped source has no MBS analytics endpoint, advertising SDK, microphone re
 | --- | --- |
 | Local configurator | Connects to the Home Assistant address you enter and reads its entity list. “Entity discovery” means an authenticated HA API request, not a scan of your network. The browser preview uses sample data. |
 | TV launcher | Connects directly to your configured HA WebSocket endpoint for status and selected controls. Weather comes from your selected HA weather entity. Artwork and app logos are bundled locally. |
+| Optional network tools | A manually started test contacts Cloudflare. Footer latency checks contact only the selected router and internet endpoint. Both are disabled by default. See [network settings](NETWORK.md). |
 | Optional Home-button helper | Handles remote-button input and subscribes to the configured TV entity in HA to recognise selected app exits. It does not record conversations or video. |
 | App/input tiles | Launch the selected TV app or input. Those apps, connected devices and webOS continue to operate under their own settings and privacy policies. |
 
@@ -56,3 +57,7 @@ Service discovery, broad port scanning, nearby Wi-Fi scanning, viewing recogniti
 5. **Review privacy settings and keep devices updated.** Disable optional viewing/advertising/voice features you do not want. Segmentation limits access to other local devices; it does not automatically prevent cloud telemetry over an allowed internet connection, stop nearby radio discovery, or constrain a token's access through an allowed HA connection. Outbound filtering is a separate decision and can affect apps, updates and Developer Mode renewal.
 
 Apply and check rules for your own router and integrations before removing existing access. No network changes are made by installing this launcher. For setup and token handling, continue with [Home Assistant configuration](HOME-ASSISTANT.md) and [Security](SECURITY.md).
+
+## Optional network measurements
+
+Version 0.4.0 adds an optional manually started Cloudflare speed test. It contacts Cloudflare and shares the public IP and test measurements with that provider; it does not send HA credentials or entity data. Optional footer checks contact only the selected router and internet endpoint while Home is visible. TCP opens a connection without a login or application request. Both features are disabled by default. [Data use, ports and timing](NETWORK.md).

@@ -9,6 +9,7 @@ const palettes={
 };
 function alpha(hex,a){return 'rgba('+[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(',')+','+a+')';}
 function theme(p){const c=p.theme==='custom'?p.customColors:palettes[p.theme];if(!c||Object.values(c).some(v=>!/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid theme colours');return `/* Generated only from validated hex colours; no external resources. */
+body .network-metric{background:${c.background};border-color:${alpha(c.muted,.33)}}body .network-accent,body .network-result-value{color:${c.accent}}body .network-button{border-color:${c.muted};color:${c.text}}body .network-button.primary{background:${c.accent};color:${c.background}}body .network-progress>span{background:${c.accent}}body .network-muted{color:${c.muted}}
 html,body{background:${c.background};color:${c.text}}
 body #screen,body.theme-slate #screen{background:linear-gradient(120deg,${c.background},${c.surface})}
 body .app,body .home-card,body .control,body .control.gate,body.theme-slate .app,body.theme-slate .home-card,body.theme-slate .control,body .dialog{background:${c.surface};border-color:${alpha(c.muted,.33)};color:${c.text}}

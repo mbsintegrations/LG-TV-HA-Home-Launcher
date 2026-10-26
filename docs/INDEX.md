@@ -24,6 +24,7 @@ Start with the base launcher. The helper is a separate advanced manual procedure
 19. [LG privacy concerns, ad-free launcher and media/IoT network isolation](PRIVACY-AND-NETWORK.md)
 
 20. [Backgrounds, theme customizer and animated energy flow](CUSTOMIZER.md)
+21. [Optional speed test and router/internet latency](NETWORK.md)
 
 For release changes see [Changelog](../CHANGELOG.md). Contributors should read [Contributing](../CONTRIBUTING.md); maintainers should use [Publishing on GitHub](PUBLISHING.md).
 

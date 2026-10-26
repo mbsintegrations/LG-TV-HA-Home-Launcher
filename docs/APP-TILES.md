@@ -66,3 +66,7 @@ IPTV Smarters currently uses the vendor app artwork in both logo modes; it does 
 The [layout themes](THEMES.md) work with the optional [backgrounds and theme customizer](CUSTOMIZER.md) added in 0.3.0.
 
 See [licensing and asset attribution](LICENSING.md) for the logo sources. To request another preset, provide the app name, exact installed ID, TV model/webOS version and country as described in [installation](INSTALL.md#find-app-ids).
+
+## Speed Test
+
+Choose Speed Test from the app list or enable it in Network. This is an internal launcher screen, so no app ID lookup or separate installation is needed. It occupies one of eight slots; remove an unused tile if the row is full. Tests run only after Start. [Network guide](NETWORK.md).

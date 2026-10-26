@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1920, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file:; img-src 'self' file: data:; connect-src 'self' file: __HA_ORIGIN__; object-src 'none'; base-uri 'none'">
-<title>Home Launcher</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="community.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="energy.css"></head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file:; img-src 'self' file: data:; connect-src 'self' file: __HA_ORIGIN__ __NETWORK_ORIGIN__; object-src 'none'; base-uri 'none'">
+<title>Home Launcher</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="community.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="energy.css"><link rel="stylesheet" href="network.css"></head>
 <body><main id="screen">
  <div id="photo-background" aria-hidden="true"></div><div id="photo-shade" aria-hidden="true"></div>
  <div class="landscape" aria-hidden="true"><div class="sun"></div><div class="ridge far"></div><div class="ridge near"></div></div>
@@ -14,7 +14,7 @@
   <div id="laundry" class="home-card laundry"><div class="card-top"><span id="status-title">Appliances & status</span></div><div id="laundry-status"></div></div>
   <div id="energy" class="home-card energy"><div class="card-top"><span id="energy-title">Energy flow</span><span class="energy-note">kW</span></div><div id="house-flow" class="house-flow"></div><div class="energy-diagram"><div class="energy-bus" aria-hidden="true"><span></span><span></span><span></span></div><div id="energy-top" class="energy-row top"></div><div id="energy-bottom" class="energy-row bottom"></div></div></div>
  </section>
- <footer><div><span class="key">OK</span> Select <span class="key">BACK</span> Return</div><div id="updated"></div></footer><div class="credits">by mbsintegrations.ie</div>
+ <footer><div><span class="key">OK</span> Select <span class="key">BACK</span> Return</div><div id="network-status" hidden aria-live="polite"></div><div id="updated"></div></footer><div class="credits">by mbsintegrations.ie</div>
 </main>
 <div id="shade" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><div class="dialog-heading"><h2 id="dialog-title"></h2><button id="close-dialog">Close</button></div><div id="dialog-content"></div><div id="dialog-actions"></div></section></div>
-<div id="toast" role="status" hidden></div><script src="design.js"></script><script src="background.js"></script><script src="profile.js"></script><script src="energy.js"></script><script src="ha.js"></script><script src="helper.js"></script><script src="weather.js"></script><script src="app.js"></script></body></html>
+<div id="toast" role="status" hidden></div><script src="design.js"></script><script src="background.js"></script><script src="profile.js"></script><script src="energy.js"></script><script src="ha.js"></script><script src="helper.js"></script><script src="weather.js"></script><script src="network.js"></script><script src="app.js"></script></body></html>

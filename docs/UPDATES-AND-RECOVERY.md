@@ -56,3 +56,7 @@ Uninstall `com.mbs.communityhomehelper` first if installed, then `com.mbs.commun
 ## Developer Mode expires
 
 LG may uninstall sideloaded apps when Developer Mode is disabled/expired. Re-enable it using LG's instructions, re-pair if necessary, and reinstall your saved base package. Re-probe identity before restoring a helper. Do not assume old native UID, keys or session state survive.
+
+## Updating to 0.4.0
+
+Import your exported profile in the new configurator. Existing profiles retain their apps, controls and appearance; network features default to off. Enable Speed Test and/or latency under Network, export again, then rebuild and install over the same app ID. If you use the Home-button helper, follow the existing helper-aware build/update steps to retain its service. Do not install the public sample IPK over a configured installation.
