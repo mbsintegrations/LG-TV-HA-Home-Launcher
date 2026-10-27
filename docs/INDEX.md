@@ -25,6 +25,7 @@ Start with the base launcher. The helper is a separate advanced manual procedure
 
 20. [Backgrounds, theme customizer and animated energy flow](CUSTOMIZER.md)
 21. [Optional speed test and router/internet latency](NETWORK.md)
+22. [TODO / roadmap and next-release priorities](../TODO.md)
 
 For release changes see [Changelog](../CHANGELOG.md). Contributors should read [Contributing](../CONTRIBUTING.md); maintainers should use [Publishing on GitHub](PUBLISHING.md).
 
