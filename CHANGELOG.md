@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Delay optional footer latency checks by 10 seconds when Home opens or becomes visible again. The selected polling interval applies after the first result; hiding Home cancels the pending start.
+- Recover an enabled Home-button helper after a long suspension once its native worker has released the remote and both old processes have exited. Keep intentional pauses, long Home presses, failed trials and ordinary crashes paused. Limit automatic recovery to one attempt per five minutes; a further failure within that window requires manual resume.
+- Preserve the native input lock, heartbeat timeout and release checks. A recorded long scheduling gap can indicate standby or a prolonged system stall; it does not identify the cause by itself. Real-TV standby acceptance is pending.
+
 ## 0.4.0 — 26 October 2026
 
 - Added an embedded, manually started Cloudflare speed test with cancellation and saved results.
