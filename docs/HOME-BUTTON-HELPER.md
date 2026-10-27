@@ -188,6 +188,14 @@ This starts without the trial timeout. Opening the launcher asks its service to 
 
 If the helper was deliberately paused, keep that choice: do not work around it with a repeated “resume every few seconds” automation.
 
+### Standby recovery (next release)
+
+The updated launcher/helper pair records why the native worker stopped. After a long controller scheduling gap of at least 10 seconds, an enabled helper may recover from a heartbeat timeout or the controller's suspension cleanup when Home next becomes visible. Such a gap can result from standby or a prolonged system stall; it is not proof of standby by itself.
+
+Recovery waits for the native release report, at least three seconds, and confirmation that both the previous controller and worker have exited. It clears the old suspension block only for that new session. The native ownership lock, two-second heartbeat fail-safe, held-key checks and remote release remain unchanged. Recovery is limited to one automatic attempt per five minutes. A second failure within that window remains paused until **Resume Home button** is selected; it does not retry when the window expires.
+
+Holding Home, choosing the LG Home tile, explicit Pause, trial expiry, signals, ordinary crashes and short heartbeat stalls never trigger automatic recovery. Rebuild and install **both** private packages for this update. A helper already paused by an older version needs one explicit Resume after updating. This does not replace the HA startup automation: Home must open before its service can recover the helper. Validate standby/wake, app exits and the long Home escape on your TV before relying on it.
+
 ## 10. Model-specific modification map
 
 | Need | Edit / inspect | Required verification |

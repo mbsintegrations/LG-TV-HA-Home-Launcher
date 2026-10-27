@@ -17,7 +17,8 @@
    cancelCurrent=function(){settled=true;clearTimeout(watchdog);};
    call('luna://com.mbs.communityhome.network/probe',{},finish);
   }
-  this.start=function(){if(active||(!c.router&&!c.internet))return;active=true;epoch++;probe();};
+  // Leave initial rendering and helper recovery clear; hiding cancels this timer too.
+  this.start=function(){if(active||(!c.router&&!c.internet))return;active=true;epoch++;timer=setTimeout(probe,10000);};
   this.stop=function(){active=false;busy=false;epoch++;clearTimeout(timer);if(cancelCurrent)cancelCurrent();update(null);};
  }
  function n(tag,cls,value){var x=document.createElement(tag);x.className=cls||'';if(value!==undefined)x.textContent=value;return x;}

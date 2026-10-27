@@ -3,15 +3,17 @@ var fs=require('fs'),cp=require('child_process'),Service=require('/usr/lib/node_
 var root=__dirname,data=root+'/state',params=JSON.parse(process.argv[2]||'{}');
 var service=new Service('com.mbs.communityhomehelper'),child=null,ready=false,stopping=false,launching=false,watch=null,timer=null,buffer='',lastAck=0,reporting=false,lastLease=0,starting=false;
 var options=JSON.parse(fs.readFileSync(root+'/options.json','utf8'));
+var lastTurn=Date.now(),suspensionAt=0,suspensionGap=0,exitInfo=null;
+function observeTurn(){var at=Date.now(),gap=at-lastTurn;if(gap>=10000){suspensionAt=at;suspensionGap=gap;}lastTurn=at;}
 var screen=policy.screen(options.watchedApps),logFile=data+'/controller.log',shared='/media/developer/apps/usr/palm/services/com.mbs.communityhome.helper/state',lastReport='',lastStatus='',parentTick=processState.read(process.pid).tick,workerTick=null;
 function now(){var t=process.hrtime();return t[0]*1000+t[1]/1e6;}
 function log(event,detail){try{if(fs.existsSync(logFile)&&fs.statSync(logFile).size>65536)fs.writeFileSync(logFile,'');fs.appendFileSync(logFile,JSON.stringify({time:Date.now(),event:event,detail:detail})+'\n');}catch(ignore){}}
 function block(){try{fs.writeFileSync(data+'/blocked','paused');}catch(ignore){}}
 function status(){try{var key=String(child&&child.pid)+':'+String(ready&&!stopping);if(key===lastStatus)return;lastStatus=key;fs.writeFileSync(data+'/status.json',JSON.stringify({pid:process.pid,worker:child&&child.pid,active:ready&&!stopping,at:Date.now()}));}catch(ignore){}}
-function report(phase,done){try{var c=JSON.parse(fs.readFileSync(shared+'/control.json','utf8'));if(c.session!==params.session){done(true,false);return;}var key=phase+':'+String(child&&child.pid);if(key!==lastReport){fs.writeFileSync(shared+'/native-status.json.tmp',JSON.stringify({session:params.session,at:Date.now(),pid:process.pid,parentTick:parentTick,worker:child&&child.pid,workerTick:workerTick,active:phase==='active',released:phase==='released'}),{mode:432});fs.renameSync(shared+'/native-status.json.tmp',shared+'/native-status.json');lastReport=key;}done(true,c.enabled&&!c.paused);}catch(e){log('state-error',e.code);done(false);}}
+function report(phase,done){try{var c=JSON.parse(fs.readFileSync(shared+'/control.json','utf8'));if(c.session!==params.session){done(true,false);return;}var key=phase+':'+String(child&&child.pid);if(key!==lastReport){fs.writeFileSync(shared+'/native-status.json.tmp',JSON.stringify({session:params.session,at:Date.now(),pid:process.pid,parentTick:parentTick,worker:child&&child.pid,workerTick:workerTick,active:phase==='active',released:phase==='released',exit:phase==='released'?exitInfo:null}),{mode:432});fs.renameSync(shared+'/native-status.json.tmp',shared+'/native-status.json');lastReport=key;}done(true,c.enabled&&!c.paused);}catch(e){log('state-error',e.code);done(false);}}
 function launch(id,done){var settled=false,t=setTimeout(function(){if(!settled){settled=true;done(false);}},3000);service.call('luna://com.webos.applicationManager/launch',{id:id},function(m){if(settled)return;settled=true;clearTimeout(t);log('launch',{id:id,success:!!(m.payload&&m.payload.returnValue)});done(!!(m.payload&&m.payload.returnValue));});}
 function home(reason){if(stopping||launching||fs.existsSync(data+'/blocked'))return;launching=true;log(reason);launch('com.mbs.communityhome',function(ok){launching=false;if(!ok)stop(true);});}
-function finish(code,signal){if(stopping==='finished')return;var wasReady=ready;stopping='finished';clearInterval(timer);if(watch)watch.close();block();ready=false;status();log('worker-exit',{code:code,signal:signal});
+function finish(code,signal){if(stopping==='finished')return;observeTurn();var wasReady=ready;exitInfo={code:code,signal:signal||null,suspensionGapMs:suspensionAt&&Date.now()-suspensionAt<10000?suspensionGap:0,recoverable:!!(wasReady&&(!stopping||stopping==='suspension')&&!signal&&(code===20||code===0&&stopping==='suspension')&&!(params.trialSeconds>0))};stopping='finished';clearInterval(timer);if(watch)watch.close();block();ready=false;status();log('worker-exit',exitInfo);
  function end(){report('released',function(){try{fs.unlinkSync(data+'/controller.pid');}catch(ignore){}process.exit(code===22?0:(code||0));});}
  var until=now()+3200;
  function complete(){if(code===22&&launching&&now()<until){setTimeout(complete,50);return;}if(code===22)launch('com.webos.app.home',function(){end();});else end();}
@@ -20,7 +22,7 @@ function finish(code,signal){if(stopping==='finished')return;var wasReady=ready;
  function cleanedUp(){if(cleaned)return;cleaned=true;clearTimeout(guard);complete();}
  cleanup.on('exit',cleanedUp);cleanup.on('error',cleanedUp);
 }
-function stop(pause){if(stopping)return;stopping=true;if(pause)block();if(watch)watch.close();if(child){child.stdin.end('Q');setTimeout(function(){try{child.kill('SIGKILL');}catch(ignore){}},1500);}else finish(0);}
+function stop(pause,reason){if(stopping)return;stopping=reason||true;if(pause)block();if(watch)watch.close();if(child){child.stdin.end('Q');setTimeout(function(){try{child.kill('SIGKILL');}catch(ignore){}},1500);}else finish(0);}
 process.on('SIGTERM',function(){stop(true);});process.on('SIGINT',function(){stop(true);});
 process.on('uncaughtException',function(e){log('exception',String(e));stop(true);});
 fs.writeFileSync(data+'/controller.pid',String(process.pid));log('start',{uid:process.getuid(),gid:process.getgid(),trialSeconds:params.trialSeconds||0});
@@ -38,7 +40,7 @@ function startWorker(){
 }
 function lease(){if(reporting||stopping)return;reporting=true;report(ready?'active':'starting',function(ok,allowed){reporting=false;if(stopping)return;if(!ok||!allowed){log('lease-ended');stop(true);return;}lastLease=now();if(!child&&!starting){starting=true;launch('com.mbs.communityhome',function(ok){if(stopping)return;if(ok)startWorker();else stop(true);});}});}
 lastLease=now();lease();
- timer=setInterval(function(){if(stopping)return;if(fs.existsSync(data+'/blocked')||policy.expired(lastLease,now())){stop(true);return;}if(child){if(policy.expired(lastAck,now())){log('watchdog');child.kill('SIGKILL');return;}child.stdin.write('P');status();}lease();},400);
+ timer=setInterval(function(){observeTurn();if(stopping)return;var suspended=suspensionAt&&Date.now()-suspensionAt<10000;if(fs.existsSync(data+'/blocked')||policy.expired(lastLease,now())){stop(true,suspended?'suspension':null);return;}if(child){if(policy.expired(lastAck,now())){if(suspended){stop(true,'suspension');return;}log('watchdog');child.kill('SIGKILL');return;}child.stdin.write('P');status();}lease();},400);
 if(params.trialSeconds>0)setTimeout(function(){log('trial-ended');stop(true);},Math.min(params.trialSeconds,120)*1000);
 
 
