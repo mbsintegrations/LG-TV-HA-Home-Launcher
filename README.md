@@ -16,7 +16,7 @@ A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, ro
 
 The launcher talks directly to your Home Assistant. The setup computer can be shut down afterwards. No cloud account with this project, Mac service, Docker relay, or custom HA integration is required.
 
-**[Start here](docs/START-HERE.md)** · [Screenshots](docs/SCREENSHOTS.md) · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [All documentation](docs/INDEX.md)
+**[Start here](docs/START-HERE.md)** · [Screenshots](docs/SCREENSHOTS.md) · [Configuration](docs/CONFIGURATION.md) · [Manual Home-button helper](docs/HOME-BUTTON-HELPER.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [TODO / roadmap](TODO.md) · [All documentation](docs/INDEX.md)
 
 ![Backgrounds, theme customizer and animated energy flow in Home Launcher v0.4.0](docs/images/launcher-update-0.3.jpg)
 
@@ -91,6 +91,10 @@ Configuration changes are made in the wizard and applied by rebuilding/reinstall
 **Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview uses fictional sample readings even after HA discovery.
 
 The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelper`.
+
+## Next release
+
+See the [TODO / roadmap](TODO.md) for planned stability and usability work, broader TV testing and community requests.
 
 ## Compatibility and evidence
 
