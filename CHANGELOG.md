@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Verify the helper's controller and worker after a launch request, instead of treating LG's launch acknowledgement as proof it started. Retry once after 10 seconds only when no controller has reported, using the same session; pause with a visible error after 25 seconds without readiness. Automatic starts and retries keep the foreground app unchanged, and stale native reports cannot claim a running helper.
 - Delay optional footer latency checks by 10 seconds when Home opens or becomes visible again. The selected polling interval applies after the first result; hiding Home cancels the pending start.
 - Recover an enabled Home-button helper after a long suspension once its native worker has released the remote and both old processes have exited. Keep intentional pauses, long Home presses, failed trials and ordinary crashes paused. Limit automatic recovery to one attempt per five minutes; a further failure within that window requires manual resume.
 - Preserve the native input lock, heartbeat timeout and release checks. A recorded long scheduling gap can indicate standby or a prolonged system stall; it does not identify the cause by itself. Real-TV standby acceptance is pending.
