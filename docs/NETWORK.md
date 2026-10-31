@@ -28,7 +28,7 @@ TCP connection latency is the default. It measures the time to establish a conne
 
 ICMP remains an optional method for TVs that permit it. The tested Living Room B9 rejects both the system ping utility and the native LG ping API from a non-root app. No permissions are elevated and there is no silent fallback between methods.
 
-The private, read-only JavaScript service is included only when latency is enabled. It checks only the selected targets every 15, 30 or 60 seconds (default 30), with bounded timeouts. Polling stops while Home is hidden and pauses during a speed test. An already-started check may finish within its short timeout. No Home-button helper, HA add-on or external computer is required.
+The private, read-only JavaScript service is included only when latency is enabled. From 0.5, checks start 10 seconds after Home opens or becomes visible again, leaving initial rendering and helper startup clear. The footer shows a dash until a result arrives. After each result, it waits the selected 15, 30 or 60 seconds (default 30) before checking again, with bounded timeouts. Polling stops while Home is hidden and pauses during a speed test; hiding Home also cancels a pending delayed start. An already-started check may finish within its short timeout. No Home-button helper, HA add-on or external computer is required.
 
 No reply or Unavailable can indicate a blocked port, missing gateway, missing permissions or unreachable target. Neither proves the internet is down. Measurements come from the TV, never HA or the setup PC. IPv6-only gateway detection is not currently supported.
 

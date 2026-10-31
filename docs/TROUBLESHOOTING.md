@@ -26,6 +26,10 @@
 | Startup does not fire | Check actual off→on history, source_list, exclusions and automation trace. No action on unavailable→on is deliberate. |
 | Helper build refuses UID/ABI | Complete the native identity probe. Do not copy someone else's IDs or remove guards. |
 | Helper active but exits stay on LG | Ensure it is not paused; verify watchedApps and HA TV app_id updates. App exits vary by app. |
+| Starting Home button… | Allow up to 25 seconds for verified readiness. The service makes at most one retry if no controller reports. A launch acknowledgement alone is not active status. |
+| Helper startup failed / stays paused | Record sanitized status/logs before restarting. Select Resume once; do not add a repeated resume automation. Confirm both launcher and helper were rebuilt from the same update. |
+| Home opens after standby but Home button is inactive | Check the helper state separately from the HA startup automation. Version 0.5 adds bounded recovery and clears unfinished previous-boot startups. Intentional long Home/LG Home pauses still require Resume. |
+| No latency immediately after opening Home | From 0.5, optional checks wait ten seconds, plus measurement time. Returning from another app starts a fresh delay. |
 | LG Home tile fails with helper enabled | Hold Home for two seconds. Check helper service and release status; do not force launch while release is unconfirmed. |
 | TV sluggish | Pause helper, close launcher, stop developer inspection, compare normal LG behavior. Record CPU/memory/input observations; do not infer cause from one load-average number. |
 | App disappeared after restart | Check Developer Mode expiry/disablement. Restore base first; re-probe helper identity. |

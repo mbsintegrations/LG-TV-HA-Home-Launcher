@@ -10,7 +10,7 @@
 
 > **Ad-free home screen:** our launcher displays no ads or the promotions you would normally see on LG Home. It does not change LG's underlying privacy or data-collection settings. Read **[LG privacy concerns, what this launcher does, and securing your media/IoT network](docs/PRIVACY-AND-NETWORK.md)**.
 
-**Public release v0.4.0.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release 0.5.** See [compatibility and validation](docs/VALIDATION.md).
 
 A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
@@ -94,7 +94,7 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Next release
 
-See the [TODO / roadmap](TODO.md) for planned stability and usability work, broader TV testing and community requests.
+**0.5 is the stability update** for helper startup/standby recovery and delayed latency checks. See the [release notes](docs/RELEASE-NOTES.md). Remaining performance, compatibility and dependency follow-ups are tracked for **0.6** in the [TODO / roadmap](TODO.md), with [per-feature TV testing](docs/TV-TESTING.md).
 
 ## Compatibility and evidence
 

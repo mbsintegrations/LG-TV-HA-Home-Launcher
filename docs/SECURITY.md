@@ -42,9 +42,11 @@ The native helper controls input handling. Preserve capability checks, exclusive
 
 ## Reporting
 
-### Dependency audit snapshot: 24 October 2026
+### Dependency audit snapshot: 31 October 2026
 
-`npm audit` reports six affected packages in the pinned official desktop CLI tree: one critical (proxy-addr), four high (body-parser, its parent @webos-tools/cli, brace-expansion and js-yaml), and one moderate (qs). Parent-package counts are not additional independent advisories. This release preserves the tested lockfile; no forced dependency change was applied. The official CLI is a computer-side build/maintenance dependency, not code included in the base TV app. The local configurator uses Node's HTTP server rather than the CLI's Express server. This is a scope distinction, not a claim that the findings are fixed or harmless. Do not expose developer tooling as a public service or feed it untrusted packages.
+`npm audit` reports 18 affected packages in the pinned official desktop CLI tree: one critical, four high and 13 moderate. Parent-package counts are not additional independent advisories. The critical [proxy-addr finding](https://github.com/advisories/GHSA-jqcg-44mw-7w3h) and high [body-parser finding](https://github.com/advisories/GHSA-27r3-jxmh-p828) remain unresolved in that tree. The CLI supplies its own npm shrinkwrap; a compatible lockfile-only audit fix made no dependency changes. A forced CLI downgrade or unverified override was not applied.
+
+The official CLI is a computer-side build/maintenance dependency, not code included in the base TV app. The local configurator uses Node's HTTP server rather than the CLI's Express server. This is a scope distinction, not a claim that the findings are fixed or harmless. Do not expose developer tooling as a public service or feed it untrusted packages. Review a patched upstream toolchain separately and repeat packaging/compatibility checks before changing the pin.
 
 The optional helper's pinned ws 1.1.5 has a high-severity [memory-exhaustion advisory](https://github.com/advisories/GHSA-96hv-2xvq-fx4p). Payload limits and disabled compression do not establish immunity to fragmentation attacks. The suggested modern major upgrade is not a verified replacement for the B9's Node 0.12 runtime. The helper remains experimental and is distributed as source/manual tools; assess this unresolved dependency before enabling it.
 

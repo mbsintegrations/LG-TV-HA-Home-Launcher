@@ -1,24 +1,33 @@
-# LG TV – HA Home Launcher v0.4.0
+# LG TV – HA Home Launcher 0.5
 
-Check your TV's connection without leaving Home. This update adds an embedded Cloudflare Speed Test and optional router/internet latency readings.
+Released 31 October 2026.
 
-![Embedded Speed Test — sample readings](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/releases/download/v0.4.0/LG-TV-HA-Home-Launcher-speed-test.jpg)
+This stability update improves Home-button startup and recovery after standby, and gives the launcher ten seconds to settle before optional latency checks begin. Your layout, colours, apps, controls and saved profile remain unchanged.
 
-## New
+## Fixed
 
-- **Speed Test tile:** download, upload, HTTP latency and jitter inside the launcher, using its selected palette. Start manually, cancel with the button or Back, and keep the last completed result with its timestamp.
-- **Optional TCP latency footer:** router and internet readings measured from the TV. Choose Cloudflare 1.1.1.1 or Google 8.8.8.8, with 15/30/60-second checks. Router detection is automatic; an address and TCP port can be selected if needed.
-- **Network step in the configurator:** both features are opt-in. Speed Test uses one of eight app slots. No HA add-on, API key, always-on computer or root required.
-- **Older-TV compatibility:** bundled ES5 engine, abortable requests, and handling for missing Chromium 53 resource-timing fields.
+- Verify that the helper controller and worker actually started. An accepted LG launch request alone no longer counts as active.
+- Retry once if no controller reports within ten seconds. If startup still fails, show an error and leave the helper paused for manual Resume.
+- Ignore stale reports and unfinished startup deadlines from a previous TV boot.
+- Recover after a long suspension only after remote release and old-process exit are confirmed. Repeated failures stay paused; intentional pauses, long Home and LG Home escape keep their behavior.
+- Keep the current app visible during automatic helper startup/recovery.
 
-## How it behaves
+## Improved
 
-TCP connection timing is clearly labelled; it is not ICMP ping. ICMP remains available only on models that permit it. Polling stops when Home is hidden and pauses during a speed test. A blocked port shows no reading rather than a false offline claim.
-
-The short speed test transfers about 24.2 MB of planned payload, plus retries and overhead. It can underestimate very fast connections and briefly affect streaming. Cloudflare receives the public IP and test measurements, never HA credentials. The engine is bundled locally, with no runtime CDN script.
+- Optional TCP latency checks start ten seconds after opening or returning to Home. Hiding Home cancels the pending start; polling remains paused during Speed Test.
+- Helper package/controller and service are now version 0.2.0, paired with launcher 0.5.
+- Added a per-feature compatibility report and repeatable TV checks for backgrounds, Glass, Speed Test and TCP latency. Updated the roadmap and upgrade/recovery instructions.
 
 ## Updating
 
-Import your saved profile, enable the desired options under Network, export it, then rebuild and reinstall your private package. Existing settings remain unchanged until you enable the new features. Follow the helper-aware update instructions if you use the optional Home-button helper. Public sample packages contain no HA credentials.
+Without a helper, import your saved profile into the new configurator, reconnect HA and rebuild your private launcher package.
 
-See [network setup and troubleshooting](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/blob/main/docs/NETWORK.md), [updates](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/blob/main/docs/UPDATES-AND-RECOVERY.md) and [compatibility](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/blob/main/docs/VALIDATION.md).
+With the optional helper, rebuild and install **both private packages** from the same source using your existing per-TV options. Pause and confirm input release first, install the pair, open Home and select Resume once if needed. Wait for **Home button active** before testing. Keep the previous working pair for rollback. The public sample has no HA token and must not replace your configured installation.
+
+See [Updates and recovery](UPDATES-AND-RECOVERY.md#updating-to-05) and the [helper guide](HOME-BUTTON-HELPER.md).
+
+## Tested scope
+
+On 31 October 2026, the OLED65B9PLA owner confirmed the installed 0.5 build passed the requested checks: unchanged layout/live HA, YouTube → Home, standby startup, latency readings and long Home/LG Home escape with Resume. Returning from YouTube felt faster; standby to Home took about eight seconds in this test. This is an owner observation on one TV, not a timing guarantee for every model. Automated checks also cover an interrupted startup across boot; deliberately interrupting that timing window and removing mains power were not part of the physical test.
+
+Background/Glass performance on real TVs and separate network-tool reports for OLED65CX6LA and OLED55B7V-Z are still outstanding. Existing base/helper compatibility reports remain valid for their stated scope. See [Validation](VALIDATION.md), [TV testing](TV-TESTING.md) and the [TODO](../TODO.md).

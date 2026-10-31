@@ -26,6 +26,25 @@ The 65NANO766QA was also updated with its Weather/Dusk profile preserved. Its in
 
 Regression coverage includes the bundled Cloudflare engine with Chromium 53 resource-timing fields, actual cancellation signals, TCP socket cleanup, endpoint validation, single-flight polling, disabled/hidden states and private service packaging.
 
+### 0.5 stability update — 31 October 2026
+
+On 31 October 2026, the OLED65B9PLA owner confirmed the installed 0.5 build passed the requested checks: unchanged layout/live HA, YouTube → Home, standby startup, latency readings and long Home/LG Home escape with Resume. Returning from YouTube felt faster; standby to Home took about eight seconds in this test. This is an owner observation on one TV, not a timing guarantee for every model.
+
+The installed launcher is 0.5.0 with helper controller/service 0.2.0, from source `7f332c7`. All 118 readable installed file hashes matched the staged pair; the profile, connection, native relay binary and other settings were preserved. The helper reported active with current controller/worker processes. Final release changes after this installation are documentation only.
+
+| Area | Evidence / remaining check |
+|---|---|
+| B9 standby and YouTube → Home | Final 0.5 build owner-accepted; approximately eight seconds from standby, faster Home return than before. |
+| Long Home / LG Home escape and Resume | Included in the owner-accepted test sequence. |
+| Latency delay | Automated initial/resume/hidden timing checks; owner accepted readings in the TV test. No separate stopwatch measurement of the ten-second delay was supplied. |
+| Interrupted-startup reboot | Automated regression; deliberately interrupting the startup window was not physically exercised. |
+| Cold boot after mains removal | Separate from the accepted remote standby test; remains untested. |
+| Master Bedroom | Not updated to 0.5 in this release test. |
+| Background rotation and Glass | Browser/automated coverage; physical comparison still pending. |
+| CX and B7 network tools | No separate Speed Test or TCP report yet. |
+
+All 79 automated tests and the Windows/macOS/Linux workflow passed during candidate preparation. Use the [TV test procedure](TV-TESTING.md) and [compatibility report template](../.github/ISSUE_TEMPLATE/compatibility_report.md) to record each feature separately.
+
 ## Automated coverage
 
 Run `npm test` and `npm run check`. Coverage includes:

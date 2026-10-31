@@ -24,6 +24,8 @@ Choose Solid (100% opaque), Translucent (60% tint), Outlined (15% fill with a bo
 
 Glass generates one small blurred wallpaper when the image changes and shares it across cards, with tint and highlights over it. It works without modern browser backdrop-filter support. It frosts the wallpaper rather than other live content. TV performance still needs physical testing.
 
+For a repeatable comparison, use the [backgrounds and Glass test](TV-TESTING.md#backgrounds-and-glass): no background, one static photo, then five rotating photos with Glass. Record the TV/build, image sizes, test duration and remote responsiveness. A single static image with Solid cards remains the simplest baseline.
+
 Corner shape applies to app tiles, controls, status cards and the weather panel. Square also removes rounding from inner energy boxes. Optional accent borders and separate colours for apps, controls, temperatures, status and energy remain available. Check contrast from TV distance, especially with translucent surfaces.
 
 Reset card styling restores the defaults without removing photos, entity mappings or app choices. These settings are independent of the overall palette and layout theme.
