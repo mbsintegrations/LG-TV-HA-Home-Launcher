@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5 — In preparation
+## 0.5 — 31 October 2026
 
 - Verify the helper's controller and worker after a launch request, instead of treating LG's launch acknowledgement as proof it started. Retry once after 10 seconds only when no controller has reported, using the same session; pause with a visible error after 25 seconds without readiness. Automatic starts and retries keep the foreground app unchanged, and stale native reports cannot claim a running helper.
 - Delay optional footer latency checks by 10 seconds when Home opens or becomes visible again. The selected polling interval applies after the first result; hiding Home cancels the pending start.
@@ -8,7 +8,7 @@
 - Clear an unfinished startup from a previous TV boot so it gets a fresh session and deadline; keep intentional pauses intact.
 - Preserve the native input lock, heartbeat timeout and release checks. A recorded long scheduling gap can indicate standby or a prolonged system stall; it does not identify the cause by itself.
 - Package the updated helper controller/service as 0.2.0. Rebuild both private packages when upgrading a helper installation; existing profiles, appearance and controls are unchanged.
-- Add per-feature TV reporting and comparison steps for backgrounds/Glass and older-TV network tools. The OLED65B9PLA owner confirmed reliable standby startup and YouTube return with the 29 October test build; later candidate changes and remaining feature checks are listed in the validation record.
+- Add per-feature TV reporting and comparison steps for backgrounds/Glass and older-TV network tools. The OLED65B9PLA owner accepted the final 0.5 build: faster Home return from YouTube and about eight seconds from standby to Home, with the existing layout and controls preserved. Remaining model/performance checks are listed in the validation record.
 
 ## 0.4.0 — 26 October 2026
 

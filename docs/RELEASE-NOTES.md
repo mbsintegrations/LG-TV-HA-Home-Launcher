@@ -1,6 +1,6 @@
 # LG TV – HA Home Launcher 0.5
 
-Release candidate — not yet published.
+Released 31 October 2026.
 
 This stability update improves Home-button startup and recovery after standby, and gives the launcher ten seconds to settle before optional latency checks begin. Your layout, colours, apps, controls and saved profile remain unchanged.
 
@@ -28,6 +28,6 @@ See [Updates and recovery](UPDATES-AND-RECOVERY.md#updating-to-05) and the [help
 
 ## Tested scope
 
-The OLED65B9PLA owner confirmed reliable standby startup and YouTube → Home with the 29 October test build. The additional pending-startup reboot correction has automated regression coverage and still needs a physical candidate check. Exact latency-delay observation, cold boot and long Home escape on the final candidate remain tracked.
+On 31 October 2026, the OLED65B9PLA owner confirmed the installed 0.5 build passed the requested checks: unchanged layout/live HA, YouTube → Home, standby startup, latency readings and long Home/LG Home escape with Resume. Returning from YouTube felt faster; standby to Home took about eight seconds in this test. This is an owner observation on one TV, not a timing guarantee for every model. Automated checks also cover an interrupted startup across boot; deliberately interrupting that timing window and removing mains power were not part of the physical test.
 
 Background/Glass performance on real TVs and separate network-tool reports for OLED65CX6LA and OLED55B7V-Z are still outstanding. Existing base/helper compatibility reports remain valid for their stated scope. See [Validation](VALIDATION.md), [TV testing](TV-TESTING.md) and the [TODO](../TODO.md).

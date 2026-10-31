@@ -26,23 +26,24 @@ The 65NANO766QA was also updated with its Weather/Dusk profile preserved. Its in
 
 Regression coverage includes the bundled Cloudflare engine with Chromium 53 resource-timing fields, actual cancellation signals, TCP socket cleanup, endpoint validation, single-flight polling, disabled/hidden states and private service packaging.
 
-### 0.5 stability candidate — 31 October 2026
+### 0.5 stability update — 31 October 2026
 
-The OLED65B9PLA owner confirmed on 31 October that standby startup and returning from YouTube had both been reliable with the 29 October test pair (source `463fc3b`). That pair included verified helper startup, bounded retry/recovery and the 10-second latency startup delay. Its installed files and actual helper readiness were checked at deployment, preserving the Panorama/Slate profile.
+On 31 October 2026, the OLED65B9PLA owner confirmed the installed 0.5 build passed the requested checks: unchanged layout/live HA, YouTube → Home, standby startup, latency readings and long Home/LG Home escape with Resume. Returning from YouTube felt faster; standby to Home took about eight seconds in this test. This is an owner observation on one TV, not a timing guarantee for every model.
 
-The 31 October candidate additionally clears an unfinished startup from a previous boot before creating a new session. A regression test reproduced the stale-startup failure and covers enabled and intentionally paused helpers. This additional correction has not yet been installed on a TV. The 29 October pair used earlier package-version labels; the candidate identifies the launcher as 0.5 and the controller/service as 0.2.0.
+The installed launcher is 0.5.0 with helper controller/service 0.2.0, from source `7f332c7`. All 118 readable installed file hashes matched the staged pair; the profile, connection, native relay binary and other settings were preserved. The helper reported active with current controller/worker processes. Final release changes after this installation are documentation only.
 
 | Area | Evidence / remaining check |
 |---|---|
-| B9 standby and YouTube → Home | Owner-confirmed reliable with the 29 October build. |
-| Pending-startup reboot correction | Automated regression; physical candidate check pending. |
-| Latency delay | Automated initial/resume/hidden timing checks; exact 10-second observation on TV pending. |
-| Cold boot and long Home/LG Home escape | Repeat on the final candidate; earlier behavior does not establish this candidate's result. |
-| Master Bedroom | No 0.5 deployment or acceptance claimed. |
+| B9 standby and YouTube → Home | Final 0.5 build owner-accepted; approximately eight seconds from standby, faster Home return than before. |
+| Long Home / LG Home escape and Resume | Included in the owner-accepted test sequence. |
+| Latency delay | Automated initial/resume/hidden timing checks; owner accepted readings in the TV test. No separate stopwatch measurement of the ten-second delay was supplied. |
+| Interrupted-startup reboot | Automated regression; deliberately interrupting the startup window was not physically exercised. |
+| Cold boot after mains removal | Separate from the accepted remote standby test; remains untested. |
+| Master Bedroom | Not updated to 0.5 in this release test. |
 | Background rotation and Glass | Browser/automated coverage; physical comparison still pending. |
 | CX and B7 network tools | No separate Speed Test or TCP report yet. |
 
-Use the [TV test procedure](TV-TESTING.md) and [compatibility report template](../.github/ISSUE_TEMPLATE/compatibility_report.md) to record each feature separately.
+All 79 automated tests and the Windows/macOS/Linux workflow passed during candidate preparation. Use the [TV test procedure](TV-TESTING.md) and [compatibility report template](../.github/ISSUE_TEMPLATE/compatibility_report.md) to record each feature separately.
 
 ## Automated coverage
 
