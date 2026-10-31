@@ -4,7 +4,7 @@ The next update focuses on stability, usability and broader TV testing. These ar
 
 ## Next release — 0.5
 
-Implementation and preparation are tracked in [PR #9](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/9). A checked item here means prepared or verified as described, not already released.
+Implementation and preparation are tracked in [PR #12](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/12). A checked item here means prepared or verified as described, not already released.
 
 - [x] **Helper launch confirmation:** verify current controller/worker identities, allow one bounded retry when no controller reports, reject stale status, and show a startup failure. Automatic starts preserve the foreground app. A new boot clears a pending startup from the old boot; regression coverage includes intentional pauses.
 - [x] **Standby/startup reliability:** bounded recovery is implemented. The OLED65B9PLA owner confirmed reliable standby startup and YouTube → Home on 31 October using the 29 October test build. See the exact [validation scope](docs/VALIDATION.md#05-stability-candidate--31-october-2026).
