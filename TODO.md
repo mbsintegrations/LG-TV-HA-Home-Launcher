@@ -2,15 +2,27 @@
 
 The next update focuses on stability, usability and broader TV testing. These are planned tasks, not completed validation or a commitment to a release date. The latest published features are listed in the [changelog](CHANGELOG.md).
 
-## Next release
+## Next release — 0.5
 
-- [ ] **Helper launch confirmation:** verify actual controller/worker readiness after LG accepts a launch request. Test one bounded retry when no controller starts, stale status from a previous boot, clear failure feedback, and keeping the foreground app unchanged during automatic startup.
-- [ ] **Standby/startup reliability:** test the new bounded Home-button helper recovery after a long suspension on the Living Room TV, including repeated standby/wake, YouTube → Home and the intentional LG Home escape. Keep native release safeguards intact; investigate startup foreground switching separately if it persists.
-- [ ] **Latency startup delay:** include the implemented 10-second delay before footer latency checks start or resume. Verify the readings appear after the delay and polling stays stopped while Home is hidden. Both changes await TV acceptance and the next release.
-- [ ] **Background and Glass performance:** test image rotation and Glass together on real TVs, particularly older models. Check remote responsiveness, app switching, suspend/resume and longer viewing sessions; tune defaults or document practical limits based on the results.
-- [ ] **Network tools on older TVs:** test the current Speed Test and optional router/internet TCP latency on OLED65CX6LA and OLED55B7V-Z. Check completion, cancellation, saved results and polling while visible/hidden. The original community base-app report used version 0.2.0; network tools arrived in 0.4.0.
-- [ ] **Compatibility records:** record the launcher version, TV model, firmware, reported webOS/SDK and the individual features tested for each new report. Keep base-app, helper, network-tool and visual-performance results separate in the [validation record](docs/VALIDATION.md).
-- [ ] **Community fixes and requests:** review incoming [issues](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues), reproduce reported problems and link accepted fixes or additions here before assigning them to a release.
+Implementation and preparation are tracked in [PR #9](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/9). A checked item here means prepared or verified as described, not already released.
+
+- [x] **Helper launch confirmation:** verify current controller/worker identities, allow one bounded retry when no controller reports, reject stale status, and show a startup failure. Automatic starts preserve the foreground app. A new boot clears a pending startup from the old boot; regression coverage includes intentional pauses.
+- [x] **Standby/startup reliability:** bounded recovery is implemented. The OLED65B9PLA owner confirmed reliable standby startup and YouTube → Home on 31 October using the 29 October test build. See the exact [validation scope](docs/VALIDATION.md#05-stability-candidate--31-october-2026).
+- [x] **Latency startup delay:** initial/resumed footer checks wait 10 seconds; hiding Home cancels that timer. Automated timing/visibility checks pass. Physical observation of the exact delay remains below.
+- [x] **Compatibility records:** added a [per-feature test report](.github/ISSUE_TEMPLATE/compatibility_report.md) and [TV test procedure](docs/TV-TESTING.md); the validation record distinguishes base app, helper, network tools and visual performance.
+- [x] **Community fixes and requests:** reviewed open PRs, recent commits, issues and PR discussion on 31 October. PR #9 is the only open PR; there were no open issues or review comments. Continue triage as reports arrive.
+
+### Remaining physical checks for this update
+
+- [ ] **Background and Glass performance:** follow the [comparison procedure](docs/TV-TESTING.md#backgrounds-and-glass) on real TVs, including older models, app switching, standby and longer use. Adjust defaults only if observations justify it.
+- [ ] **Network tools on older TVs:** obtain separate Speed Test/cancellation/saved-result and TCP latency results for OLED65CX6LA and OLED55B7V-Z using the [network checklist](docs/TV-TESTING.md#network-tools). Earlier base/helper reports do not establish network support; network tools arrived in 0.4.0.
+- [ ] **Final stability candidate:** test the additional pending-startup reboot correction on TV, the exact 10-second latency delay, cold boot and long Home/LG Home escape. Keep the accepted 29 October build distinct from later candidate changes.
+
+All next-release items remain tracked here. Missing physical results are not inferred from build checks or another TV model, and will be carried forward explicitly if the stability release ships before those reports arrive.
+
+### Dependency follow-up
+
+- [ ] Review a patched official desktop CLI dependency tree and the legacy helper WebSocket dependency. The [31 October audit](docs/SECURITY.md#dependency-audit-snapshot-31-october-2026) remains unresolved; compatible lockfile repair made no changes. Do not force a CLI downgrade or replace the old-TV helper runtime without separate verification.
 
 ## Already released
 

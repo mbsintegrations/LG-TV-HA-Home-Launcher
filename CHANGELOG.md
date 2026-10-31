@@ -1,11 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.5 — In preparation
 
 - Verify the helper's controller and worker after a launch request, instead of treating LG's launch acknowledgement as proof it started. Retry once after 10 seconds only when no controller has reported, using the same session; pause with a visible error after 25 seconds without readiness. Automatic starts and retries keep the foreground app unchanged, and stale native reports cannot claim a running helper.
 - Delay optional footer latency checks by 10 seconds when Home opens or becomes visible again. The selected polling interval applies after the first result; hiding Home cancels the pending start.
 - Recover an enabled Home-button helper after a long suspension once its native worker has released the remote and both old processes have exited. Keep intentional pauses, long Home presses, failed trials and ordinary crashes paused. Limit automatic recovery to one attempt per five minutes; a further failure within that window requires manual resume.
-- Preserve the native input lock, heartbeat timeout and release checks. A recorded long scheduling gap can indicate standby or a prolonged system stall; it does not identify the cause by itself. Real-TV standby acceptance is pending.
+- Clear an unfinished startup from a previous TV boot so it gets a fresh session and deadline; keep intentional pauses intact.
+- Preserve the native input lock, heartbeat timeout and release checks. A recorded long scheduling gap can indicate standby or a prolonged system stall; it does not identify the cause by itself.
+- Package the updated helper controller/service as 0.2.0. Rebuild both private packages when upgrading a helper installation; existing profiles, appearance and controls are unchanged.
+- Add per-feature TV reporting and comparison steps for backgrounds/Glass and older-TV network tools. The OLED65B9PLA owner confirmed reliable standby startup and YouTube return with the 29 October test build; later candidate changes and remaining feature checks are listed in the validation record.
 
 ## 0.4.0 — 26 October 2026
 

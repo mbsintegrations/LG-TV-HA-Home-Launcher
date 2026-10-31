@@ -52,3 +52,14 @@ test('A late failed launch callback cannot pause a now-active helper',()=>{const
 test('An old launch rejection cannot cancel the same-session retry',()=>{const h=harness(undefined,true);h.request('resume');h.advance(10000);h.timers.shift()();h.replies[0]({payload:{returnValue:false}});assert.equal(h.saved().paused,false);h.replies[1]({payload:{returnValue:false}});assert.equal(h.saved().paused,true);});
 
 test('Explicit maintenance resume can preserve the foreground app',()=>{const h=harness();h.request('resume',{keepForeground:true});assert.equal(h.calls[0].payload.params.openHome,false);assert.equal(h.calls[0].payload.params.resume,true);});
+
+test('A boot during pending startup gets a fresh session and deadline without clearing intentional pause',()=>{
+ for(const paused of [false,true]){
+  const h=harness({boot:'previous',enabled:true,paused,released:false,starting:true,started:1,session:'previous-session',launchAttempts:2,releaseWaitStarted:1});
+  h.request('ensure');assert.equal(h.calls.length,paused?0:1);
+  if(paused){assert.equal(h.request('status')[0].state.starting,false);continue;}
+  assert.notEqual(h.saved().session,'previous-session');assert.equal(h.saved().started,10000);assert.equal(h.saved().launchAttempts,1);
+  assert.equal(h.calls[0].payload.params.openHome,false);assert.equal(h.calls[0].payload.params.resume,true);
+  h.report({active:true});assert.equal(h.request('status')[0].state.active,true);
+ }
+});

@@ -7,7 +7,9 @@ service.activityManager.idleTimeout=35;
 var verification=null;
 function read(){try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch(e){return {enabled:false,paused:true,released:true};}}
 var s=read(),boot=fs.readFileSync('/proc/sys/kernel/random/boot_id','utf8').trim();
-if(s.boot!==boot){s.released=true;s.active=false;}
+// A previous boot cannot still own the remote or an in-progress launch deadline.
+// Preserve enabled/paused and the old boot ID so ensure can start a fresh session.
+if(s.boot!==boot){s.released=true;s.active=false;s.running=false;s.starting=false;s.releaseWaitStarted=0;}
 function save(){fs.writeFileSync(file+'.tmp',JSON.stringify(s),{mode:416});fs.renameSync(file+'.tmp',file);}
 function nativeReport(){try{return JSON.parse(fs.readFileSync(data+'/native-status.json','utf8'));}catch(e){return null;}}
 function cancelVerification(){if(verification){clearTimeout(verification.timer);verification=null;}}

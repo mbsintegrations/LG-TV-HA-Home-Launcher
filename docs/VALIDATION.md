@@ -26,6 +26,24 @@ The 65NANO766QA was also updated with its Weather/Dusk profile preserved. Its in
 
 Regression coverage includes the bundled Cloudflare engine with Chromium 53 resource-timing fields, actual cancellation signals, TCP socket cleanup, endpoint validation, single-flight polling, disabled/hidden states and private service packaging.
 
+### 0.5 stability candidate — 31 October 2026
+
+The OLED65B9PLA owner confirmed on 31 October that standby startup and returning from YouTube had both been reliable with the 29 October test pair (source `463fc3b`). That pair included verified helper startup, bounded retry/recovery and the 10-second latency startup delay. Its installed files and actual helper readiness were checked at deployment, preserving the Panorama/Slate profile.
+
+The 31 October candidate additionally clears an unfinished startup from a previous boot before creating a new session. A regression test reproduced the stale-startup failure and covers enabled and intentionally paused helpers. This additional correction has not yet been installed on a TV. The 29 October pair used earlier package-version labels; the candidate identifies the launcher as 0.5 and the controller/service as 0.2.0.
+
+| Area | Evidence / remaining check |
+|---|---|
+| B9 standby and YouTube → Home | Owner-confirmed reliable with the 29 October build. |
+| Pending-startup reboot correction | Automated regression; physical candidate check pending. |
+| Latency delay | Automated initial/resume/hidden timing checks; exact 10-second observation on TV pending. |
+| Cold boot and long Home/LG Home escape | Repeat on the final candidate; earlier behavior does not establish this candidate's result. |
+| Master Bedroom | No 0.5 deployment or acceptance claimed. |
+| Background rotation and Glass | Browser/automated coverage; physical comparison still pending. |
+| CX and B7 network tools | No separate Speed Test or TCP report yet. |
+
+Use the [TV test procedure](TV-TESTING.md) and [compatibility report template](../.github/ISSUE_TEMPLATE/compatibility_report.md) to record each feature separately.
+
 ## Automated coverage
 
 Run `npm test` and `npm run check`. Coverage includes:

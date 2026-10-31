@@ -188,9 +188,11 @@ This starts without the trial timeout. Opening the launcher asks its service to 
 
 If the helper was deliberately paused, keep that choice: do not work around it with a repeated “resume every few seconds” automation.
 
-### Standby recovery (next release)
+### Startup and standby recovery (0.5)
 
 LG accepting a launch request does not prove that the native helper started. The updated service verifies both controller and worker identities before reporting active. During startup the launcher shows **Starting Home button…**. If no controller has reported after 10 seconds, it retries once with the same session. If readiness is still unconfirmed after 25 seconds, it pauses and asks for manual Resume. A controller that has already reported never triggers this launch retry. Automatic starts and retries attach the Home-button handler without switching away from the current app.
+
+A new TV boot discards any unfinished startup deadline from the old boot and creates a fresh session if the helper was enabled. An intentional pause is preserved.
 
 The helper service has a finite 35-second idle timeout so its startup verification can finish even if Home is hidden. It is not a permanent polling service. This follows LG's [JavaScript service lifecycle guidance](https://webostv.developer.lge.com/develop/guides/js-service-faq). The independent native helper continues handling Home after the service idles out.
 

@@ -94,7 +94,7 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 
 ## Next release
 
-See the [TODO / roadmap](TODO.md) for planned stability and usability work, broader TV testing and community requests.
+The **0.5 stability candidate** improves helper startup/standby recovery and adds a 10-second delay before optional latency checks. See [candidate notes](docs/RELEASE-NOTES.md), the [TODO / roadmap](TODO.md) and [per-feature TV testing](docs/TV-TESTING.md). The latest public release remains linked above until the candidate is published.
 
 ## Compatibility and evidence
 

@@ -44,7 +44,7 @@ If you already paired this TV for Camera Overlay, select that verified device in
 
 For a working HA dashboard, first follow [Start here](START-HERE.md) and use **Build private TV package** in the configurator. Download the generated `.ipk` to a private folder on this computer.
 
-The public release's `com.mbs.communityhome_0.1.0_SAMPLE_all.ipk` has **no token**. On a television it says **Setup required**. It is a packaging sample, not a ready-configured live dashboard. The interactive sample readings are in the PC browser preview.
+The public release's `com.mbs.communityhome_<version>_SAMPLE_all.ipk` has **no token**. On a television it says **Setup required**. It is a packaging sample, not a ready-configured live dashboard. The interactive sample readings are in the PC browser preview.
 
 Your configured IPK embeds the HA token. Do not send it to anyone or upload it to GitHub. Export your credential-free profile separately so you can rebuild later.
 
