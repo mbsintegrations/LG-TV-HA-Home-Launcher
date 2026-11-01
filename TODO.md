@@ -4,6 +4,7 @@ The next update focuses on stability, usability and broader TV testing. These ar
 
 ## Next release — 0.6
 
+- [ ] **Home handling after an earlier LG Home escape:** the 0.5 two-second hold permanently paused the helper, so a later short Home press could not return to the launcher. A local candidate keeps short Home handling active during the LG Home escape, suppresses automatic app-exit redirection until short Home, checks physical key state before recognising a hold, and reserves an eight-second hold for emergency release. Automated two-hour-session coverage and on-device release checks pass; physical acceptance and extended playback are pending. Review the separate LG Home tile's explicit-pause behaviour before release.
 - [ ] **Background and Glass performance:** follow the [comparison procedure](docs/TV-TESTING.md#backgrounds-and-glass) on real TVs, including older models, app switching, standby and longer use. Adjust defaults only if observations justify it.
 - [ ] **Network tools on older TVs:** obtain separate Speed Test/cancellation/saved-result and TCP latency results for OLED65CX6LA and OLED55B7V-Z using the [network checklist](docs/TV-TESTING.md#network-tools). Earlier base/helper reports do not establish network support.
 - [ ] **Broader startup coverage:** record cold boot separately from remote standby and gather longer-use results across more models. The B9's accepted 0.5 standby/YouTube result is in [Validation](docs/VALIDATION.md#05-stability-update--31-october-2026).

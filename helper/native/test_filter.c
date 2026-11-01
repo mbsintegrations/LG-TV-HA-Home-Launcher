@@ -8,6 +8,15 @@ int main(void){
  e.value=2;assert(filter_event(&f,&e,200)==DROP);
  assert(!filter_timeout(&f,2099));assert(filter_timeout(&f,2100));
  e.value=0;assert(filter_event(&f,&e,2200)==DROP);assert(!filter_timeout(&f,5000));
+ /* Release queued behind scheduling or missing from the userspace stream. */
+ e.value=1;assert(filter_event(&f,&e,6000)==OPEN_HOME);
+ assert(filter_timeout(&f,8500));assert(!filter_confirm_hold(&f,0,8500));
+ assert(!filter_timeout(&f,12000));
+ /* The next short press still works and an actual hold still escapes. */
+ assert(filter_event(&f,&e,13000)==OPEN_HOME);
+ assert(!filter_confirm_hold(&f,1,14999));assert(filter_confirm_hold(&f,1,15000));
+ assert(!filter_confirm_hold(&f,1,15100));
+ e.value=0;assert(filter_event(&f,&e,15001)==DROP);
  unsigned codes[]={28,103,105,106,108,412,114,115,116,1198,1199,2,398};
  for(unsigned i=0;i<sizeof codes/sizeof codes[0];i++)for(int v=0;v<3;v++){e.type=1;e.code=codes[i];e.value=v;assert(filter_event(&f,&e,6000)==PASS);}
  e.type=3;e.code=773;assert(filter_event(&f,&e,6000)==PASS);
