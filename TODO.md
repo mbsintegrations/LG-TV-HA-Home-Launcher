@@ -4,6 +4,7 @@ The next update focuses on stability, usability and broader TV testing. These ar
 
 ## Next release — 0.6
 
+- [ ] **Home return after extended viewing — [current issue #13](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/13):** a normal short Home press failed after approximately two hours of YouTube. The captured helper was still paused from an earlier LG Home escape; this does not establish a two-hour timeout or explain every earlier incident. [Draft correction #14](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/14) is installed for Living Room testing. Automated and native release checks pass; extended playback, physical escape/return, standby and the separate LG Home tile remain to verify. Keep this open until owner acceptance; no new release yet.
 - [ ] **Background and Glass performance:** follow the [comparison procedure](docs/TV-TESTING.md#backgrounds-and-glass) on real TVs, including older models, app switching, standby and longer use. Adjust defaults only if observations justify it.
 - [ ] **Network tools on older TVs:** obtain separate Speed Test/cancellation/saved-result and TCP latency results for OLED65CX6LA and OLED55B7V-Z using the [network checklist](docs/TV-TESTING.md#network-tools). Earlier base/helper reports do not establish network support.
 - [ ] **Broader startup coverage:** record cold boot separately from remote standby and gather longer-use results across more models. The B9's accepted 0.5 standby/YouTube result is in [Validation](docs/VALIDATION.md#05-stability-update--31-october-2026).
