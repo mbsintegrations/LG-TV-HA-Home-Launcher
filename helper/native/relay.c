@@ -32,7 +32,14 @@ int main(int argc,char**argv){
  memset(held,0,sizeof held);if(ioctl(out,KEYSTATE(sizeof held),held)<0)return 15;for(int i=0;i<256;i++)if(held[i]){puts("FAIL destination-busy");return 16;}
  if(ioctl(in,GRAB,1)<0){puts("FAIL grab");return 17;}
  puts("READY");struct filter f={0};uint64_t last=ms();int reason=0;struct pollfd p[2]={{in,POLLIN,0},{0,POLLIN,0}};
- while(!stop){uint64_t now=ms();if(now-last>2000){reason=20;break;}if(filter_timeout(&f,now)){reason=22;break;}
+ while(!stop){uint64_t now=ms();if(now-last>2000){reason=20;break;}if(filter_timeout(&f,now)){
+  unsigned char keys[256]={0};
+  if(ioctl(in,KEYSTATE(sizeof keys),keys)<0){puts("FAIL home-key-state");reason=29;break;}
+  int down=!!(keys[HOME_KEY/8]&(1<<(HOME_KEY%8)));
+  if(down&&now-f.since>=8000){puts("HOME_PAUSE confirmed");reason=22;break;}
+  if(filter_confirm_hold(&f,down,now))puts("LGHOME");
+  if(!down)puts("HOME_RELEASE recovered");
+ }
  int r=poll(p,2,50);if(r<0){if(errno==EINTR)continue;reason=23;break;}
  if(p[1].revents&(POLLHUP|POLLERR)){reason=24;break;}
  if(p[1].revents&POLLIN){char b[64];ssize_t n=read(0,b,sizeof b);if(n<=0){reason=24;break;}last=ms();for(int i=0;i<n;i++){if(b[i]=='Q')stop=1;if(b[i]=='S')raise(SIGSTOP);}puts("P");}

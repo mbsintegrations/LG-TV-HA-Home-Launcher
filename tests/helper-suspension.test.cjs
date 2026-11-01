@@ -29,3 +29,18 @@ test('Short heartbeat stalls have no suspension evidence and signals cannot reco
 });
 
 test('Automatic startup can attach the remote without changing the foreground app',()=>{const h=harness(0,false);assert.equal(h.launches.length,0);h.worker.stdout.emit('data','HOME\n');assert.equal(h.launches.at(-1),'com.mbs.communityhome');});
+
+test('LG Home escape keeps short Home working after two hours of active playback',()=>{
+ const h=harness(0,false);h.worker.stdout.emit('data','LGHOME\n');
+ assert.equal(h.launches.at(-1),'com.webos.app.home');assert.equal(h.worker.ended,undefined);
+ for(let i=0;i<18000;i++){h.advance(400);h.worker.stdout.emit('data','P\n');h.tick();}
+ assert.equal(h.worker.ended,undefined);h.worker.stdout.emit('data','HOME\n');
+ assert.equal(h.launches.at(-1),'com.mbs.communityhome');
+});
+test('LG Home escape suppresses watched exits until a short Home resumes normal routing',()=>{
+ const p=require('../helper/app/policy').screen(['youtube.leanback.v4']);
+ p.next('youtube.leanback.v4',0);p.escape();assert.equal(p.next('com.webos.app.home',10),false);
+ p.next('youtube.leanback.v4',20);assert.equal(p.next('com.webos.app.home',7200020),false);
+ p.reset();p.next('youtube.leanback.v4',7200030);assert.equal(p.next('com.webos.app.home',7200040),false);
+ p.resume();p.next('youtube.leanback.v4',7200050);assert.equal(p.next('com.webos.app.home',7200060),true);
+});
