@@ -4,7 +4,7 @@ Available in **v0.3.0**. Backgrounds, card styling and arrangement are optional;
 
 Upload backgrounds directly in **Your space**, below **Layout theme**, including rotation, image opacity and darkening. No customizer is required. The **Open theme customizer** button below these settings, or **Theme customizer** in the sidebar, opens optional card styling and arrangement controls. **Continue** goes straight to Home Assistant setup.
 
-The customizer has three tabs: Backgrounds, Card styling and Arrangement. The preview uses sample readings and never sends household commands or installs anything on a TV.
+The customizer has three tabs: Backgrounds, Card styling and Arrangement. The preview uses sample readings by default, with an optional read-only live HA mode, and never sends household commands or installs anything on a TV.
 
 ## Backgrounds
 

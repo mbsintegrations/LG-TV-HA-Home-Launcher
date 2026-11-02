@@ -8,7 +8,7 @@ Keep your accepted profile and IPKs privately before building test variants. Cha
 
 With the helper active, open YouTube and press Home once. Repeat by exiting with Back. Put the TV into standby for at least 30 seconds, turn it on and record whether Home appears and the helper becomes active. Repeat across several normal uses. Test a normal TV restart separately and label it separately from standby.
 
-Test long Home and the LG Home tile last: both intentionally pause interception. Confirm arrows, pointer and volume still behave normally. Reopen Home and select Resume to restore interception. If startup fails, record whether Home itself is missing or only the helper is inactive. Capture sanitized status/logs before restarting the helper when possible.
+Test two-second Home → LG Home → short Home first. Test the eight-second emergency hold and LG Home tile last: those intentionally pause interception. Confirm arrows, pointer and volume still behave normally. Reopen Home and select Resume to restore interception. If startup fails, record whether Home itself is missing or only the helper is inactive. Capture sanitized status/logs before restarting the helper when possible.
 
 ## Backgrounds and Glass
 
@@ -41,3 +41,7 @@ On-TV developer network inspection can confirm hidden polling stops, but disconn
 ## Report limits clearly
 
 Different firmware, browser engines, network conditions and profiles can change results. Share the tested configuration and duration; use not tested for unavailable TVs or features. Never attach private configured packages, credentials or personal background images. The maintained results are in [Validation and compatibility](VALIDATION.md).
+
+## Calendar and live preview
+
+Choose three cards, then two and one; test their order in each layout you use. With Calendar enabled, select multiple calendars and check ongoing/all-day events, 3–5 rows, Today versus 7 days, timezone and disconnect/reconnect. Verify no calendar polling while Home is hidden. In setup, choose Live HA data, verify readings and that buttons remain non-actuating, then return to Sample. Test missing/denied calendars as unavailable, not an empty schedule.

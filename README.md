@@ -88,7 +88,7 @@ This is a sideloaded webOS app, not an LG Content Store release. Developer Mode 
 
 Configuration changes are made in the wizard and applied by rebuilding/reinstalling the package. There is no on-TV settings editor or QR pairing flow. Import your saved profile to update it. This deliberately avoids relying on `localStorage` surviving packaged-app updates.
 
-**Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview uses fictional sample readings even after HA discovery.
+**Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview defaults to fictional readings; select optional read-only Live HA data in the configurator to inspect your selected values.
 
 The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelper`.
 
