@@ -1,0 +1,9 @@
+body #screen .calendar-card #laundry-status{display:block;margin-top:12px;overflow:hidden}
+.calendar-event{border-left:3px solid;padding:3px 0 4px 10px;margin-bottom:4px;min-width:0}
+.calendar-title{font-size:18px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.calendar-when{font-size:13px;line-height:1.3;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.calendar-message{font-size:18px;padding-top:20px}
+body #screen .calendar-card{overflow:hidden}
+body.layout-panorama #screen .calendar-event,body.layout-weather #screen .calendar-event{padding-top:1px;padding-bottom:2px;margin-bottom:2px}
+
+body #screen .calendar-card #laundry-status{display:flex;flex-direction:column;height:calc(100% - 44px)}body #screen .calendar-event{flex:1;min-height:0;margin-bottom:0;display:flex;flex-direction:column;justify-content:center;padding:1px 0 1px 10px}.events-5 .calendar-title{font-size:16px;line-height:1.1}.events-5 .calendar-when{font-size:12px;line-height:1.1}

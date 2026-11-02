@@ -24,3 +24,6 @@ body.layout-panorama.no-controls .energy-bus:before{top:15px}
 body.layout-weather.no-controls .energy-diagram,body.layout-dock.no-controls .energy-diagram{height:220px}
 body.layout-weather.no-controls .energy-bus,body.layout-weather.no-controls .energy-bus span,body.layout-dock.no-controls .energy-bus,body.layout-dock.no-controls .energy-bus span{height:36px}
 body.layout-sidebar .app.logo-only .app-logo-frame{margin:0;width:150px;max-width:88%}
+
+/* Keep status values inside their own column, including long labels. */
+body.layout-sidebar .laundry-item{min-width:0;padding-right:20px}body.layout-sidebar .laundry-item>div{min-width:0;flex:1}body.layout-sidebar .laundry-item:nth-child(even){padding-left:20px;border-left:1px solid rgba(150,160,180,.25)}body.layout-sidebar .laundry-name,body.layout-sidebar .laundry-state,body.layout-sidebar .laundry-time{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}body.layout-sidebar.many-status .laundry-item{padding-right:20px}

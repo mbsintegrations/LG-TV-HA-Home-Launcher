@@ -53,3 +53,7 @@ The optional helper's pinned ws 1.1.5 has a high-severity [memory-exhaustion adv
 Audit results change over time. Re-run both `npm audit` and `npm audit --prefix helper/vendor` after installing their dependencies. Neither a passing unit-test workflow nor a public release means a clean security audit.
 
 Include model, firmware, app version, setup OS, sanitized error and reproduction steps. Remove tokens, pairing keys, passphrases, entity/location metadata and stream URLs from logs/screenshots. Use the repository issue templates for sanitized bug reports. For sensitive findings follow [Security reporting](../SECURITY.md).
+
+### 0.6 audit refresh — 2 November 2026
+
+The pinned desktop dependency audit remains 18 affected packages (1 critical, 4 high, 13 moderate); no dependency versions were changed in this release. Calendar queries use only `calendar.get_events` on the TV and calendar REST reads in setup. Live preview returns selected display data, never credentials or arbitrary entity attributes, and has no household-control endpoint.

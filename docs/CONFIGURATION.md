@@ -91,3 +91,7 @@ The main display uses the existing TV layout with flexbox and ES5 scripts for ol
 ## Manual helper flag
 
 `helper.enabled` defaults false. The base wizard refuses a helper-enabled build because correct service ownership needs a separate TV-specific build. Follow the [helper guide](HOME-BUTTON-HELPER.md). Its build enables the flag and adds the service. The flag alone cannot install a working native helper.
+
+## Calendar, card visibility and live data
+
+See [Calendar and cards](CALENDAR-AND-CARDS.md). Existing profiles default to no calendar and retain their existing layout. `cards.visible` selects `temperatures`, `laundry` (calendar or status) and `energy`; `design.cardOrder` sets their order. `cards.arranged` applies the new flexible sizing/Sidebar positioning only after the user changes card visibility or order. `calendar` configures enabled/title/days/maxEvents and up to four `{entity,label,color}` sources.

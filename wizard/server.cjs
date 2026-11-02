@@ -4,6 +4,7 @@ const {build,endpoint,packager}=require('../scripts/build.cjs'),P=require('../ap
 const example=JSON.parse(fs.readFileSync(path.join(root,'config.example.json'),'utf8'));
 function createServer(options={}){
  const csrf=crypto.randomBytes(32).toString('hex');let profile=P.validate(structuredClone(example)),connection=null,entities=[],building=false;const downloads=new Map();
+ async function haRead(pathname){if(!connection)throw Error('Connect to Home Assistant first');const r=await fetcher(connection.url.replace(/^ws/,'http').replace(/\/api\/websocket$/,'')+pathname,{headers:{Authorization:'Bearer '+connection.token},redirect:'error',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HA read failed (HTTP '+r.status+')');let size=0,parts=[];for await(const b of r.body){size+=b.length;if(size>12*1024*1024)throw Error('HA response too large');parts.push(b);}return JSON.parse(Buffer.concat(parts).toString('utf8'));}
  const fetcher=options.fetch||fetch;
  function send(res,status,data,type='application/json'){res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'SAMEORIGIN','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"});res.end(type==='application/json'?JSON.stringify(data):data);}
  async function json(req){if(req.headers['content-type']!=='application/json')throw Error('Expected JSON');let size=0,chunks=[];for await(const b of req){size+=b.length;if(size>4*1024*1024)throw Error('Request too large');chunks.push(b);}return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
@@ -12,10 +13,16 @@ function createServer(options={}){
   const u=new URL(req.url,origin);try{
    if(u.pathname.startsWith('/api/')){
     if(req.headers['x-setup-session']!==csrf||req.headers.origin&&req.headers.origin!==origin){send(res,403,{error:'Reload setup to restore the local session'});return;}
-    if(req.method==='GET'&&u.pathname==='/api/state'){let tools=true;try{packager();}catch{tools=false;}send(res,200,{profile,entities,connected:!!connection,buildTools:tools,palettes:require('../scripts/theme.cjs').palettes});return;}
+    if(req.method==='GET'&&u.pathname==='/api/state'){let tools=true;try{packager();}catch{tools=false;}send(res,200,{profile,entities,connected:!!connection,connectionSettings:connection?{url:connection.url.replace(/^ws/,'http').replace(/\/api\/websocket$/,''),allowHttp:connection.allowHttp}:null,buildTools:tools,palettes:require('../scripts/theme.cjs').palettes});return;}
     if(req.method==='GET'&&u.pathname.startsWith('/api/download/')){const item=downloads.get(u.pathname.slice('/api/download/'.length));if(!item){send(res,404,{error:'Build not found in this session'});return;}res.writeHead(200,{'Content-Type':'application/octet-stream','Content-Disposition':'attachment; filename="'+item.filename+'"','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});fs.createReadStream(item.artifact).pipe(res);return;}
     if(req.method!=='POST'){send(res,405,{error:'POST required'});return;}
     const body=await json(req);
+    if(u.pathname==='/api/live-preview'){
+     const previewConnection=connection,ids=P.entities(profile),all=await haRead('/api/states'),states={};if(!Array.isArray(all))throw Error('Invalid HA state response');
+     all.forEach(s=>{if(!ids.includes(s.entity_id))return;const attributes={};for(const k of ['unit_of_measurement','temperature','temperature_unit','humidity','wind_speed','wind_speed_unit'])if(s.attributes&&['string','number'].includes(typeof s.attributes[k]))attributes[k]=s.attributes[k];states[s.entity_id]={state:String(s.state).slice(0,255),attributes};});
+     if(profile.calendar.enabled&&profile.cards.visible.includes('laundry')){const C=require('../app/calendar'),range=C.range(profile,new Date()),events={};let failed=false;for(const c of profile.calendar.calendars){try{events[c.entity]={events:await haRead('/api/calendars/'+encodeURIComponent(c.entity)+'?start='+encodeURIComponent(range.start)+'&end='+encodeURIComponent(range.end))};}catch{failed=true;}}states.__calendar={events:C.merge(events,profile,Date.now()),error:failed};}
+     if(connection!==previewConnection)throw Error('Connection changed; refresh preview');send(res,200,{states});return;
+    }
     if(u.pathname==='/api/disconnect'){connection=null;entities=[];send(res,200,{ok:true});return;}
     if(u.pathname==='/api/discover'){
      connection=null;entities=[];const ep=endpoint(body.url,body.allowHttp===true);if(typeof body.token!=='string'||body.token.length<20||body.token.length>8192||/\s/.test(body.token))throw Error('Enter your Home Assistant access token');
@@ -38,7 +45,7 @@ function createServer(options={}){
    if(u.pathname==='/preview/connection.json'){send(res,200,{});return;}
    if(u.pathname==='/preview/theme.css'){send(res,200,require('../scripts/theme.cjs').theme(P.validate(profile)),'text/css');return;}
    const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/network-setup.js':'wizard/network-setup.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
-   for(const name of ['app.js','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
+   for(const name of ['app.js','calendar.js','calendar.css','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
    let relative=files[u.pathname];
    if(P.logoKeys.some(k=>['app-logo','logo'].some(mode=>[false,true].some(light=>'/preview/'+P.logoFile(k,mode,light)===u.pathname))))relative='app/'+u.pathname.slice('/preview/'.length);
    if(u.pathname==='/docs/')relative='docs/INDEX.md';

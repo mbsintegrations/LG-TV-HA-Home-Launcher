@@ -15,7 +15,7 @@ blueprint:
     launcher_source:
       name: Launcher source name
       description: Exact source_list name on this TV.
-      default: Home Launcher Preview
+      default: Home
       selector:
         text: {}
     settle_seconds:
@@ -26,6 +26,15 @@ blueprint:
           min: 1
           max: 30
           unit_of_measurement: seconds
+    minimum_off_seconds:
+      name: Minimum time reported off
+      description: Ignore brief false-off reports during playback. Quick standby cycles shorter than this need a Home press. Longer connection outages can still resemble power-off.
+      default: 60
+      selector:
+        number:
+          min: 30
+          max: 600
+          unit_of_measurement: seconds
     excluded_app:
       name: Do not interrupt this app ID
       description: For example a camera overlay. Leave empty if unused.
@@ -33,6 +42,7 @@ blueprint:
       selector:
         text: {}
 variables:
+  minimum_off: !input minimum_off_seconds
   tv_entity: !input tv
   source_name: !input launcher_source
   excluded_id: !input excluded_app
@@ -44,6 +54,14 @@ triggers:
     for:
       seconds: !input settle_seconds
 conditions:
+  - condition: template
+    value_template: >-
+      {{ trigger is defined and trigger.from_state is defined
+         and trigger.from_state is not none and trigger.to_state is defined
+         and trigger.to_state is not none
+         and trigger.from_state.state == 'off' and trigger.to_state.state == 'on'
+         and (as_timestamp(trigger.to_state.last_changed, 0)
+              - as_timestamp(trigger.from_state.last_changed, 0)) >= minimum_off | int(60) }}
   - condition: template
     value_template: >-
       {{ is_state(tv_entity, 'on')
