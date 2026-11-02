@@ -157,3 +157,11 @@ The optional embedded Speed Test and network setup use sample readings in these 
 ![Speed Test](images/screenshots/speed-test.jpg)
 
 ![Network configurator](images/screenshots/configurator-network.jpg)
+
+## Calendar and card choices (0.6)
+
+![Panorama calendar with sample events](images/screenshots/calendar-panorama.png)
+
+![Visible cards and order in the configurator](images/screenshots/configurator-calendar.png)
+
+See [calendar, cards and live preview](CALENDAR-AND-CARDS.md) for configuration.

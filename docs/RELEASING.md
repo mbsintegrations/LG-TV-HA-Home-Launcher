@@ -1,6 +1,6 @@
 # Release checklist
 
-Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Release 0.5 improves helper startup/recovery and delays optional network latency; 0.1.1 remains the first regular release and 0.1.0 the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
+Maintainer reference: follow [Publishing on GitHub](PUBLISHING.md). Release 0.6 combines calendars, card placement, read-only live previews and Home/startup corrections; 0.1.1 remains the first regular release and 0.1.0 the historical preview. Local packaging never uploads anything; publication is a separate reviewed step.
 
 ## Build a review candidate
 

@@ -17,6 +17,14 @@ The wizard does not retain edits after its process restarts unless you exported 
 
 Versions 0.1, 0.2 and 0.3 embed the profile and token into each locally configured package. Rebuilding reapplies settings; it does not rely on `localStorage` surviving updates. The same app ID replaces that app on the selected TV. Do not use a package intended for another household/room.
 
+## Updating to 0.6
+
+Preserves schema 1 and existing profiles. Calendar and live preview are optional; visible cards default to the previous configuration. Configure new choices in Home cards. Connection details remain in setup memory, never in the exported profile.
+
+Follow the paired-package procedure below, using launcher **0.6.0** and helper/service **0.3.0**. Do not install a base-only package over a helper-enabled installation. Two-second Home now opens LG Home without permanent pause; a short press returns. Eight seconds or the LG Home tile pauses interception.
+
+Update HA startup automations separately: re-import [the blueprint](../blueprints/home-on-startup.yaml) and review each automation, or add the minimum-off condition to a hand-written automation. The default requires 60 seconds continuously reported off, then the usual 3 seconds on. This rejects brief reconnect reports during playback but cannot distinguish longer outages from genuine standby. Quick off/on cycles may need a normal Home press. Disable the automation if it interrupts playback. Installing a TV package does not update HA.
+
 ## Updating to 0.5
 
 This stability update preserves profile schema 1, app tiles, controls, palettes and layouts. Optional latency readings now wait 10 seconds after Home opens or returns to the foreground. Existing network choices remain unchanged.
@@ -61,7 +69,7 @@ Never install a probe over a running helper. Do not run the predecessor/private 
 
 Without helper: choose the LG Home tile or press Home normally.
 
-With helper: hold Home about two seconds or choose LG Home to pause interception. If needed, run `node helper/remote.cjs YOUR_TV pause`. Confirm normal remote behavior before removal.
+With helper 0.3.0: hold Home for eight seconds or choose the LG Home tile to pause interception. A two-second hold opens LG Home but keeps short Home available. If needed, run `node helper/remote.cjs YOUR_TV pause`. Confirm normal remote behavior before removal.
 
 Disable the startup automation if you no longer want the launcher to open on power-on. Removing the helper alone does not disable an HA automation.
 

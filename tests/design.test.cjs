@@ -15,7 +15,7 @@ test('Frosted wallpaper blur keeps flat colours stable and softens an edge witho
 });
 
 test('Expired wizard session recovers layout saves once, without replaying credential or build requests',async()=>{
- const source=fs.readFileSync('wizard/wizard.js','utf8');const apiSource=source.slice(source.indexOf(' async function api('),source.indexOf(' function button('));const calls=[];let queue=[];
+ const source=fs.readFileSync('wizard/wizard.js','utf8');const apiSource=source.slice(source.indexOf(' async function api('),source.indexOf(' async function refreshLivePreview('));const calls=[];let queue=[];
  const ctx={token:'old-test-session',connected:true,entities:[{}],DOMParser:class {parseFromString(){return {querySelector(){return {content:'new-test-session'};}};}},fetch:async(url,opts)=>{calls.push({url,opts});return queue.shift();}};
  vm.runInNewContext(apiSource,ctx);
  queue=[{status:403},{ok:true,text:async()=>'<html></html>'},{ok:true,json:async()=>({ok:true})}];assert.equal((await ctx.api('profile',{layout:'classic'})).ok,true);assert.deepEqual(calls.map(c=>c.url),['/api/profile','/','/api/profile']);assert.equal(calls[2].opts.headers['X-Setup-Session'],'new-test-session');assert.equal(ctx.connected,false);

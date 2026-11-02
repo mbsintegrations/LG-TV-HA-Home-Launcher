@@ -1,33 +1,31 @@
-# LG TV – HA Home Launcher 0.5
+# LG TV – HA Home Launcher 0.6
 
-Released 31 October 2026.
+One combined update for calendars, configurable card placement, live setup previews and Home-button recovery.
 
-This stability update improves Home-button startup and recovery after standby, and gives the launcher ten seconds to settle before optional latency checks begin. Your layout, colours, apps, controls and saved profile remain unchanged.
+## New
+
+- **Calendar card:** merge up to four Home Assistant calendars; show 3–5 upcoming or ongoing events with date, time, all-day labels and a colour/label per calendar. Choose today, 3, 7 or 14 days. Works with calendars already integrated into HA; no separate Google login. Read-only, off by default, refreshes every five minutes while Home is visible.
+- **Card selection and order:** show one, two or three cards and arrange Temperature, Calendar and Energy. Appliances & status remains an alternative to Calendar in the middle card slot. Hidden card settings are retained. Existing profiles retain their layout until edited.
+- **Live HA preview:** optional read-only display in the local configurator, refreshing every 30 seconds. The token stays in the setup server; only selected display data reaches the iframe. Sample mode remains the default.
 
 ## Fixed
 
-- Verify that the helper controller and worker actually started. An accepted LG launch request alone no longer counts as active.
-- Retry once if no controller reports within ten seconds. If startup still fails, show an error and leave the helper paused for manual Resume.
-- Ignore stale reports and unfinished startup deadlines from a previous TV boot.
-- Recover after a long suspension only after remote release and old-process exit are confirmed. Repeated failures stay paused; intentional pauses, long Home and LG Home escape keep their behavior.
-- Keep the current app visible during automatic helper startup/recovery.
-
-## Improved
-
-- Optional TCP latency checks start ten seconds after opening or returning to Home. Hiding Home cancels the pending start; polling remains paused during Speed Test.
-- Helper package/controller and service are now version 0.2.0, paired with launcher 0.5.
-- Added a per-feature compatibility report and repeatable TV checks for backgrounds, Glass, Speed Test and TCP latency. Updated the roadmap and upgrade/recovery instructions.
+- A two-second Home hold opens LG Home without permanently disabling short Home. A short press returns to the launcher; an eight-second hold releases interception as an emergency escape. Physical key-state checking prevents delayed releases from becoming false holds.
+- Startup blueprint ignores brief false-off reports during playback: the default requires 60 seconds reported off before the existing on-state settling delay. Quick standby cycles below that threshold may require a Home press. Longer connection outages can still resemble power-off.
+- Sidebar status columns keep long names and values inside their own column. Read-only lock status entities are now selectable.
+- HA address and plain-HTTP choice survive step changes, builds and page reloads within the same setup server session. Tokens are not returned to the page. Server restart still forgets the connection.
+- Configurator edition now displays 0.6.
 
 ## Updating
 
-Without a helper, import your saved profile into the new configurator, reconnect HA and rebuild your private launcher package.
+Import your saved profile, connect HA and rebuild your private package. For helper installations rebuild and install **both** packages: launcher **0.6.0** and helper/service **0.3.0**, with your existing TV-specific options. Pause and verify input release before installation. Keep your old pair for rollback.
 
-With the optional helper, rebuild and install **both private packages** from the same source using your existing per-TV options. Pause and confirm input release first, install the pair, open Home and select Resume once if needed. Wait for **Home button active** before testing. Keep the previous working pair for rollback. The public sample has no HA token and must not replace your configured installation.
+**Existing startup automations need a separate update.** Re-import the startup blueprint and check each automation's minimum-off value. Hand-written automations do not inherit blueprint changes: add the equivalent guard or disable automatic startup until updated. Replacing a TV IPK does not change HA automations.
 
-See [Updates and recovery](UPDATES-AND-RECOVERY.md#updating-to-05) and the [helper guide](HOME-BUTTON-HELPER.md).
+The LG Home tile deliberately pauses the helper; reopen Home and select Resume after using that tile. This differs from the new two-second remote hold. [Helper and recovery guide](HOME-BUTTON-HELPER.md) · [Calendar and live preview](CALENDAR-AND-CARDS.md) · [Update instructions](UPDATES-AND-RECOVERY.md#updating-to-06).
 
-## Tested scope
+## Validation
 
-On 31 October 2026, the OLED65B9PLA owner confirmed the installed 0.5 build passed the requested checks: unchanged layout/live HA, YouTube → Home, standby startup, latency readings and long Home/LG Home escape with Resume. Returning from YouTube felt faster; standby to Home took about eight seconds in this test. This is an owner observation on one TV, not a timing guarantee for every model. Automated checks also cover an interrupted startup across boot; deliberately interrupting that timing window and removing mains power were not part of the physical test.
+The B9 owner accepted two-second LG Home → short Home and return after extended YouTube viewing on 1 November, describing return as practically instant. The startup duration guard rejects the brief false-off intervals observed on 2 November; long-playback acceptance of that separate mitigation is pending.
 
-Background/Glass performance on real TVs and separate network-tool reports for OLED65CX6LA and OLED55B7V-Z are still outstanding. Existing base/helper compatibility reports remain valid for their stated scope. See [Validation](VALIDATION.md), [TV testing](TV-TESTING.md) and the [TODO](../TODO.md).
+Calendar/live-preview behaviour, profile compatibility and layouts have automated/browser coverage. They are not yet physically accepted on a TV. Repeated standby, physical eight-second emergency release/arrows/volume, background/Glass performance and older-TV network testing remain on the roadmap. TV installations are not changed by this release.

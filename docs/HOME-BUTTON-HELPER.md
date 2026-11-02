@@ -7,12 +7,12 @@ The helper consists of native ARM executables, an ES5 JavaScript controller and 
 ## 1. What it changes
 
 - A short Home press asks webOS to launch `com.mbs.communityhome`.
-- Holding Home for about two seconds releases interception and opens LG's original Home/app bar.
+- Holding Home for about two seconds opens LG's original Home/app bar. Release it, then a short Home press returns to the launcher without Resume. Holding continuously for eight seconds releases interception and pauses the helper for emergency recovery.
 - The LG Home tile pauses interception before opening LG Home.
 - A watched media-app transition to LG Home, observed through HA's TV entity, can return to the custom launcher. It does not redirect every foreground change.
 - Controller/worker heartbeats, process identity checks, exclusive locks and release-on-failure limit the effect of a crashed process.
 
-The underlying LG UI still exists. The helper does not replace system files, flash firmware, change the TV's Node runtime, or root the TV. Closing the launcher does **not** stop the helper. To stop it use Pause or the long Home press.
+The underlying LG UI still exists. The helper does not replace system files, flash firmware, change the TV's Node runtime, or root the TV. Closing the launcher does **not** stop the helper. To stop it use Pause, the LG Home tile or the eight-second emergency Home hold.
 
 ## 2. Verified models and compatibility
 
@@ -170,10 +170,10 @@ The trial automatically ends after at most 120 seconds. During it:
 2. Test arrows, OK, Back, volume, pointer, wheel and any remote-specific keys you use.
 3. Open each watched media app and exit it. App-exit detection requires the correct HA entity and fresh `app_id` updates.
 4. Hold Home for about two seconds. Confirm the LG Home/app bar appears and input remains responsive.
-5. Resume a fresh bounded trial, then select the LG Home tile and confirm the same escape path.
+5. Briefly press Home and confirm return without Resume. Then hold for eight seconds and confirm input release, arrows and volume; start a fresh trial before testing the LG Home tile, which deliberately pauses interception.
 6. Let a trial expire and confirm normal LG remote behavior returns.
 
-The launcher's **Resume Home button** enables the installed helper without a trial timeout. Use the command above for a bounded first test. Holding Home or choosing the LG Home tile pauses interception; select Resume Home button when you want automatic return again.
+The launcher's **Resume Home button** enables the installed helper without a trial timeout. Use the command above for a bounded first test. A two-second hold opens LG Home while keeping short Home available; watched-app redirection stays suppressed until that short press. The LG Home tile and an eight-second hold explicitly pause interception; select Resume Home button after those paths.
 
 If you cannot perform these tests now, leave the helper paused. A service status saying active does not prove physical acceptance.
 
@@ -200,7 +200,7 @@ The updated launcher/helper pair records why the native worker stopped. After a 
 
 Recovery waits for the native release report, at least three seconds, and confirmation that both the previous controller and worker have exited. It clears the old suspension block only for that new session. The native ownership lock, two-second heartbeat fail-safe, held-key checks and remote release remain unchanged. Recovery is limited to one automatic attempt per five minutes. A second failure within that window remains paused until **Resume Home button** is selected; it does not retry when the window expires.
 
-Holding Home, choosing the LG Home tile, explicit Pause, trial expiry, signals, ordinary crashes and short heartbeat stalls never trigger automatic recovery. Rebuild and install **both** private packages for this update. A helper already paused by an older version needs one explicit Resume after updating. This does not replace the HA startup automation: Home must open before its service can recover the helper. Validate standby/wake, app exits and the long Home escape on your TV before relying on it.
+The eight-second emergency hold, choosing the LG Home tile, explicit Pause, trial expiry, signals, ordinary crashes and short heartbeat stalls never trigger automatic recovery. Rebuild and install **both** private packages for this update. A helper already paused by an older version needs one explicit Resume after updating. This does not replace the HA startup automation: Home must open before its service can recover the helper. Validate standby/wake, app exits and the long Home escape on your TV before relying on it.
 
 ## 10. Model-specific modification map
 
@@ -219,7 +219,7 @@ Keep changes in a local fork with a clear diff. Do not disable capability compar
 
 ## 11. Recovery and removal
 
-1. Hold Home for two seconds, or use the LG Home tile, and confirm normal LG controls.
+1. Hold Home continuously for eight seconds, or use the LG Home tile, and confirm normal LG controls and a paused helper. A two-second hold only opens LG Home and keeps short Home available.
 2. If needed, use `node helper/remote.cjs YOUR_TV pause` from the paired computer.
 3. Uninstall **only** `com.mbs.communityhomehelper` through Dev Manager or `npx ares-install --device YOUR_TV --remove com.mbs.communityhomehelper`.
 4. Disable the optional startup automation. Keep the launcher for manual use, or reinstall your saved base package without the helper service.

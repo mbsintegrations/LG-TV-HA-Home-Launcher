@@ -1,5 +1,12 @@
 # Validation and compatibility
 
+## 0.6 coverage
+
+- OLED65B9PLA: owner accepted the Home-key correction on 1 November (LG Home escape → short Home, extended YouTube return). The separate 2 November startup-automation guard has template checks but sustained playback acceptance is pending.
+- Calendar and live-preview transport: automated synthetic-data tests, including timezone/DST, ended/all-day events, selected-state filtering, missing connection and session protection. Layouts checked in a desktop browser; no 0.6 calendar-on-TV claim.
+- Community [report #17](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/17): **OLED65C65LA.DEKQLJP (UK)**, firmware **43.21.79**, reported webOS **11.2.0**, SoC **o26**, release **0.5**. Base app/live HA over local HTTP, HDMI 4, Netflix and remote navigation work. Helper absent; standby, network tools and backgrounds not tested. Sidebar status spacing and wizard connection retention addressed in 0.6.
+
+
 ## TV installations
 
 The configurable community launcher was installed on an OLED65B9PLA and a 65NANO766QA on 23 October 2026, with separate room profiles and the Dusk (plum) palette. Both installations include the Home-button helper.

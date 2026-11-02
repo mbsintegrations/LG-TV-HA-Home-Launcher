@@ -6,7 +6,7 @@ The project repository is [mbsintegrations/LG-TV-HA-Home-Launcher](https://githu
 
 Public releases use **0.5, 0.6, ...**, with tags such as `v0.5`. npm/webOS manifests retain the required numeric three-part form (`0.5.0`); the source ZIP uses `0.5` and the sample IPK retains `0.5.0`. Do not create patch-style public releases such as `0.4.1`.
 
-1. Update package.json/package-lock.json, app/appinfo.json and relevant helper manifests consistently. Update the changelog, download filenames, release notes and validation scope. The current update uses tag `v0.5`, with numeric webOS app package version `0.5.0`. The helper controller/service is `0.2.0`; the native relay code is unchanged.
+1. Update package.json/package-lock.json, app/appinfo.json and relevant helper manifests consistently. Update the changelog, download filenames, release notes and validation scope. The current update uses tag `v0.6`, numeric webOS app package version `0.6.0` and helper/controller/service `0.3.0`. The native relay includes the Home hold/release correction.
 2. Run `npm ci --ignore-scripts`, `npm test` and `npm run check`. Inspect dependency advisories separately; do not force dependency upgrades.
 3. With Python 3 available, run `npm run release`. If needed set `PYTHON` to its executable. This command only produces local files; it does not publish.
 4. Inspect the actual source archive and sample IPK, including their manifests. Confirm the sample connection is empty and the source contains no private builds, credentials, pairing material, real household profiles or development-import scripts. Inspect screenshots manually too.
@@ -35,8 +35,8 @@ A workflow definition is not evidence of a completed run. GitHub Actions tests o
 
 Create the release as a draft first, targeting the reviewed commit, with **pre-release** disabled for a regular release and the notes from docs/RELEASE-NOTES.md. Upload only:
 
-- `LG-TV-HA-Home-Launcher-0.5-source.zip`
-- `com.mbs.communityhome_0.5.0_SAMPLE_all.ipk`
+- `LG-TV-HA-Home-Launcher-0.6-source.zip`
+- `com.mbs.communityhome_0.6.0_SAMPLE_all.ipk`
 - `LG-TV-HA-Home-Launcher-designs.png`
 - `LG-TV-HA-Home-Launcher-themes.jpg`
 - `LG-TV-HA-Home-Launcher-speed-test.jpg`

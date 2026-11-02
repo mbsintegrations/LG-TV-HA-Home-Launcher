@@ -1,6 +1,6 @@
 # Configurator walkthrough
 
-The setup wizard runs locally on your computer. These screenshots use the supplied sample profile and empty connection fields; the TV preview always shows fictional readings. Open an image to see the complete step.
+The setup wizard runs locally on your computer. These screenshots use the supplied sample profile and empty connection fields; sample mode shows fictional readings; the optional Live HA data mode is read-only. Open an image to see the complete step.
 
 Start with [installation](START-HERE.md), then follow these six steps.
 

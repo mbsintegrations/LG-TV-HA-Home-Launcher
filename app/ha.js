@@ -2,10 +2,18 @@
  'use strict';
  var api=typeof module!=='undefined'&&module.exports?require('./profile'):root.HomeProfile;
  function Connection(connection,profile,onData,onStatus){
-  var socket=null,running=false,authenticated=false,subscribed=false,states={},requests={},seq=0,retry=null,heartbeat=null,authTimer=null,backoff=1000,lastSeen=0,subscription=0,pending={},allowed=api.entities(profile);
+  var socket=null,running=false,authenticated=false,subscribed=false,states={},requests={},seq=0,retry=null,heartbeat=null,authTimer=null,backoff=1000,lastSeen=0,subscription=0,calendarTimer=null,calendarGeneration=0,pending={},allowed=api.entities(profile);
   function emit(){onData(states,authenticated&&subscribed&&Date.now()-lastSeen<45000);}
   function request(command,cb){if(!socket||socket.readyState!==1||!authenticated){cb({success:false});return;}command.id=++seq;var id=seq;requests[id]={cb:cb,timer:setTimeout(function(){if(requests[id]){delete requests[id];cb({success:false});}},8000)};try{socket.send(JSON.stringify(command));}catch(e){clearTimeout(requests[id].timer);delete requests[id];cb({success:false});}return id;}
-  function clear(){clearTimeout(authTimer);clearInterval(heartbeat);authenticated=false;subscribed=false;Object.keys(requests).forEach(function(id){var r=requests[id];delete requests[id];clearTimeout(r.timer);r.cb({success:false});});}
+  function clear(){calendarGeneration++;clearTimeout(calendarTimer);clearTimeout(authTimer);clearInterval(heartbeat);authenticated=false;subscribed=false;Object.keys(requests).forEach(function(id){var r=requests[id];delete requests[id];clearTimeout(r.timer);r.cb({success:false});});}
+  function refreshCalendar(){
+   if(!profile.calendar||!profile.calendar.enabled||!running||!subscribed)return;
+   var generation=calendarGeneration,C=typeof module!=='undefined'&&module.exports?require('./calendar'):root.HomeCalendar,range=C.range(profile,new Date());
+   request({type:'call_service',domain:'calendar',service:'get_events',target:{entity_id:profile.calendar.calendars.map(function(c){return c.entity;})},service_data:{start_date_time:range.start,end_date_time:range.end},return_response:true},function(r){
+    if(generation!==calendarGeneration||!running)return;
+    states.__calendar=r.success&&r.result&&r.result.response?{events:C.merge(r.result.response,profile,Date.now()),error:false}:{events:[],error:true};emit();calendarTimer=setTimeout(refreshCalendar,300000);
+   });
+  }
   function connect(){
    if(!running)return;if(!connection.url||!connection.token){onStatus('Setup required');return;}states={};onStatus('Connecting to home');
    try{socket=new WebSocket(connection.url);}catch(e){onStatus('Connection unavailable');retry=setTimeout(connect,30000);return;}var current=socket;
@@ -16,7 +24,7 @@
     if(m.type==='auth_ok'){
      clearTimeout(authTimer);authenticated=true;backoff=1000;
      // Public documented HA API: subscribe before the snapshot to avoid missed changes.
-     subscription=request({type:'subscribe_events',event_type:'state_changed'},function(r){if(!r.success){current.close();return;}request({type:'get_states'},function(r){if(!r.success){current.close();return;}(r.result||[]).forEach(function(s){if(allowed.indexOf(s.entity_id)!==-1)states[s.entity_id]=s;});subscribed=true;lastSeen=Date.now();onStatus('Home connected');emit();});});
+     subscription=request({type:'subscribe_events',event_type:'state_changed'},function(r){if(!r.success){current.close();return;}request({type:'get_states'},function(r){if(!r.success){current.close();return;}(r.result||[]).forEach(function(s){if(allowed.indexOf(s.entity_id)!==-1)states[s.entity_id]=s;});subscribed=true;lastSeen=Date.now();onStatus('Home connected');emit();refreshCalendar();});});
      heartbeat=setInterval(function(){request({type:'ping'},function(r){if(r.type==='pong'){lastSeen=Date.now();emit();}else current.close();});},20000);return;
     }
     if(m.type==='event'&&m.id===subscription){var d=(m.event||{}).data||{};if(allowed.indexOf(d.entity_id)!==-1){if(d.new_state)states[d.entity_id]=d.new_state;else delete states[d.entity_id];lastSeen=Date.now();emit();}return;}

@@ -10,9 +10,9 @@
 
 > **Ad-free home screen:** our launcher displays no ads or the promotions you would normally see on LG Home. It does not change LG's underlying privacy or data-collection settings. Read **[LG privacy concerns, what this launcher does, and securing your media/IoT network](docs/PRIVACY-AND-NETWORK.md)**.
 
-**Public release 0.5.** See [compatibility and validation](docs/VALIDATION.md).
+**Public release 0.6.** See [compatibility and validation](docs/VALIDATION.md).
 
-A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
+A configurable home screen for LG TVs: streaming apps, HDMI sources, weather, room temperatures, lights, energy flow, upcoming calendar events and configurable appliance/device status. Designed for the remote, with a compact 1920×1080 layout that scales to the screen.
 
 The launcher talks directly to your Home Assistant. The setup computer can be shut down afterwards. No cloud account with this project, Mac service, Docker relay, or custom HA integration is required.
 
@@ -88,13 +88,13 @@ This is a sideloaded webOS app, not an LG Content Store release. Developer Mode 
 
 Configuration changes are made in the wizard and applied by rebuilding/reinstalling the package. There is no on-TV settings editor or QR pairing flow. Import your saved profile to update it. This deliberately avoids relying on `localStorage` surviving packaged-app updates.
 
-**Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview uses fictional sample readings even after HA discovery.
+**Your private configured IPK contains your HA access token. Do not share it.** Public sample packages contain no credential and show “Setup required” on a TV. The browser preview defaults to fictional readings; select optional read-only Live HA data in the configurator to inspect your selected values.
 
 The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelper`.
 
 ## Next release
 
-**0.5 is the stability update** for helper startup/standby recovery and delayed latency checks. See the [release notes](docs/RELEASE-NOTES.md). Remaining performance, compatibility and dependency follow-ups are tracked for **0.6** in the [TODO / roadmap](TODO.md), with [per-feature TV testing](docs/TV-TESTING.md).
+**0.6 adds calendars, card selection/order and live setup previews**, alongside Home-button recovery and a guarded startup blueprint. See [calendar and card configuration](docs/CALENDAR-AND-CARDS.md). See the [release notes](docs/RELEASE-NOTES.md). Remaining performance, compatibility and dependency follow-ups are tracked in the next-release section in the [TODO / roadmap](TODO.md), with [per-feature TV testing](docs/TV-TESTING.md).
 
 ## Compatibility and evidence
 

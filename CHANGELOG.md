@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6 — 2 November 2026
+
+- Calendar card, one/two/three-card visibility and order, and optional read-only live HA preview.
+- Fix configurator connection-field retention and Sidebar status spacing; add read-only lock status.
+- Ship accepted Home-button escape/return correction with distinct eight-second emergency release.
+- Guard startup blueprint against brief false-off reports; document separate automation updates.
+- Record OLED65C65LA community base-app/navigation report. See [release notes](docs/RELEASE-NOTES.md) for validation scope and migration.
+
+
 ## 0.5 — 31 October 2026
 
 - Verify the helper's controller and worker after a launch request, instead of treating LG's launch acknowledgement as proof it started. Retry once after 10 seconds only when no controller has reported, using the same session; pause with a visible error after 25 seconds without readiness. Automatic starts and retries keep the foreground app unchanged, and stale native reports cannot claim a running helper.

@@ -2,17 +2,23 @@
 
 The next update focuses on stability, usability and broader TV testing. These are planned tasks, not completed validation or a commitment to a release date. The latest published features are listed in the [changelog](CHANGELOG.md).
 
-## Next release — 0.6
+## Next release
 
-- [x] **Living Room Home-return acceptance — [issue #13](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/13):** on 1 November 2026 the owner confirmed two-second LG Home escape followed by short Home without Resume, and successful return after extended YouTube viewing, described as practically instant. [Correction #14](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/14) is queued for **0.6**; this is not a measured timing guarantee or other-model acceptance.
-- [ ] **Ship the accepted Home-return correction in 0.6:** complete helper/recovery documentation, physical eight-second emergency release/arrows/volume checks, repeated standby/app-exit checks and review the separate LG Home tile's explicit-pause behaviour. Keep issue #13 open until release preparation is complete. Public release remains 0.5.
-- [ ] **Background and Glass performance:** follow the [comparison procedure](docs/TV-TESTING.md#backgrounds-and-glass) on real TVs, including older models, app switching, standby and longer use. Adjust defaults only if observations justify it.
-- [ ] **Network tools on older TVs:** obtain separate Speed Test/cancellation/saved-result and TCP latency results for OLED65CX6LA and OLED55B7V-Z using the [network checklist](docs/TV-TESTING.md#network-tools). Earlier base/helper reports do not establish network support.
-- [ ] **Broader startup coverage:** record cold boot separately from remote standby and gather longer-use results across more models. The B9's accepted 0.5 standby/YouTube result is in [Validation](docs/VALIDATION.md#05-stability-update--31-october-2026).
-- [ ] **Compatibility and community reports:** continue collecting exact release/model/firmware/SDK and per-feature results with the [report template](.github/ISSUE_TEMPLATE/compatibility_report.md). Review new issues and link accepted changes here.
-- [ ] **Dependency follow-up:** review a patched official desktop CLI tree and legacy helper WebSocket dependency. The [31 October audit](docs/SECURITY.md#dependency-audit-snapshot-31-october-2026) remains unresolved; compatible lockfile repair made no changes. Do not force a CLI downgrade or replace the old-TV helper runtime without separate verification.
+- [ ] Physical TV acceptance of calendar and live preview-derived layouts; multiple calendars, timezone/DST and stale/disconnected states.
+- [ ] Sustained playback acceptance after the startup false-off guard; investigate underlying off/on reports. Longer outages can still pass the guard.
+- [ ] Repeated standby/app-exit, physical eight-second emergency release/arrows/volume and LG Home tile recovery across models.
+- [ ] Background/Glass performance comparison on real TVs, including older models.
+- [ ] Separate Speed Test/cancellation/saved-result and TCP latency results on OLED65CX6LA and OLED55B7V-Z.
+- [ ] Cold-boot and longer-use compatibility reports across models.
+- [ ] Dependency follow-up: patched official desktop CLI and legacy helper WebSocket dependency; do not force an incompatible upgrade. See [security audit](docs/SECURITY.md).
 
-These remaining checks are carried forward explicitly; a passing result on one model is not substituted for another model's test.
+## Completed in 0.6
+
+- [x] Accepted Home-return correction from [#14](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/pull/14), tracked in [#13](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/13), with updated hold/recovery documentation.
+- [x] Startup blueprint minimum-off guard and migration instructions for existing automations.
+- [x] [#17](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/17): C6 compatibility record, Sidebar status spacing, connection settings retention and optional live preview.
+- [x] [#18](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/18): calendar card with merged sources, labels/colours, today/3/7/14-day horizon and 3–5 events.
+- [x] One/two/three-card selection and positioning, with existing settings preserved.
 
 ## Completed in 0.5
 

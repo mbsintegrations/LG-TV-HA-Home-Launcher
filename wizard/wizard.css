@@ -4,3 +4,5 @@
 
 /* MBS Integrations website palette. TV themes remain independent. */
 :root{color-scheme:dark}.sidebar{border-right:1px solid #253541;padding-top:32px}.wordmark{display:block;line-height:0;letter-spacing:normal}.wordmark svg{display:block;width:100%;height:auto}.product-name{font-size:9px;letter-spacing:1.2px;color:#aab7c1;margin-top:18px}.edition{margin-top:24px}nav button.active{color:#f4f5f5;box-shadow:inset 3px 0 #73dbe2}nav button.active span,.eyebrow,.full-preview,.doc-link,.sidebar-bottom a{color:#73dbe2}.primary{color:#10242b;font-weight:bold}.page-title h1{font-family:Arial,sans-serif;font-weight:500}.summary strong,.sidebar-bottom p{font-family:Arial,sans-serif}.sidebar-bottom p{font-size:20px}.field input:focus,.field select:focus{border-color:#73dbe2}.preview-side{box-shadow:0 12px 30px #00000022}.pill{color:#b5f1f3}a{color:#73dbe2}.wordmark:focus-visible{outline-offset:8px}@media(max-width:600px){.wordmark{width:210px}.product-name{margin-top:12px}}
+
+#preview-mode{background:#182a35;color:#c8e3ee;border:1px solid #36505d;border-radius:7px;padding:7px;max-width:60%;font:inherit;font-size:12px}

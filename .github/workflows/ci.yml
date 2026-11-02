@@ -19,5 +19,10 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run check
+      - name: Native Home-key filter tests
+        if: runner.os != 'Windows'
+        run: |
+          cc -std=c99 -Wall -Wextra -Werror helper/native/filter.c helper/native/test_filter.c -o /tmp/home-filter-tests
+          /tmp/home-filter-tests
       - run: npm run build -- config.example.json --demo
       # No deployment, publishing, HA credentials or TV connection in CI.

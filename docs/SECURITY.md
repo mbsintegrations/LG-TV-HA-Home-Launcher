@@ -4,7 +4,7 @@ For the recent LG privacy discussion, the launcher's ad-free interface, comparis
 
 ## Trust boundaries
 
-The wizard runs on loopback only, requires a random setup-session header for its API and checks the Host and Origin headers. It has no household control or TV install endpoint. HA discovery uses an authenticated read of `/api/states`; redirects are refused. Entity names, not arbitrary HA attributes, are returned to the editor. The browser design preview receives an empty connection object and sample readings, never the token.
+The wizard runs on loopback only, requires a random setup-session header for its API and checks the Host and Origin headers. It has no household control or TV install endpoint. HA discovery uses an authenticated read of `/api/states`; redirects are refused. Entity names, not arbitrary HA attributes, are returned to the editor. The browser design preview receives an empty connection object, never the token. It uses sample readings by default; optional live preview receives only selected display values and calendar event titles/times/labels.
 
 The wizard's credential input is a local form, not an MBS-hosted website. Do not expose it through a reverse proxy, tunnel, LAN bind or port forwarding. Another untrusted local process with access to the setup page could obtain its session token; this is not a multi-user hardened service. Stop it when finished.
 
@@ -53,3 +53,7 @@ The optional helper's pinned ws 1.1.5 has a high-severity [memory-exhaustion adv
 Audit results change over time. Re-run both `npm audit` and `npm audit --prefix helper/vendor` after installing their dependencies. Neither a passing unit-test workflow nor a public release means a clean security audit.
 
 Include model, firmware, app version, setup OS, sanitized error and reproduction steps. Remove tokens, pairing keys, passphrases, entity/location metadata and stream URLs from logs/screenshots. Use the repository issue templates for sanitized bug reports. For sensitive findings follow [Security reporting](../SECURITY.md).
+
+### 0.6 audit refresh — 2 November 2026
+
+The pinned desktop dependency audit remains 18 affected packages (1 critical, 4 high, 13 moderate); no dependency versions were changed in this release. Calendar queries use only `calendar.get_events` on the TV and calendar REST reads in setup. Live preview returns selected display data, never credentials or arbitrary entity attributes, and has no household-control endpoint.

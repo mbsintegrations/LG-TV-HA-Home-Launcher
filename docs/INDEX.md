@@ -31,3 +31,5 @@ Start with the base launcher. The helper is a separate advanced manual procedure
 For release changes see [Changelog](../CHANGELOG.md). Contributors should read [Contributing](../CONTRIBUTING.md); maintainers should use [Publishing on GitHub](PUBLISHING.md).
 
 The local wizard's Documentation link serves these Markdown files as plain text. Follow the links in a Markdown viewer or repository after publication. No documentation page executes commands automatically.
+
+- [Calendar, visible cards and live preview](CALENDAR-AND-CARDS.md) — setup, privacy, placement and refresh behaviour.
