@@ -107,6 +107,7 @@ The community app IDs are `com.mbs.communityhome` and `com.mbs.communityhomehelp
 | **43UN73906LE** — 2020 | LG specifies webOS **5.0**; installed firmware/SDK not reported | User-reported: all features working, including the Home-button helper |
 | **OLED65CX6LA** | Reported webOS/SDK **5.6.2**; firmware **04.64.00**; SoC **o20** | Community-confirmed: base app, live Home Assistant data and Home-button helper |
 | **OLED55B7V-Z** | Reported webOS/SDK **3.9.0**; firmware **06.10.65**; SoC **m16p** | Community-confirmed: base app, live Home Assistant data and Home-button helper |
+| **OLED65C65LA.DEKQLJP (UK)** | Reported webOS **11.2.0**; firmware **43.21.79**; SoC **o26** | [Community report #17](https://github.com/mbsintegrations/LG-TV-HA-Home-Launcher/issues/17), release **0.5**: base app/live HA over local HTTP, HDMI 4, Netflix and remote navigation work. Helper not installed; standby, network tools and backgrounds not tested. |
 
 LG introduced the **webOS 4.x generation in 2018**. The compatibility estimate is based on its Chromium 53 app engine, which our TV code targets. webOS 1.x–2.x use older WebKit engines and are not currently supported or tested. See [LG's web-engine table](https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine) and [compatibility and validation](docs/VALIDATION.md) for model sources and feature-specific results. The helper remains model/firmware-dependent; the latest background rotation and Glass options have not yet had physical TV performance acceptance.
 
