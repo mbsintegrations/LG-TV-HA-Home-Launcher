@@ -10,7 +10,7 @@ The only on-TV version-1 configuration is the packaged profile. To change it, ed
 
 ## Layout and palette
 
-In **Your space**, choose a **Layout theme** independently of **Color Palette**. Classic preserves the original layout; Dock puts apps along the bottom; Weather gives the weather a larger panel; Sidebar uses a vertical app rail and grouped controls; Panorama uses a wide weather scene. Every layout supports up to eight app tiles and six controls. Existing profiles without a layout continue to use Classic. Custom stores `background`, `surface`, `accent`, `text` and `muted`, plus an optional `outline` for card borders. Omit `outline` and borders keep using `muted`.
+In **Your space**, choose a **Layout theme** independently of **Color Palette**. Classic preserves the original layout; Dock puts apps along the bottom; Weather gives the weather a larger panel; Sidebar uses a vertical app rail and grouped controls; Panorama uses a wide weather scene. Every layout supports up to eight app tiles and six controls. Existing profiles without a layout continue to use Classic. Custom stores `background`, `surface`, `accent`, `text` and `muted`, plus an optional `outline` for card borders. Omit `outline` and borders keep using `muted`. A set outline is used for Solid, Outlined and Glass borders. Custom palettes also recolour panels and scenery that have no separate card colour.
 
 The optional **Day / night entity** under Home cards accepts a Sun integration entity. This lets cloudy and rainy weather also use a night appearance. Without it, clear-night and any day/night attribute supplied by the weather integration are used. Weather artwork is generated locally as lightweight SVG; no image service or external downloads are required.
 
