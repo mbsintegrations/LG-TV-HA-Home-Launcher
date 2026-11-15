@@ -8,17 +8,41 @@ const palettes={
  monochrome:{background:'#18191a',surface:'#2b2d2e',accent:'#efefdf',text:'#f2f2ec',muted:'#bcbdb6'}
 };
 function alpha(hex,a){return 'rgba('+[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(',')+','+a+')';}
-function theme(p){const c=p.theme==='custom'?p.customColors:palettes[p.theme];if(!c||Object.values(c).some(v=>!/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid theme colours');return `/* Generated only from validated hex colours; no external resources. */
-body .network-metric{background:${c.background};border-color:${alpha(c.muted,.33)}}body .network-accent,body .network-result-value{color:${c.accent}}body .network-button{border-color:${c.muted};color:${c.text}}body .network-button.primary{background:${c.accent};color:${c.background}}body .network-progress>span{background:${c.accent}}body .network-muted{color:${c.muted}}
+function customSurfaces(p,c){const edge=c.outline||c.muted,sky=`linear-gradient(145deg,${c.surface},${c.background})`,panel=p.layout==='weather'||p.layout==='panorama'?`body.theme-custom.layout-${p.layout} .weather,body.theme-custom.layout-${p.layout} .weather[data-sky=cloudy],body.theme-custom.layout-${p.layout} .weather[data-sky=rain],body.theme-custom.layout-${p.layout} .weather[data-sky=night],body.theme-custom.layout-${p.layout} .weather[data-sky=storm],body.theme-custom.layout-${p.layout} .weather[data-sky=unknown]{background:${sky};color:${c.text}}\n`:'';return `
+body.theme-custom .far{background:linear-gradient(155deg,${alpha(c.surface,.21)},${alpha(c.background,0)})}
+body.theme-custom .near{background:linear-gradient(155deg,${alpha(c.background,.72)},${alpha(c.background,0)})}
+body.theme-custom #shade{background:${alpha(c.background,.9)}}
+body.theme-custom .helper-resume{background:${c.surface};color:${c.text};border-color:${edge}}
+body.theme-custom .helper-controls{color:${c.muted}}
+body.theme-custom .room-stat{border-bottom-color:${alpha(edge,.25)}}
+body.theme-custom .laundry-item{border-color:${edge}}
+body.theme-custom .laundry-icon,body.theme-custom .laundry-icon:before,body.theme-custom .laundry-icon:after{border-color:${edge}}
+body.theme-custom .room,body.theme-custom .weather-copy{border-left-color:${edge}}
+body.theme-custom .detail-row,body.theme-custom .dialog-footer{border-top-color:${edge}}
+body.theme-custom .dialog{background:${c.surface};border-color:${alpha(edge,.33)};color:${c.text}}
+${c.outline?`body.theme-custom .energy-node,body.theme-custom .energy-node.active{background:${c.background};border-color:${c.outline}}\n`:''}body.theme-custom .energy-bus:before,body.theme-custom .energy-bus span{background:${edge}}
+body.theme-custom .focusable:focus{background-color:${c.surface}!important;border-color:${c.accent}!important}
+body.theme-custom .control.on{background:${c.surface};border-color:${c.accent}}
+body.theme-custom .control.gate{background:${alpha(c.surface,.55)}}
+${panel}body.theme-custom.layout-weather .hero{background:${alpha(c.surface,.08)}}
+body.theme-custom.layout-weather .welcome,body.theme-custom.layout-panorama .welcome{color:${c.text}}
+body.theme-custom.layout-weather #clock{background:${alpha(c.surface,.84)};color:${c.text}}
+body.theme-custom.layout-weather .weather:before{box-shadow:0 0 0 13px ${alpha(edge,.08)},0 0 0 27px ${alpha(edge,.04)}}
+body.theme-custom .weather[data-sky=night] #weather-art,body.theme-custom .weather[data-sky=day] #weather-art{background:radial-gradient(ellipse,${alpha(c.accent,.16)},transparent 70%)}
+body.theme-custom.layout-sidebar .watch{border-right-color:${alpha(edge,.25)}}
+body.theme-custom.layout-sidebar .laundry-item:nth-child(even){border-left-color:${alpha(edge,.25)}}
+`}
+function theme(p){const c=p.theme==='custom'?p.customColors:palettes[p.theme];if(!c||Object.values(c).some(v=>!/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid theme colours');const outline=c.outline||c.muted;return `/* Generated only from validated hex colours; no external resources. */
+body .network-metric{background:${c.background};border-color:${alpha(outline,.33)}}body .network-accent,body .network-result-value{color:${c.accent}}body .network-button{border-color:${c.muted};color:${c.text}}body .network-button.primary{background:${c.accent};color:${c.background}}body .network-progress>span{background:${c.accent}}body .network-muted{color:${c.muted}}
 html,body{background:${c.background};color:${c.text}}
 body #screen,body.theme-slate #screen{background:linear-gradient(120deg,${c.background},${c.surface})}
-body .app,body .home-card,body .control,body .control.gate,body.theme-slate .app,body.theme-slate .home-card,body.theme-slate .control,body .dialog{background:${c.surface};border-color:${alpha(c.muted,.33)};color:${c.text}}
+body .app,body .home-card,body .control,body .control.gate,body.theme-slate .app,body.theme-slate .home-card,body.theme-slate .control,body .dialog{background:${c.surface};border-color:${alpha(outline,.33)};color:${c.text}}
 body .focusable:focus{border-color:${c.accent}!important;background-color:${c.surface}!important;box-shadow:0 0 0 4px ${alpha(c.accent,.33)}}
 body .control.on{border-color:${c.accent};background:${c.surface}}
 body .control-name,body .control.gate .control-name,body .card-top,body .node-power,body .brand.lg,body #weather-condition,body .detail-row strong{color:${c.text}}
 body .room,body .header-right,body .connection,body .weather-place,body #weather-detail,body .section-label>span,body .control-status,body .room-stat span,body .card-bottom,body .node-label,body .node-state,body .energy-note,body footer,body .input-label,body .laundry-name,body .laundry-time,body .credits{color:${c.muted}}
 body .control.on .control-status,body .active .node-state,body #preview-note{color:${c.accent}}
-body .energy-node,body .energy-node.active{background:${c.background};border-color:${c.muted}}
+body .energy-node,body .energy-node.active{background:${c.background};border-color:${outline}}
 body .energy-node.active{border-color:${c.accent}}
 body .text-action,body .key{color:${c.muted};border-color:${c.muted}}
 body .laundry-icon,body .laundry-icon:before,body .laundry-icon:after{border-color:${c.muted}}
@@ -27,5 +51,5 @@ body .energy-bus:before,body .energy-bus span{background:${c.muted}}
 body .dialog-action{background:${c.surface};color:${c.text};border-color:${c.accent}}
 body .dialog-heading button{color:${c.text};border-color:${c.muted}}
 body .sun{background:radial-gradient(ellipse,${alpha(c.accent,.13)},transparent 70%)}
-`+require('./layout.cjs').layout(p,c)+require('./design.cjs').design(p,c);}
+`+require('./layout.cjs').layout(p,c)+require('./design.cjs').design(p,c)+(p.theme==='custom'?customSurfaces(p,c):'');}
 module.exports={theme,palettes};

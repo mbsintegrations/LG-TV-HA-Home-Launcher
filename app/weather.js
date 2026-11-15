@@ -6,7 +6,7 @@
  function draw(state,nightOverride,layout){var area=document.getElementById('weather-art');if(!area){area=document.createElement('div');area.id='weather-art';area.setAttribute('aria-hidden','true');document.getElementById('weather').appendChild(area);}area.textContent='';
  var condition=state.state,night=condition==='clear-night'||nightOverride===true||(state.attributes||{}).is_daytime===false,storm=condition==='lightning'||condition==='lightning-rainy',rain=condition==='rainy'||condition==='pouring'||condition==='lightning-rainy'||condition==='snowy-rainy',snow=condition==='snowy'||condition==='snowy-rainy',clear=condition==='sunny'||condition==='clear-night',unknown=['unavailable','unknown','exceptional'].indexOf(condition)!==-1;
  var weather=document.getElementById('weather');weather.setAttribute('data-sky',unknown?'unknown':night?'night':storm?'storm':rain?'rain':condition==='cloudy'||condition==='fog'?'cloudy':'day');
- if(layout==='panorama')document.querySelector('.welcome').style.color=(night||storm||rain||unknown)?'#f1f7ff':'#203e59';
+ if(layout==='panorama'&&document.body.className.indexOf('theme-custom')===-1)document.querySelector('.welcome').style.color=(night||storm||rain||unknown)?'#f1f7ff':'#203e59';
  var svg=svgNode('svg',{viewBox:'0 0 320 240',role:'presentation'},area),defs=svgNode('defs',{},svg);
  function gradient(id,top,bottom){var g=svgNode('linearGradient',{id:id,x1:'0',y1:'0',x2:'.6',y2:'1'},defs);svgNode('stop',{offset:'0','stop-color':top},g);svgNode('stop',{offset:'1','stop-color':bottom},g);}
  gradient('wx-sun','#ffe8a1','#ffb237');gradient('wx-cloud',night?'#c5d2ed':'#ffffff',night?'#7389ad':'#c2d7eb');gradient('wx-moon','#fcf5d5','#c6dcff');

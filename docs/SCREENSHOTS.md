@@ -104,7 +104,7 @@ The original layout, retained for existing profiles.
 
 ## Custom examples
 
-These are examples, not an additional fixed preset. The same custom colours are used in all five: background `#221c2c`, surface `#38304b`, accent `#f5bb7d`, text `#fff4e8`, muted `#c8bed6`.
+These are examples, not an additional fixed preset. The same custom colours are used in all five: background `#221c2c`, surface `#38304b`, accent `#f5bb7d`, text `#fff4e8`, muted `#c8bed6`. Outline is omitted, so card borders use muted.
 
 ### Dock · Custom
 

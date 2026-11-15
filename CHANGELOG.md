@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Optional custom palette outline colour for card borders. When it is omitted, borders keep using the muted colour, so existing profiles look the same. When it is set, Solid, Outlined and Glass cards all use it for their border.
+- Custom palettes now recolour hardcoded card, panel and scenic colours, including the teal background artwork and the blue weather and panorama panels.
+
 ## 0.6 — 2 November 2026
 
 - Calendar card, one/two/three-card visibility and order, and optional read-only live HA preview.

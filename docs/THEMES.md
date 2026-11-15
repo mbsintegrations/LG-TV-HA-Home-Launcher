@@ -31,9 +31,11 @@ Existing profiles without a layout field open in **Classic**. Changing colours d
 | Dusk | Plum and rose |
 | Sand | Warm light surfaces |
 | Monochrome | Charcoal and neutral accents |
-| Custom | Your own five colour values |
+| Custom | Your own colours, plus an optional outline |
 
-Custom exposes **Background, Surface, Accent, Text and Muted** colours. Use six-digit hex colours. Keep text and muted text readable against the surface; Accent is also used for selection and active states. Check the focused app tile in the full-screen preview as well as ordinary cards. A light surface automatically uses contrasting bundled logo variants where supplied.
+Custom exposes **Background, Surface, Accent, Text and Muted** colours, and an optional **Outline** colour. Use six-digit hex colours. Muted is secondary text. Outline colours card borders. Leave Outline unset, including on existing profiles, and those borders keep using the muted colour. When Outline is set, it is the border for Solid, Outlined and Glass cards; Glass keeps its highlight and shadow. Preset palettes, and a custom palette with Outline omitted, keep the previous edges: Outlined uses Accent, and Glass uses a light edge.
+
+In a custom palette, card and panel colours follow that palette. This includes app tiles, controls, home cards, dialogs, energy nodes, the scenic background, weather and panorama panels, the modal shade, and photo scrims. Those surfaces have no separate card-colour control. Preset palettes keep their own scenic and weather artwork. Secondary text and small icon strokes stay on Muted unless Outline is set, in which case card borders and the listed panel edges use Outline. Keep text and muted text readable against the surface; Accent is also used for selection and active states. Check the focused app tile in the full-screen preview as well as ordinary cards. A light surface automatically uses contrasting bundled logo variants where supplied.
 
 The configurator keeps its own MBS colours and logo. The TV uses your selected palette, with only the small “by mbsintegrations.ie” footer credit.
 
