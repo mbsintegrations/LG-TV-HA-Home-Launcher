@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Optional custom palette outline colour for card borders. When it is omitted, borders keep using the muted colour, so existing profiles look the same.
+
 ## 0.6 — 2 November 2026
 
 - Calendar card, one/two/three-card visibility and order, and optional read-only live HA preview.

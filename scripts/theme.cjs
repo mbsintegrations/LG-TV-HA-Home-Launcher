@@ -8,17 +8,17 @@ const palettes={
  monochrome:{background:'#18191a',surface:'#2b2d2e',accent:'#efefdf',text:'#f2f2ec',muted:'#bcbdb6'}
 };
 function alpha(hex,a){return 'rgba('+[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(',')+','+a+')';}
-function theme(p){const c=p.theme==='custom'?p.customColors:palettes[p.theme];if(!c||Object.values(c).some(v=>!/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid theme colours');return `/* Generated only from validated hex colours; no external resources. */
-body .network-metric{background:${c.background};border-color:${alpha(c.muted,.33)}}body .network-accent,body .network-result-value{color:${c.accent}}body .network-button{border-color:${c.muted};color:${c.text}}body .network-button.primary{background:${c.accent};color:${c.background}}body .network-progress>span{background:${c.accent}}body .network-muted{color:${c.muted}}
+function theme(p){const c=p.theme==='custom'?p.customColors:palettes[p.theme];if(!c||Object.values(c).some(v=>!/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid theme colours');const outline=c.outline||c.muted;return `/* Generated only from validated hex colours; no external resources. */
+body .network-metric{background:${c.background};border-color:${alpha(outline,.33)}}body .network-accent,body .network-result-value{color:${c.accent}}body .network-button{border-color:${c.muted};color:${c.text}}body .network-button.primary{background:${c.accent};color:${c.background}}body .network-progress>span{background:${c.accent}}body .network-muted{color:${c.muted}}
 html,body{background:${c.background};color:${c.text}}
 body #screen,body.theme-slate #screen{background:linear-gradient(120deg,${c.background},${c.surface})}
-body .app,body .home-card,body .control,body .control.gate,body.theme-slate .app,body.theme-slate .home-card,body.theme-slate .control,body .dialog{background:${c.surface};border-color:${alpha(c.muted,.33)};color:${c.text}}
+body .app,body .home-card,body .control,body .control.gate,body.theme-slate .app,body.theme-slate .home-card,body.theme-slate .control,body .dialog{background:${c.surface};border-color:${alpha(outline,.33)};color:${c.text}}
 body .focusable:focus{border-color:${c.accent}!important;background-color:${c.surface}!important;box-shadow:0 0 0 4px ${alpha(c.accent,.33)}}
 body .control.on{border-color:${c.accent};background:${c.surface}}
 body .control-name,body .control.gate .control-name,body .card-top,body .node-power,body .brand.lg,body #weather-condition,body .detail-row strong{color:${c.text}}
 body .room,body .header-right,body .connection,body .weather-place,body #weather-detail,body .section-label>span,body .control-status,body .room-stat span,body .card-bottom,body .node-label,body .node-state,body .energy-note,body footer,body .input-label,body .laundry-name,body .laundry-time,body .credits{color:${c.muted}}
 body .control.on .control-status,body .active .node-state,body #preview-note{color:${c.accent}}
-body .energy-node,body .energy-node.active{background:${c.background};border-color:${c.muted}}
+body .energy-node,body .energy-node.active{background:${c.background};border-color:${outline}}
 body .energy-node.active{border-color:${c.accent}}
 body .text-action,body .key{color:${c.muted};border-color:${c.muted}}
 body .laundry-icon,body .laundry-icon:before,body .laundry-icon:after{border-color:${c.muted}}

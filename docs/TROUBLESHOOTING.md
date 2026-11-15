@@ -19,7 +19,7 @@
 | No solar / appliances | Hide unused nodes/cards. Use Power readings for other equipment, or rename Appliances & status and select generic read-only entities. |
 | Energy unavailable | Verify W/kW input unit, not kWh. Auto requires a unit attribute. Check inversion independently for grid/battery. |
 | Wrong flow direction | Compare the selected sensor's sign convention with the configuration guide. Do not assume all integrations match. |
-| Custom colours hard to read | Increase contrast for text and muted text against both background and cards, or switch to a preset. |
+| Custom colours hard to read | Increase contrast for text and muted text against both background and cards, or switch to a preset. Card borders follow the optional outline colour when it is set, and muted when it is not. |
 | Wrong appliance remaining time | Choose timestamp vs minutes vs text; timestamps need an explicit zone/offset. Generic inactive state words may need adaptation. |
 | Light state not confirmed | Check HA/device feedback. Do not repeatedly click; commands are not replayed. |
 | Gate action unavailable | Check position state, cover state or both selected scripts. Opening/closing/unknown states intentionally disable another movement request. |

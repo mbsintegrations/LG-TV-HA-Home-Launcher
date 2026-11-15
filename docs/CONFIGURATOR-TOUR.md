@@ -6,7 +6,7 @@ Start with [installation](START-HERE.md), then follow these six steps.
 
 ## 1. Your space
 
-Name the room and weather label, choose locale/time zone and clock format, then select **Color Palette** and **Layout theme** independently. Custom opens five colour inputs. Weather display name does not change the forecast location. See [themes and colours](THEMES.md).
+Name the room and weather label, choose locale/time zone and clock format, then select **Color Palette** and **Layout theme** independently. Custom opens colour inputs for background, surface, accent, text and muted, plus an optional outline for card borders. Weather display name does not change the forecast location. See [themes and colours](THEMES.md).
 
 [![1. Your space in the local configurator](images/screenshots/configurator-your-space.jpg)](images/screenshots/configurator-your-space.jpg)
 

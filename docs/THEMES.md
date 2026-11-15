@@ -31,9 +31,9 @@ Existing profiles without a layout field open in **Classic**. Changing colours d
 | Dusk | Plum and rose |
 | Sand | Warm light surfaces |
 | Monochrome | Charcoal and neutral accents |
-| Custom | Your own five colour values |
+| Custom | Your own colours, plus an optional outline |
 
-Custom exposes **Background, Surface, Accent, Text and Muted** colours. Use six-digit hex colours. Keep text and muted text readable against the surface; Accent is also used for selection and active states. Check the focused app tile in the full-screen preview as well as ordinary cards. A light surface automatically uses contrasting bundled logo variants where supplied.
+Custom exposes **Background, Surface, Accent, Text and Muted** colours, and an optional **Outline** colour. Use six-digit hex colours. Muted is secondary text. Outline colours the borders of app tiles, controls, home cards, dialogs, energy nodes and network metric cards. Leave Outline unset, including on existing profiles, and those borders keep using the muted colour. Secondary text, icon strokes and small control borders stay on Muted. The Outlined card finish still uses Accent for its bold edge, and Glass keeps its light highlight. Keep text and muted text readable against the surface; Accent is also used for selection and active states. Check the focused app tile in the full-screen preview as well as ordinary cards. A light surface automatically uses contrasting bundled logo variants where supplied.
 
 The configurator keeps its own MBS colours and logo. The TV uses your selected palette, with only the small “by mbsintegrations.ie” footer credit.
 
