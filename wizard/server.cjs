@@ -8,9 +8,24 @@ function createServer(options={}){
  const fetcher=options.fetch||fetch;
  function send(res,status,data,type='application/json'){res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'SAMEORIGIN','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"});res.end(type==='application/json'?JSON.stringify(data):data);}
  async function json(req){if(req.headers['content-type']!=='application/json')throw Error('Expected JSON');let size=0,chunks=[];for await(const b of req){size+=b.length;if(size>4*1024*1024)throw Error('Request too large');chunks.push(b);}return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
+ // Read-only image for the live preview. Only the image entity of the current profile can be fetched, and the HA token never leaves this process.
+ async function haImage(entity){
+  if(!connection)throw Error('Connect to Home Assistant first');
+  const base=connection.url.replace(/^ws/,'http').replace(/\/api\/websocket$/,''),r=await fetcher(base+(entity.startsWith('camera.')?'/api/camera_proxy/':'/api/image_proxy/')+encodeURIComponent(entity),{headers:{Authorization:'Bearer '+connection.token},redirect:'error',signal:AbortSignal.timeout(15000)});
+  if(!r.ok)throw Error('HA image read failed (HTTP '+r.status+')');
+  const type=(r.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();if(!['image/jpeg','image/png','image/webp','image/gif'].includes(type))throw Error('HA did not return a supported image');
+  let size=0;const parts=[];for await(const b of r.body){size+=b.length;if(size>8*1024*1024)throw Error('HA image too large');parts.push(b);}
+  return {type,body:Buffer.concat(parts)};
+ }
  const server=http.createServer(async(req,res)=>{
   const address=server.address(),origin='http://127.0.0.1:'+address.port;if(req.headers.host!=='127.0.0.1:'+address.port){send(res,403,{error:'Use '+origin});return;}
   const u=new URL(req.url,origin);try{
+   if(req.method==='GET'&&u.pathname==='/api/live-image'){
+    // An <img> cannot send headers, so the per-run setup session travels in the query string (same host only, never logged by the app).
+    if(u.searchParams.get('session')!==csrf||req.headers.origin&&req.headers.origin!==origin){send(res,403,{error:'Reload setup to restore the local session'});return;}
+    const wanted=u.searchParams.get('entity');if(!wanted||!P.imageActive(profile)||wanted!==profile.image.entity){send(res,403,{error:'Only the configured image entity can be read'});return;}
+    const image=await haImage(wanted);send(res,200,image.body,image.type);return;
+   }
    if(u.pathname.startsWith('/api/')){
     if(req.headers['x-setup-session']!==csrf||req.headers.origin&&req.headers.origin!==origin){send(res,403,{error:'Reload setup to restore the local session'});return;}
     if(req.method==='GET'&&u.pathname==='/api/state'){let tools=true;try{packager();}catch{tools=false;}send(res,200,{profile,entities,connected:!!connection,connectionSettings:connection?{url:connection.url.replace(/^ws/,'http').replace(/\/api\/websocket$/,''),allowHttp:connection.allowHttp}:null,buildTools:tools,palettes:require('../scripts/theme.cjs').palettes});return;}
@@ -21,7 +36,7 @@ function createServer(options={}){
      const previewConnection=connection,ids=P.entities(profile),all=await haRead('/api/states'),states={};if(!Array.isArray(all))throw Error('Invalid HA state response');
      all.forEach(s=>{if(!ids.includes(s.entity_id))return;const attributes={};for(const k of ['unit_of_measurement','temperature','temperature_unit','humidity','wind_speed','wind_speed_unit'])if(s.attributes&&['string','number'].includes(typeof s.attributes[k]))attributes[k]=s.attributes[k];states[s.entity_id]={state:String(s.state).slice(0,255),attributes};});
      if(profile.calendar.enabled&&profile.cards.visible.includes('laundry')){const C=require('../app/calendar'),range=C.range(profile,new Date()),events={};let failed=false;for(const c of profile.calendar.calendars){try{events[c.entity]={events:await haRead('/api/calendars/'+encodeURIComponent(c.entity)+'?start='+encodeURIComponent(range.start)+'&end='+encodeURIComponent(range.end))};}catch{failed=true;}}states.__calendar={events:C.merge(events,profile,Date.now()),error:failed};}
-     if(connection!==previewConnection)throw Error('Connection changed; refresh preview');send(res,200,{states});return;
+     if(connection!==previewConnection)throw Error('Connection changed; refresh preview');send(res,200,{states,imageSrc:P.imageActive(profile)&&states[profile.image.entity]?'/api/live-image?entity='+encodeURIComponent(profile.image.entity)+'&session='+csrf+'&v='+encodeURIComponent(states[profile.image.entity].state):''});return;
     }
     if(u.pathname==='/api/disconnect'){connection=null;entities=[];send(res,200,{ok:true});return;}
     if(u.pathname==='/api/discover'){
@@ -45,7 +60,7 @@ function createServer(options={}){
    if(u.pathname==='/preview/connection.json'){send(res,200,{});return;}
    if(u.pathname==='/preview/theme.css'){send(res,200,require('../scripts/theme.cjs').theme(P.validate(profile)),'text/css');return;}
    const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/network-setup.js':'wizard/network-setup.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
-   for(const name of ['app.js','calendar.js','calendar.css','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
+   for(const name of ['app.js','calendar.js','calendar.css','image.js','image.css','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
    let relative=files[u.pathname];
    if(P.logoKeys.some(k=>['app-logo','logo'].some(mode=>[false,true].some(light=>'/preview/'+P.logoFile(k,mode,light)===u.pathname))))relative='app/'+u.pathname.slice('/preview/'.length);
    if(u.pathname==='/docs/')relative='docs/INDEX.md';
@@ -53,7 +68,7 @@ function createServer(options={}){
    if(!relative||!fs.existsSync(path.join(root,relative))){send(res,404,'Not found','text/plain');return;}
    let content=fs.readFileSync(path.join(root,relative)),ext=path.extname(relative),type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8'}[ext];
    if(relative==='wizard/index.html')content=content.toString().replace('__SETUP_SESSION__',csrf);
-   if(relative==='app/index.html')content=content.toString().replace('__HA_ORIGIN__','').replace('__NETWORK_ORIGIN__','');
+   if(relative==='app/index.html')content=content.toString().replace('__HA_ORIGIN__','').replace('__HA_IMAGE_ORIGIN__','').replace('__NETWORK_ORIGIN__','');
    send(res,200,content,type);
   }catch(e){send(res,400,{error:e instanceof SyntaxError?'Invalid JSON':e.message});}
  });return server;

@@ -12,7 +12,7 @@ function design(p,c){if(!p.design)return '';const d=p.design,s=d.cards,selectors
  }
  css+=`body #screen .hero,body #screen .weather{border-radius:${s.radius}px}body #screen .energy-node{border-radius:${Math.min(18,s.radius)}px}\n`;
  if(p.layout!=='sidebar'){d.cardOrder.forEach((id,i)=>{css+=`body #screen #${id}{order:${i};margin-left:0;margin-right:18px}\n`;});css+='body #screen .home-cards{margin-right:-18px}\n';}
- const visible=(d.cardOrder||['temperatures','laundry','energy']).filter(k=>(!p.cards.visible||p.cards.visible.includes(k))&&(k==='temperatures'?p.temperatures.length:k==='laundry'?p.laundry.length||p.calendar&&p.calendar.enabled:p.energy.enabled));
+ const visible=(d.cardOrder||['temperatures','laundry','energy']).filter(k=>(!p.cards.visible||p.cards.visible.includes(k))&&(k==='temperatures'?p.temperatures.length:k==='laundry'?p.laundry.length||p.calendar&&p.calendar.enabled:(p.energy.enabled||!!(p.image&&p.image.entity))));
  if(p.cards.arranged&&p.layout==='sidebar'){
   const positions=visible.length===1?[{left:414,top:732,width:1434,height:262}]:visible.length===2?[{left:414,top:732,width:700,height:262},{left:1132,top:732,width:716,height:262}]:[{left:414,top:732,width:625,height:262},{left:1070,top:732,width:778,height:262},{left:1070,top:333,width:778,height:360}];
   visible.forEach((id,i)=>{const r=positions[i];css+=`body.layout-sidebar #screen #${id}{left:${r.left}px;top:${r.top}px;right:auto;width:${r.width}px;height:${r.height}px;margin:0}
@@ -22,7 +22,7 @@ function design(p,c){if(!p.design)return '';const d=p.design,s=d.cards,selectors
  if(p.layout==='custom'){
 
   css+=fs.readFileSync(path.join(__dirname,'../app/layout-custom.css'),'utf8');let y=126;const heights={hero:190,apps:166,controls:150,cards:310},sels={hero:'.hero',apps:'.watch',controls:'.controls-section',cards:'.home-cards'};
-  const visible=d.rows.filter(k=>k!=='controls'||p.controls.length).filter(k=>k!=='cards'||p.temperatures.length||p.laundry.length||p.calendar&&p.calendar.enabled||p.energy.enabled);
+  const visible=d.rows.filter(k=>k!=='controls'||p.controls.length).filter(k=>k!=='cards'||p.temperatures.length||p.laundry.length||p.calendar&&p.calendar.enabled||(p.energy.enabled||!!(p.image&&p.image.entity)));
   for(const k of visible){css+=`body.layout-custom #screen ${sels[k]}{top:${y}px;height:${heights[k]}px}\n`;y+=heights[k]+18;}
  }
  return css;

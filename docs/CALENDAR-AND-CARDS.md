@@ -33,3 +33,23 @@ The HA address and explicit plain-HTTP choice survive changing steps, building a
 ![Calendar alongside temperature and energy cards, Panorama in plum with sample data](images/screenshots/calendar-panorama.png)
 
 ![Card selection and calendar setup in the local configurator](images/screenshots/configurator-calendar.png)
+
+## Optional image card (still snapshot)
+
+The Energy slot can instead show the latest still picture of a Home Assistant `image.*` entity (or a `camera.*` entity's current snapshot), for example the last motion snapshot an HA automation saved. It follows the same slot-substitution idea as the calendar: when an image entity is set, the image card replaces the energy card; clear it to get the energy card back. It is off by default and existing profiles are unchanged.
+
+In **Home cards → Image card**, choose the entity and a title (up to 28 characters). Keep **Energy** ticked in **Visible cards & order**: the image uses that card's visibility and position, and the energy mappings are not subscribed while it is active. In a profile:
+
+```json
+"image": { "entity": "image.front_door_snapshot", "title": "Front door" }
+```
+
+How it behaves on the TV:
+
+- The picture is the entity's `entity_picture`, loaded over HTTP(S) from the Home Assistant address the TV already uses. It is reloaded only when the entity's state or that attribute changes (for an `image.*` entity the state is the time of the last update). It is one still image: no video, no polling and no streaming, so it avoids the cost of a live camera feed.
+- The state timestamp is shown under the picture as a time, with a short date when it is not from today. Without a usable picture the card says "No image".
+- Only when the card is active does the built content security policy gain an `img-src` entry for the Home Assistant origin. The picture is cropped to fill a 4:3 frame.
+- `camera.*` entities are accepted but untested on a TV: the card only reloads when the entity's state or `entity_picture` URL changes, so an idle camera can show an old frame. `image.*` entities are the intended use.
+
+In the configurator, sample data shows a placeholder picture. In the read-only Live HA preview the browser never receives the HA token: the setup server serves only the configured image entity through `GET /api/live-image`, requires the setup session, checks the response is an image of at most 8 MB, and the page reads nothing else from it.
+
