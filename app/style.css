@@ -4,3 +4,5 @@
 .brand.youtube{font-size:34px}.play-logo{width:49px;height:35px;border-radius:9px}.play-logo:after{left:20px;top:9px;border-left-width:14px;border-top-width:8px;border-bottom-width:8px}.brand.netflix{font-size:36px}.brand.plex{font-size:55px}.brand.prime{font-size:32px}.prime-smile{left:39px;width:82px}.brand.apple{font-size:36px;letter-spacing:-1px}.input-label{position:absolute;bottom:12px;font-size:12px;letter-spacing:2px;color:#a6b9ad}
 
 .brand.lg{font-size:33px;letter-spacing:-1px;color:#d5dfd7}.app{min-width:0}.helper-controls{position:absolute;left:88px;right:88px;bottom:24px;display:flex;align-items:center;justify-content:space-between;font-size:15px;color:#9fb4a6;z-index:2}.helper-resume{padding:10px 18px;border:2px solid #617a6a;background:#20362c;border-radius:10px;font-size:17px}.helper-resume[hidden]{display:none}
+/* Day/night switch (appearanceSchedule): no transition may run while the two theme sheets are swapped. */
+body.appearance-switch *{-webkit-transition:none!important;transition:none!important}

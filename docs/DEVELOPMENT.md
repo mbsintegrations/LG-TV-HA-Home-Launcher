@@ -26,7 +26,7 @@ TV at runtime
 
 `profile.js` is shared between Node and TV, so use ES5 there. The wizard/build run on Node 22+ and a modern desktop browser. TV code uses flexbox, no framework, no CSS variables, no eight-digit hex colours and no remote assets. Themes compile to an ordinary CSS file so older webOS and a strict script policy can use them.
 
-Layouts are compiled by `scripts/layout.cjs` from the `app/layout-*.css` sources and combined with the selected palette by `scripts/theme.cjs`. Weather artwork lives in `app/weather.js`. Keep new TV code ES5-compatible and avoid unsupported CSS features. `layout` is optional for old profiles; `weatherSun` is an optional read-only subscription.
+Layouts are compiled by `scripts/layout.cjs` from the `app/layout-*.css` sources and combined with the selected palette by `scripts/theme.cjs`. Weather artwork lives in `app/weather.js`. Keep new TV code ES5-compatible and avoid unsupported CSS features. `layout` is optional for old profiles; `weatherSun` is an optional read-only subscription. `appearanceSchedule` is optional too: without it `theme-night.css` is an empty placeholder and the page behaves exactly as before (see [configuration](CONFIGURATION.md#day-and-night-palettes-optional)).
 
 ## Run and verify
 

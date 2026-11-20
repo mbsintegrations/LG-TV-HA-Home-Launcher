@@ -28,4 +28,10 @@ body .dialog-action{background:${c.surface};color:${c.text};border-color:${c.acc
 body .dialog-heading button{color:${c.text};border-color:${c.muted}}
 body .sun{background:radial-gradient(ellipse,${alpha(c.accent,.13)},transparent 70%)}
 `+require('./layout.cjs').layout(p,c)+require('./design.cjs').design(p,c);}
-module.exports={theme,palettes};
+// theme.css is the profile's own palette, unchanged. theme-night.css is the night palette of an appearanceSchedule:
+// the same generator fed with the night theme, so each sheet is exactly what a single-palette build would ship.
+// Without a schedule it is an empty placeholder (index.html always links it, switched off with media="not all").
+const NO_NIGHT='/* No appearanceSchedule in this profile: nothing to switch to. */\n';
+function nightTheme(p){const s=p.appearanceSchedule;if(!s)return NO_NIGHT;return theme({...p,theme:s.night.theme});}
+function sheets(p){return {'theme.css':theme(p),'theme-night.css':nightTheme(p)};}
+module.exports={theme,palettes,nightTheme,sheets};

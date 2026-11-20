@@ -44,6 +44,7 @@ function createServer(options={}){
    if(u.pathname==='/preview/profile.json'){send(res,200,profile);return;}
    if(u.pathname==='/preview/connection.json'){send(res,200,{});return;}
    if(u.pathname==='/preview/theme.css'){send(res,200,require('../scripts/theme.cjs').theme(P.validate(profile)),'text/css');return;}
+   if(u.pathname==='/preview/theme-night.css'){send(res,200,require('../scripts/theme.cjs').nightTheme(P.validate(profile)),'text/css');return;}
    const files={'/':'wizard/index.html','/wizard.js':'wizard/wizard.js','/network-setup.js':'wizard/network-setup.js','/wizard.css':'wizard/wizard.css','/design.js':'app/design.js','/customizer.js':'wizard/customizer.js','/customizer.css':'wizard/customizer.css','/profile.js':'app/profile.js','/preview/':'app/index.html'};
    for(const name of ['app.js','calendar.js','calendar.css','energy.js','energy.css','network.js','network.css','cloudflare-engine.js','design.js','background.js','weather.js','ha.js','helper.js','profile.js','style.css','community.css','icon.png'])files['/preview/'+name]='app/'+name;
    let relative=files[u.pathname];
