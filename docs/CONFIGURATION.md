@@ -14,6 +14,24 @@ In **Your space**, choose a **Layout theme** independently of **Color Palette**.
 
 The optional **Day / night entity** under Home cards accepts a Sun integration entity. This lets cloudy and rainy weather also use a night appearance. Without it, clear-night and any day/night attribute supplied by the weather integration are used. Weather artwork is generated locally as lightweight SVG; no image service or external downloads are required.
 
+### Day and night palettes (optional)
+
+The **Day and night** panel adds an `appearanceSchedule` block to the profile. The palette chosen in Your space is the daytime palette. The block gives the night palette (a custom night palette uses your custom colours):
+
+```json
+"appearanceSchedule": {
+  "night": { "theme": "monochrome" },
+  "sunEntity": "sun.sun",
+  "dayFrom": "07:00",
+  "nightFrom": "19:00"
+}
+```
+
+- **Sunset to sunrise.** The night palette applies while `sunEntity` (the Sun integration, read-only) is `below_horizon`. If Home Assistant drops, the last reading carries on: its `next_setting` / `next_rising` attributes say when the look changes next. The fixed hours `dayFrom` / `nightFrom` (24-hour, profile time zone) are used only when no reading is available. An empty `sunEntity` uses the fixed hours only.
+- **Instant.** The build ships two complete stylesheets, `theme.css` (day) and `theme-night.css` (night). The switch flips their `media` attribute with transitions held off, so it costs one repaint. Light or dark logo files are chosen again for the new surface.
+- **Optional.** Without the block, `theme-night.css` is an empty placeholder and nothing changes.
+- **Preview.** In the configurator preview, add `?appearance=day` or `?appearance=night`. On the TV console, run `HomeAppearance.force('night')`; `HomeAppearance.force(null)` returns to the schedule.
+
 See [themes and colours](THEMES.md), the [complete screenshot gallery](SCREENSHOTS.md) and the [configurator walkthrough](CONFIGURATOR-TOUR.md) for examples and step-by-step setup.
 
 ## Apps and inputs

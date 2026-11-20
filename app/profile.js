@@ -24,6 +24,7 @@
     {key:'hdmi4',label:'HDMI 4',id:'com.webos.app.hdmi4',style:'input',logo:'input'}
   ];
   var logoKeys=['speedtest','youtube','kids','netflix','disney','prime','smarters','appletv','hulu','max','paramount','plex','jellyfin','livetv','guide','input'];
+  var themes=['forest','slate','ocean','dusk','sand','monochrome','custom'];
   function appPreset(id){for(var i=0;i<appCatalog.length;i++)if(appCatalog[i].id===id)return appCatalog[i];return null;}
   function appLogo(a){var preset=appPreset(a.id);return a.logo===undefined?(preset?(preset.logo||preset.key):''):a.logo;}
   function logoFile(key,appearance,light){if(logoKeys.indexOf(key)===-1)return '';if(key==='smarters')return 'logos/smarters.png';return appearance==='logo'||appearance==='logo-label'?'logos/wordmarks/'+(light&&['youtube','kids','jellyfin'].indexOf(key)!==-1?'light/':'')+key+'.svg':'logos/'+key+(key==='disney'?'.jpg':'.svg');}
@@ -37,12 +38,16 @@
   function label(v,path){str(v,path,28,false);}
   function privateIPv4(v){var a=String(v).split('.');if(a.length!==4||a.some(function(x){return !/^(0|[1-9][0-9]{0,2})$/.test(x)||Number(x)>255;}))return false;a=a.map(Number);return (a[0]===10||a[0]===172&&a[1]>=16&&a[1]<=31||a[0]===192&&a[1]===168)&&a[3]>0&&a[3]<255;}
   function validate(p){
-    keys(p,['schemaVersion','title','location','locale','timeZone','timeFormat','layout','weatherSun','theme','customColors','cards','design','network','apps','weather','temperatures','controls','energy','laundry','calendar','helper'],'Profile');
+    keys(p,['schemaVersion','title','location','locale','timeZone','timeFormat','layout','weatherSun','theme','customColors','cards','design','network','apps','weather','temperatures','controls','energy','laundry','calendar','helper','appearanceSchedule'],'Profile');
     if(p.schemaVersion!==1)throw Error('Unsupported profile version. Expected 1.');
     label(p.title,'Room name');str(p.location,'Location',40,true);str(p.locale,'Locale',30);str(p.timeZone,'Time zone',80);
     try{new Intl.DateTimeFormat(p.locale,{timeZone:p.timeZone}).format(new Date());}catch(e){throw Error('Locale or time zone is not supported');}
     choice(p.timeFormat,['12','24'],'Clock format');if(p.layout===undefined)p.layout='classic';choice(p.layout,['classic','dock','weather','sidebar','panorama','custom'],'Layout');if(p.weatherSun===undefined)p.weatherSun='';entity(p.weatherSun,'Day/night entity',['sun'],true);
-    choice(p.theme,['forest','slate','ocean','dusk','sand','monochrome','custom'],'Theme');
+    choice(p.theme,themes,'Theme');
+    // Optional day/night switch. The profile's own theme is the daytime look; this block gives the night palette and when it applies.
+    // Absent = one look for ever, exactly as before; no default block is added.
+    if(p.appearanceSchedule!==undefined){var sched=p.appearanceSchedule;keys(sched,['night','sunEntity','dayFrom','nightFrom'],'Appearance schedule');keys(sched.night,['theme'],'Night appearance');choice(sched.night.theme,themes,'Night theme');
+      if(sched.sunEntity===undefined)sched.sunEntity='sun.sun';entity(sched.sunEntity,'Sun entity',['sun'],true);if(sched.dayFrom===undefined)sched.dayFrom='07:00';if(sched.nightFrom===undefined)sched.nightFrom='19:00';if(hhmm(sched.dayFrom)===null)throw Error('Day start must be a 24-hour time such as 07:00');if(hhmm(sched.nightFrom)===null)throw Error('Night start must be a 24-hour time such as 19:00');if(sched.dayFrom===sched.nightFrom)throw Error('Day and night must start at different times');}
     if(!p.customColors)p.customColors={background:'#142522',surface:'#203730',accent:'#e5cb91',text:'#edf2e9',muted:'#b1c2b4'};
     keys(p.customColors,['background','surface','accent','text','muted'],'Custom colours');['background','surface','accent','text','muted'].forEach(function(k){if(typeof p.customColors[k]!=='string'||!/^#[0-9a-fA-F]{6}$/.test(p.customColors[k]))throw Error('Custom '+k+' must be a six-digit hex colour');});
     if(!p.cards)p.cards={temperaturesTitle:'Room temperatures',statusTitle:'Appliances & status',energyTitle:'Energy flow',energyStyle:'flow'};
@@ -77,11 +82,34 @@
     keys(p.helper,['enabled'],'Helper');if(typeof p.helper.enabled!=='boolean')throw Error('Helper enabled must be boolean');
     return p;
   }
-  function entities(p){var out=[];function add(x){if(x&&out.indexOf(x)===-1)out.push(x);}add(p.weather);if(p.weather)add(p.weatherSun);p.apps.forEach(function(a){if(a.guideMode==='home-assistant')add(a.tvEntity);});if(!p.cards.visible||p.cards.visible.indexOf('temperatures')!==-1)p.temperatures.forEach(function(t){add(t.entity);});p.controls.forEach(function(c){add(c.entity);if(c.type==='gate'){add(c.openScript);add(c.closeScript);}});if(p.energy.enabled&&(!p.cards.visible||p.cards.visible.indexOf('energy')!==-1)){powerKeys.forEach(function(k){add(p.energy[k].entity);});add(p.energy.soc);}if((!p.cards.visible||p.cards.visible.indexOf('laundry')!==-1)&&(!p.calendar||!p.calendar.enabled))p.laundry.forEach(function(a){add(a.status);add(a.remaining);});if(p.calendar&&p.calendar.enabled&&(!p.cards.visible||p.cards.visible.indexOf('laundry')!==-1))p.calendar.calendars.forEach(function(c){add(c.entity);});return out;}
+  function entities(p){var out=[];function add(x){if(x&&out.indexOf(x)===-1)out.push(x);}add(p.weather);if(p.weather)add(p.weatherSun);p.apps.forEach(function(a){if(a.guideMode==='home-assistant')add(a.tvEntity);});if(!p.cards.visible||p.cards.visible.indexOf('temperatures')!==-1)p.temperatures.forEach(function(t){add(t.entity);});p.controls.forEach(function(c){add(c.entity);if(c.type==='gate'){add(c.openScript);add(c.closeScript);}});if(p.appearanceSchedule)add(p.appearanceSchedule.sunEntity);if(p.energy.enabled&&(!p.cards.visible||p.cards.visible.indexOf('energy')!==-1)){powerKeys.forEach(function(k){add(p.energy[k].entity);});add(p.energy.soc);}if((!p.cards.visible||p.cards.visible.indexOf('laundry')!==-1)&&(!p.calendar||!p.calendar.enabled))p.laundry.forEach(function(a){add(a.status);add(a.remaining);});if(p.calendar&&p.calendar.enabled&&(!p.cards.visible||p.cards.visible.indexOf('laundry')!==-1))p.calendar.calendars.forEach(function(c){add(c.entity);});return out;}
+  // --- Day/night appearance (appearanceSchedule) -------------------------------------------------
+  // Pure functions, shared by the TV page, the setup preview and the tests. No timers here: the page asks again on every state update and clock tick.
+  function hhmm(v){var m=typeof v==='string'&&/^([01][0-9]|2[0-3]):([0-5][0-9])$/.exec(v);return m?Number(m[1])*60+Number(m[2]):null;}
+  // Minutes since midnight in the profile time zone, read the way the clock is (toLocaleTimeString); "24:05" from old engines means 00:05.
+  function minutesOfDay(date,timeZone){var h=date.getHours(),m=date.getMinutes(),t;try{t=/(\d{1,2})\D+(\d{2})/.exec(date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:timeZone}));if(t){h=Number(t[1])%24;m=Number(t[2]);}}catch(e){}return h*60+m;}
+  // Fixed hours, used only when no sun reading is usable. Either order works (dayFrom may be later than nightFrom).
+  function hoursMode(sched,minutes){var d=hhmm(sched.dayFrom),n=hhmm(sched.nightFrom),day=d<n?minutes>=d&&minutes<n:minutes>=d||minutes<n;return day?'day':'night';}
+  function sunMode(s){return s&&s.state==='above_horizon'?'day':s&&s.state==='below_horizon'?'night':null;}
+  // One live sun reading tells the mode until its next event, then (from next_rising / next_setting) the mode after that event,
+  // until the other event. So a Wi-Fi drop or an HA restart never falls back to the fixed hours in the middle of an evening.
+  // Without the two attributes, the reading is trusted for 12 hours.
+  var HOLD=12*3600000;
+  function sunPlan(s,now){var mode=sunMode(s),a,r,t;if(!mode)return null;a=s.attributes||{};r=Date.parse(a.next_rising);t=Date.parse(a.next_setting);if(!isFinite(r)||!isFinite(t))return {mode:mode,flip:null,then:null,until:now+HOLD};return r<t?{mode:mode,flip:r,then:'day',until:t}:{mode:mode,flip:t,then:'night',until:r};}
+  // A plan read back from storage (cold start before HA answers): kept only if it has exactly the shape sunPlan() builds.
+  function validPlan(x){return !!(x&&typeof x==='object'&&(x.mode==='day'||x.mode==='night')&&typeof x.until==='number'&&isFinite(x.until)&&(x.flip===null&&x.then===null||typeof x.flip==='number'&&isFinite(x.flip)&&(x.then==='day'||x.then==='night')));}
+  function planMode(plan,now){if(!plan||!(now<plan.until))return null;return plan.flip!==null&&now>=plan.flip?plan.then:plan.mode;}
+  // 'day' / 'night', or null when the profile has no schedule. Order: a live reading (liveSun, only while connected), then the last
+  // plan built from one (extrapolated, so a TV clock running ahead never overrides what HA says while it is connected), then fixed hours.
+  function appearanceMode(p,plan,now,minutes,liveSun){var sched=p&&p.appearanceSchedule;if(!sched)return null;return (sched.sunEntity&&(sunMode(liveSun)||planMode(plan,now)))||hoursMode(sched,minutes);}
+  // The palette for a mode; null mode = the profile's own theme.
+  function appearance(p,mode){var n=p.appearanceSchedule&&p.appearanceSchedule.night;return mode==='night'&&n?n.theme:p.theme;}
+  // Dark logos and wordmarks are needed on a light tile surface.
+  function lightSurface(p,theme){var surface=p.design.cards.colors.apps||(theme==='custom'?p.customColors.surface:theme==='sand'?'#f4eddf':'#203730'),rgb=surface.slice(1).match(/../g).map(function(v){return parseInt(v,16);});return (rgb[0]*.299+rgb[1]*.587+rgb[2]*.114)>155;}
   function numeric(v){return v!==null&&v!==undefined&&v!==''&&isFinite(Number(v))?Number(v):null;}
   function power(state,mapping){var n=state&&numeric(state.state);if(n===null||n===undefined)return null;var unit=mapping.unit==='auto'?(state.attributes||{}).unit_of_measurement:mapping.unit;if(unit!=='W'&&unit!=='kW')return null;return n*(unit==='W'?0.001:1)*(mapping.invert?-1:1);}
   function intent(c,s){if(!s||s==='unavailable'||s==='unknown')return null;if(c.type==='switch')return s==='on'?'off':s==='off'?'on':null;if(c.type==='cover')return s==='closed'?'open':s==='open'?'close':null;if(c.type==='gate')return s==='on'||s==='off'?(s===c.openState?'close':'open'):null;return c.type==='script'&&s==='off'?'run':null;}
   function command(c,desired){var service,domain,id=c.entity;if(c.type==='switch'&&['on','off'].indexOf(desired)!==-1){domain=id.split('.')[0];service='turn_'+desired;}else if(c.type==='cover'&&['open','close'].indexOf(desired)!==-1){domain='cover';service=desired+'_cover';}else if(c.type==='gate'&&['open','close'].indexOf(desired)!==-1){domain='script';service='turn_on';id=desired==='open'?c.openScript:c.closeScript;}else if(c.type==='script'&&desired==='run'){domain='script';service='turn_on';}else throw Error('Invalid control action');return {type:'call_service',domain:domain,service:service,target:{entity_id:id}};}
-  var api={privateIPv4:privateIPv4,validate:validate,entities:entities,power:power,numeric:numeric,intent:intent,command:command,powerKeys:powerKeys,appCatalog:appCatalog,appPreset:appPreset,appLogo:appLogo,logoFile:logoFile,logoKeys:logoKeys,appearances:appearances};
+  var api={privateIPv4:privateIPv4,validate:validate,entities:entities,power:power,numeric:numeric,intent:intent,command:command,powerKeys:powerKeys,appCatalog:appCatalog,appPreset:appPreset,appLogo:appLogo,logoFile:logoFile,logoKeys:logoKeys,appearances:appearances,hhmm:hhmm,minutesOfDay:minutesOfDay,hoursMode:hoursMode,sunPlan:sunPlan,validPlan:validPlan,planMode:planMode,appearanceMode:appearanceMode,appearance:appearance,lightSurface:lightSurface};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.HomeProfile=api;
 }(this));
