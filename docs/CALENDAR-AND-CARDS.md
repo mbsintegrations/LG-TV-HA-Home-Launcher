@@ -4,7 +4,7 @@
 
 Open **Home cards → Visible cards & order**. Tick the cards you want and use **Move up** to change their order. You can show Temperature, Calendar and Energy together, any two, or just one. Hidden cards keep their entity mappings and titles. A temperature card needs at least one temperature sensor; Energy also needs its existing enabled setting.
 
-Calendar uses the Appliances & status slot. Switch **Show calendar instead of appliances & status** off to restore the appliance/status card; its settings are retained. Calendar and appliance status cannot occupy two separate slots simultaneously in this version.
+Calendar uses the Appliances & status slot. Switch **Show calendar instead of appliances & status** off to restore the appliance/status card; its settings are retained. Calendar and appliance status cannot occupy two separate slots simultaneously in this version. The optional [HDMI input preview](#live-hdmi-input-preview-optional) likewise takes the Temperatures slot.
 
 For row-based themes, order is left to right and selected cards share the available width. Sidebar has three fixed positions: lower left, lower right and upper right beside the controls. With two cards they share the bottom row; one fills that row. Your imported profile keeps its existing geometry until you edit card visibility or order. The theme customizer's card styling and order still apply.
 
@@ -27,6 +27,22 @@ Above the configurator preview, select **Live HA data · read-only** after conne
 The setup server keeps the token in memory and returns only selected display values and event titles/times/labels to the embedded preview. Device-control and app buttons remain demonstrations: the preview cannot send household commands or install anything on a TV. Requests stop when the configurator tab is hidden. Disconnect or close the setup server to forget credentials. Avoid sharing screenshots containing private calendar titles.
 
 The HA address and explicit plain-HTTP choice survive changing steps, building and reloading the page while the same setup process is running. Tokens are never refilled into the browser. Restarting the server clears the connection; reconnect using your token. Exported profiles contain neither the token nor connection address.
+
+## Live HDMI input preview (optional)
+
+The Temperatures slot can instead show one of the TV's HDMI inputs live, for example a set-top box or a streamer. In **Home cards → HDMI input preview**, choose **HDMI 1–4** and an optional title (up to 28 characters). Choose **Off** to restore the temperature card; its sensor settings are kept, and while the preview is on the launcher does not subscribe to those sensors. The Temperatures card must be ticked in **Visible cards & order**. This is a per-profile setting (`hdmiPreview: {input: "hdmi:1", label: ""}`) and works in every layout that can show the Temperatures card.
+
+Select the card with the remote (OK) to open that input full screen (`com.webos.app.hdmiN`, the same launch as an HDMI app tile).
+
+How it works: the launcher places one muted `<video><source type="service/webos-external" src="ext://hdmi:N"></video>` in the card. This is the webOS "Input/TV embedding" method described in the [webOS Brew web development notes](https://www.webosbrew.org/pages/web-development). The TV's own input pipeline renders the signal; the launcher does not decode, copy or re-encode frames. The profile's Content Security Policy gains `media-src ... ext:` only when a preview is configured.
+
+Behaviour to know about:
+
+- Only one video exists at a time. It is released completely (paused, source removed, element removed) when Home is hidden, before any dialog opens or an input is launched, and on page hide. It restarts when Home is visible again.
+- If the TV refuses the source, or the input has no signal, the card shows a placeholder instead of a broken video.
+- The configurator and the standalone preview always show a static placeholder: `ext://` sources only exist on the TV. A browser's own remote inspector may also show the video area black while the TV screen shows the input.
+- Audio is muted; sound plays only in the full-screen input.
+- Support depends on the TV's webOS version and input hardware. Test on your model and report the result.
 
 ## Screenshots
 
