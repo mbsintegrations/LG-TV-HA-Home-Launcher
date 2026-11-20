@@ -1,0 +1,8 @@
+#energy.image-card{display:flex;flex-direction:column}
+#energy.image-card .energy-note,#energy.image-card .house-flow,#energy.image-card .energy-diagram{display:none}
+.energy:not(.image-card) .image-view{display:none}
+.image-view{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;margin-top:12px}
+.image-frame{position:relative;flex:1 1 auto;min-height:0;width:100%;overflow:hidden;border-radius:12px;background:#1b2a28}
+.image-frame img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:12px}
+.image-empty{position:absolute;left:0;right:0;top:50%;margin-top:-12px;text-align:center;font-size:20px;line-height:24px;opacity:.6}
+.image-time{flex:0 0 auto;margin-top:8px;font-size:20px;opacity:.8;min-height:24px}
