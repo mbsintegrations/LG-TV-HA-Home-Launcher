@@ -119,3 +119,7 @@ test('While connected, the live reading wins over the extrapolated plan (a TV cl
  assert.equal(P.appearanceMode(p,plan,read,hm('12:00'),sun('unavailable')),'day');                            // unusable live state: plan
  var off=scheduled(function(p){p.appearanceSchedule.sunEntity='';});assert.equal(P.appearanceMode(off,null,read,hm('12:00'),sun('below_horizon')),'day');
 });
+
+test('The clock tick re-evaluates the schedule, so the palette flips without any HA update (sample preview, no credentials)',function(){
+  var js=require('node:fs').readFileSync(require('node:path').join(__dirname,'../app/app.js'),'utf8');assert.match(js,/function clock\(\)\{if\(!p\)return;applyAppearance\(\);/);assert.match(js,/setInterval\(clock,10000\)/);
+});
